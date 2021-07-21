@@ -1733,7 +1733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe0351459cec9f4ea1ccb13a48157a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackingTarget: {fileID: 899885901300375787, guid: 6a4bed78041f4964db1199233e219514, type: 3}
+  trackingTarget: {fileID: 1230894102326484398, guid: 6a4bed78041f4964db1199233e219514, type: 3}
 --- !u!1001 &795200508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4093,12 +4093,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   glockSFX: {fileID: 0}
   glockClipSFX: {fileID: 0}
+  hitMarker: {fileID: 0}
   lookFrom: {fileID: 963194227}
   gridshotIsPlaying: 0
   colorCordinationIsPlaying: 0
   headshotModeIsPlaying: 0
   flickshotModeIsPlaying: 0
   singleTargetTrackingIsPlaying: 0
+  rangeTrainingIsPlaying: 0
 --- !u!1 &1965365768
 GameObject:
   m_ObjectHideFlags: 0

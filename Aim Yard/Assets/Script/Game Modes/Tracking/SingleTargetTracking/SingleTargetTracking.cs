@@ -42,6 +42,9 @@ public class SingleTargetTracking : MonoBehaviour
         //Set Active
         target.SetActive(true);
 
+        //Reset Health
+        target.GetComponent<TargetBehavior>().Initialize();
+
         //Return
         return target;
     }
