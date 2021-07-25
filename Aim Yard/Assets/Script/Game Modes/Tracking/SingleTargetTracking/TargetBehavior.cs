@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class TargetBehavior : MonoBehaviour
 {
@@ -19,6 +20,11 @@ public class TargetBehavior : MonoBehaviour
     float removeHealthAmount;
     bool isRemovingHealth;
 
+    //Ping Pong Variables
+    int length;
+    int speed;
+    int randomAxis;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +38,17 @@ public class TargetBehavior : MonoBehaviour
     void Update()
     {
         healthBar.fillAmount = currentHealth / maxHealth;
+
+        //Mathf Ping Pong
+        if(randomAxis == 1)
+        {
+            transform.position = new Vector3(Mathf.PingPong(Time.time * speed, length), transform.position.y, transform.position.z);
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time * speed, length), transform.position.z);
+        }
+
     }
 
     public void RemoveHealth(GameObject _target)
@@ -58,6 +75,10 @@ public class TargetBehavior : MonoBehaviour
 
     internal void Initialize()
     {
+        length = Random.Range(4, 14);
+        speed = Random.Range(1, 10);
+        randomAxis = Random.Range(1, 3);
+
         isRemovingHealth = false;
 
         if (maxHealth <= 0)

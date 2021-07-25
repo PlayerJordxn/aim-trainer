@@ -32,7 +32,6 @@ public class SingleTrackingTargetSpawner : MonoBehaviour
             if(targetsInScene < 1)
             {
                 singleTargetTrackingManager.GetTarget();
-                
                 targetsInScene++;
             }
         }
