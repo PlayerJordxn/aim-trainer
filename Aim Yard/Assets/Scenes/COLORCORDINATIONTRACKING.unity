@@ -1466,7 +1466,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 1
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3108,36 +3108,6 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3ee1b7b636b521b4494794f33c347d11, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3861d081c023273488a63f6c1a3dbb94, type: 3}
---- !u!1 &1397495807
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1397495808}
-  m_Layer: 0
-  m_Name: Military Tent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1397495808
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1397495807}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1425093806}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1415844624
 GameObject:
   m_ObjectHideFlags: 0
@@ -3149,7 +3119,7 @@ GameObject:
   - component: {fileID: 1415844625}
   - component: {fileID: 1415844626}
   m_Layer: 0
-  m_Name: GridshotSpawner
+  m_Name: ColorCordinationTrackingSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3178,11 +3148,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1415844624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2110d129486259a43bc5e42ae728c5b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd9387235659ef45a8e4a32bc6b5745, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetsInScene: 0
-  isPlaying: 0
 --- !u!4 &1416671229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a96132faa99ea81448f794eec0ebb4c7, type: 3}
@@ -3216,7 +3185,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 593043618}
-  - {fileID: 1397495808}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3831,7 +3799,7 @@ GameObject:
   - component: {fileID: 1724195004}
   - component: {fileID: 1724195005}
   m_Layer: 0
-  m_Name: GridshotManager
+  m_Name: ColorCordinationTrackingManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3860,36 +3828,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1724195003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08069b47c214d2f4690cc17e2f2be0ae, type: 3}
+  m_Script: {fileID: 11500000, guid: f689cfc2724e3594abf7c0e7077c14ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 8193956073046809993, guid: 18877bba1f9f52647befe6dfe461cc00, type: 3}
-  spawnLocations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  trackingTarget:
+  - {fileID: 6168931272089486164, guid: b07f8f5c44a3bbb44959d1e2bac54399, type: 3}
+  - {fileID: 4161593056663896953, guid: ccefdf15ee8772741a2a252bbf21438a, type: 3}
+  - {fileID: 6368818446299757955, guid: a92b8d1dffb32c84d92973fa0b8135e4, type: 3}
+  - {fileID: 1040970843587467958, guid: 748a1ba4c54bd2949ac728eed4c589dd, type: 3}
+  - {fileID: 7694865688970983574, guid: fcc4d61f6f81d5f4fb2e2db6864a0efe, type: 3}
+  - {fileID: 3946332598890407746, guid: 7b956cf4b8417a840a03349ec9993a46, type: 3}
+  - {fileID: 1104144864461910835, guid: 88858a55a5843a343a86fc1b0ffef2f2, type: 3}
+  - {fileID: 1230894102326484398, guid: 6a4bed78041f4964db1199233e219514, type: 3}
 --- !u!4 &1730016750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 3861d081c023273488a63f6c1a3dbb94, type: 3}
@@ -4499,6 +4449,7 @@ MonoBehaviour:
   flickshotModeIsPlaying: 0
   singleTargetTrackingIsPlaying: 0
   rangeTrainingIsPlaying: 0
+  colorCordinationTrackingIsPlaying: 0
 --- !u!82 &1961220464
 AudioSource:
   m_ObjectHideFlags: 0

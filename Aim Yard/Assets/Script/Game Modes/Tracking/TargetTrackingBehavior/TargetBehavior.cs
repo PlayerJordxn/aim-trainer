@@ -11,6 +11,9 @@ public class TargetBehavior : MonoBehaviour
     SingleTargetTracking singleTargetManager;
     SingleTrackingTargetSpawner singleTargetSpawnerScript;
 
+    ColorCordinationTracking colorCordinationTracking;
+    ColorCordinationTrackingSpawner colorCordinationSpawner;
+
     [SerializeField] Image healthBar;
 
     //Health
@@ -25,12 +28,17 @@ public class TargetBehavior : MonoBehaviour
     int speed;
     int randomAxis;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         singleTargetSpawnerScript = FindObjectOfType<SingleTrackingTargetSpawner>();
         singleTargetManager = FindObjectOfType<SingleTargetTracking>();
 
+        colorCordinationTracking = FindObjectOfType<ColorCordinationTracking>();
+        colorCordinationSpawner = FindObjectOfType<ColorCordinationTrackingSpawner>();
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
         Initialize();
     }
 
@@ -51,7 +59,7 @@ public class TargetBehavior : MonoBehaviour
 
     }
 
-    public void RemoveHealth(GameObject _target)
+    public void RemoveHealthSingleTarget(GameObject _target)
     {
         Debug.Log(currentHealth);
 
@@ -69,8 +77,26 @@ public class TargetBehavior : MonoBehaviour
         }
         else if (!isRemovingHealth)
             StartCoroutine(healthReduction(0.4f));
-         
-      
+    }
+
+    public void RemoveHealthColorCordinationTracking(GameObject _target)
+    {
+        Debug.Log(currentHealth);
+
+        if (currentHealth <= minHealth)
+        {
+            //Reset Health
+            currentHealth = maxHealth;
+            Debug.Log("Max Health: " + maxHealth);
+
+            //Enqeue
+            colorCordinationTracking.ReturnTarget(_target);
+
+            //Remove target in scene
+            colorCordinationSpawner.targetsInScene--;
+        }
+        else if (!isRemovingHealth)
+            StartCoroutine(healthReduction(0.4f));
     }
 
     internal void Initialize()

@@ -11,7 +11,7 @@ public class RangeTrainingMode : MonoBehaviour
     GameObject[] transformAsGameobjects;
 
     //Transform array
-    public Transform[] spawnLocations = new Transform[75];
+    public Transform[] spawnLocations = new Transform[25];
 
     //Queue
     public Queue<GameObject> pool = new Queue<GameObject>();

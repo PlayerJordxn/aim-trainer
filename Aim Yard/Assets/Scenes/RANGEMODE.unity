@@ -2332,7 +2332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177839497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.5, y: 28.13, z: -212}
+  m_LocalPosition: {x: 14.5, y: 28.13, z: -109.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1362324340}
@@ -3149,7 +3149,7 @@ GameObject:
   - component: {fileID: 1415844625}
   - component: {fileID: 1415844626}
   m_Layer: 0
-  m_Name: GridshotSpawner
+  m_Name: Range Mode Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3178,11 +3178,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1415844624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2110d129486259a43bc5e42ae728c5b9, type: 3}
+  m_Script: {fileID: 11500000, guid: ef2b354b8d5d3194d89c39b6fd88e918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetsInScene: 0
-  isPlaying: 0
 --- !u!4 &1416671229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a96132faa99ea81448f794eec0ebb4c7, type: 3}
@@ -3831,7 +3830,7 @@ GameObject:
   - component: {fileID: 1724195004}
   - component: {fileID: 1724195005}
   m_Layer: 0
-  m_Name: GridshotManager
+  m_Name: Range Mode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3860,10 +3859,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1724195003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08069b47c214d2f4690cc17e2f2be0ae, type: 3}
+  m_Script: {fileID: 11500000, guid: ecedf43ed81217e46a806a80bc2b0f65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 8193956073046809993, guid: 18877bba1f9f52647befe6dfe461cc00, type: 3}
+  targetPrefab: {fileID: 8193956073046809993, guid: cbfcf4318c6841a489534c06418259b6, type: 3}
   spawnLocations:
   - {fileID: 0}
   - {fileID: 0}
@@ -4499,6 +4498,7 @@ MonoBehaviour:
   flickshotModeIsPlaying: 0
   singleTargetTrackingIsPlaying: 0
   rangeTrainingIsPlaying: 0
+  colorCordinationTrackingIsPlaying: 0
 --- !u!82 &1961220464
 AudioSource:
   m_ObjectHideFlags: 0

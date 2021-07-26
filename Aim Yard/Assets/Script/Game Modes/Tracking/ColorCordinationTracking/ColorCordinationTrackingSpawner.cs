@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangeTrainingSpawner : MonoBehaviour
+public class ColorCordinationTrackingSpawner : MonoBehaviour
 {
     //Script Access
-    RangeTrainingMode rangeTrainingManager;
-    RangeTrainingSpawner rangeTrainingSpawner;
+    ColorCordinationTracking colorCordinationTracking;
     RaycastShoot raycastScript;
-    
+    TargetBehavior targetBehaviour;
 
 
     bool isPlaying;
@@ -17,12 +16,11 @@ public class RangeTrainingSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rangeTrainingManager = FindObjectOfType<RangeTrainingMode>();
-        
+        colorCordinationTracking = FindObjectOfType<ColorCordinationTracking>();
         raycastScript = FindObjectOfType<RaycastShoot>();
 
 
-        raycastScript.rangeTrainingIsPlaying = true;
+        raycastScript.colorCordinationTrackingIsPlaying = true;
         isPlaying = true;
     }
 
@@ -33,7 +31,7 @@ public class RangeTrainingSpawner : MonoBehaviour
         {
             if (targetsInScene < 1)
             {
-                rangeTrainingManager.GetTarget();
+                colorCordinationTracking.GetTarget();
                 targetsInScene++;
             }
         }

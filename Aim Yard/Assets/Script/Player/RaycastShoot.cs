@@ -26,6 +26,10 @@ public class RaycastShoot : MonoBehaviour
     RangeTrainingMode rangeTrainingManager;
     RangeTrainingSpawner rangeTrainingSpawner;
 
+    ColorCordinationTracking colorCordinationTracking;
+    ColorCordinationTrackingSpawner colorCordinationTrackingSpawner;
+   
+
     //Audio Source
     [SerializeField] AudioSource glockSFX;
     [SerializeField] AudioClip glockClipSFX;
@@ -39,13 +43,15 @@ public class RaycastShoot : MonoBehaviour
     [SerializeField] Camera lookFrom;
     float shootDistance;
 
+    //Gamemodes
     public bool gridshotIsPlaying;
     public bool colorCordinationIsPlaying;
     public bool headshotModeIsPlaying;
     public bool flickshotModeIsPlaying;
     public bool singleTargetTrackingIsPlaying;
     public bool rangeTrainingIsPlaying;
-    
+    public bool colorCordinationTrackingIsPlaying;
+
 
 
     private void Awake()
@@ -55,6 +61,7 @@ public class RaycastShoot : MonoBehaviour
         headshotModeIsPlaying = false;
         flickshotModeIsPlaying = false;
         singleTargetTrackingIsPlaying = false;
+        colorCordinationTrackingIsPlaying = false;
     }
     // Start is called before the first frame update
     void Start()
@@ -77,8 +84,11 @@ public class RaycastShoot : MonoBehaviour
         rangeTrainingManager = FindObjectOfType<RangeTrainingMode>();
         rangeTrainingSpawner = FindObjectOfType<RangeTrainingSpawner>();
 
+        colorCordinationTracking = FindObjectOfType<ColorCordinationTracking>();
+        colorCordinationTrackingSpawner = FindObjectOfType<ColorCordinationTrackingSpawner>();
+
         if (shootDistance <= 0)
-            shootDistance = 60f;
+            shootDistance = 150f;
 
         if (duration <= 0)
             duration = 2f;
@@ -87,15 +97,15 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
             glockSFX.PlayOneShot(glockClipSFX);
         }
-        */
+        
 
-        Tracking();
+        //Tracking();
     }
 
     public void Shoot()
@@ -107,20 +117,7 @@ public class RaycastShoot : MonoBehaviour
             if(hit.collider.tag == "Target")
             {
                 if (gridshotIsPlaying)
-                {
-                    /*
-                    if(time < duration)
-                    {
-                        var colorOne = hitMarker.color;
-                        colorOne.a = 0;
-
-                        var colorTwo = hitMarker.color;
-                        colorTwo.a = 1f;
-
-                        Color.Lerp(colorOne, colorTwo, time / duration);
-                    }
-                    */
-                    
+                {   
                     //GRIDSHOT
                     gridshot.ReturnTarget(hit.collider.gameObject);
                     gridshotSpawner.targetsInScene--;
@@ -150,6 +147,8 @@ public class RaycastShoot : MonoBehaviour
                     rangeTrainingManager.ReturnTarget(hit.collider.gameObject);
                     rangeTrainingSpawner.targetsInScene--;
                 }
+
+                
             }
         }
     }
@@ -164,10 +163,12 @@ public class RaycastShoot : MonoBehaviour
             {
                 if(singleTargetTrackingIsPlaying)
                 {
-                    if (singleTargetTracking)
-                    {
-                        hit.collider.gameObject.GetComponent<TargetBehavior>().RemoveHealth(hit.collider.gameObject);
-                    }
+                    hit.collider.gameObject.GetComponent<TargetBehavior>().RemoveHealthSingleTarget(hit.collider.gameObject);
+                }
+
+                if (colorCordinationTrackingIsPlaying)
+                {
+                    hit.collider.gameObject.GetComponent<TargetBehavior>().RemoveHealthColorCordinationTracking(hit.collider.gameObject);
                 }
             }
         }
