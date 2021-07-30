@@ -6,55 +6,50 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
+    [SerializeField] Camera cam;
     public UnityEvent buttonPressed;
-    [SerializeField] Camera lookFrom;
     float lookDistance;
+    bool clickable;
+
     // Start is called before the first frame update
     void Start()
     {
+        clickable = true;
+
+        cam = GetComponent<Camera>();
+
         if (lookDistance <= 0)
             lookDistance = 60f;
 
-        buttonPressed.AddListener(QuitGame);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0) && clickable)
         {
-            buttonRaycast();
+            
+            StartCoroutine(buttonRaycast(0.5f));
         }
     }
 
-    public void buttonRaycast()
+    IEnumerator buttonRaycast(float wait)
     {
+        clickable = false;
+
         RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(lookFrom.transform.position, lookFrom.transform.forward, out hit, lookDistance))
+        if(Physics.Raycast(ray, out hit, lookDistance))
         {
-            if(hit.collider.tag == "Start")
-            {
-
-            }
-
-            if(hit.collider.tag == "Settings")
-            {
-
-            }
-
-            if(hit.collider.tag == "Quit")
-            {
-                buttonPressed.Invoke();
-            }
+            buttonPressed.Invoke();
         }
 
-        
+        yield return new WaitForSeconds(wait);
+
+        clickable = true;
     }
 
-    public void QuitGame()
-    {
-        Debug.Log("Quit Game");
-        Application.Quit();
-    }
+  
 }

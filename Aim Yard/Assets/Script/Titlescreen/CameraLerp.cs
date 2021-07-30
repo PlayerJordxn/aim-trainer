@@ -9,6 +9,14 @@ public class CameraLerp : MonoBehaviour
     [SerializeField] Vector3 introStartPos;
     [SerializeField] Vector3 introEndPos;
     [SerializeField] Transform whiteBoard;
+
+    //Game mode lerp
+    [SerializeField] Vector3 modeStartLerpPos;
+    [SerializeField] Vector3 modeEndLerpPos;
+
+    //Settings Lerp
+
+
     float startTime;
     float speed = 1.4f;
     float introLength;
@@ -40,11 +48,6 @@ public class CameraLerp : MonoBehaviour
 
         transform.position = Vector3.Lerp(introStartPos, introEndPos, journey);
         transform.LookAt(whiteBoard);
-
-        if(introStartPos == introEndPos)
-        {
-            //Set button ui active
-        }
     }
 
    

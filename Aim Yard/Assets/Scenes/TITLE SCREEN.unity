@@ -180,7 +180,6 @@ Transform:
   m_LocalPosition: {x: 28.960869, y: -8.254739, z: 86.391556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1218151553}
   - {fileID: 708266505}
   - {fileID: 1485953339}
   - {fileID: 1989764194}
@@ -1194,6 +1193,7 @@ GameObject:
   - component: {fileID: 708266508}
   - component: {fileID: 708266507}
   - component: {fileID: 708266506}
+  - component: {fileID: 708266509}
   m_Layer: 0
   m_Name: Game Modes Button
   m_TagString: Untagged
@@ -1213,7 +1213,7 @@ Transform:
   m_LocalScale: {x: 0.04427845, y: 0.2995, z: 0.8269}
   m_Children: []
   m_Father: {fileID: 155428131}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 12.037, z: 0}
 --- !u!65 &708266506
 BoxCollider:
@@ -1278,6 +1278,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 708266504}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &708266509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708266504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f191d42aac046e943bde2c0b19bcf722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &923223490
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,89 +2087,6 @@ Transform:
   m_Father: {fileID: 1198826180}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1218151552
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1218151553}
-  - component: {fileID: 1218151554}
-  m_Layer: 0
-  m_Name: Button Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1218151553
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218151552}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 155428131}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1218151554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1218151552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728f6b0b1c1006a458f9e20d963dc35b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonPressed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1989764198}
-        m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
-        m_MethodName: EndGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  lookFrom: {fileID: 1256394194501575193}
 --- !u!1 &1261976221
 GameObject:
   m_ObjectHideFlags: 0
@@ -2646,6 +2575,7 @@ GameObject:
   - component: {fileID: 1485953342}
   - component: {fileID: 1485953341}
   - component: {fileID: 1485953340}
+  - component: {fileID: 1485953343}
   m_Layer: 0
   m_Name: Settings Button
   m_TagString: Untagged
@@ -2665,7 +2595,7 @@ Transform:
   m_LocalScale: {x: 0.04427845, y: 0.2995, z: 0.8269}
   m_Children: []
   m_Father: {fileID: 155428131}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 12.037, z: 0}
 --- !u!65 &1485953340
 BoxCollider:
@@ -2730,6 +2660,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485953338}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1485953343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485953338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f191d42aac046e943bde2c0b19bcf722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!205 &1648431883
 LODGroup:
   m_ObjectHideFlags: 0
@@ -3911,7 +3853,7 @@ Transform:
   m_LocalScale: {x: 0.04427845, y: 0.2995, z: 0.8269}
   m_Children: []
   m_Father: {fileID: 155428131}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 12.037, z: 0}
 --- !u!65 &1989764195
 BoxCollider:
@@ -6781,6 +6723,7 @@ GameObject:
   - component: {fileID: 1501023131833458426}
   - component: {fileID: 1256394194501575193}
   - component: {fileID: 8632991739723108576}
+  - component: {fileID: 8632991739723108577}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -6803,6 +6746,58 @@ MonoBehaviour:
   introStartPos: {x: 50.777306, y: 3.67696, z: 41.585434}
   introEndPos: {x: 49.19, y: 2.84, z: 51.248077}
   whiteBoard: {fileID: 83945760}
+--- !u!114 &8632991739723108577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8632991739723108575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728f6b0b1c1006a458f9e20d963dc35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  buttonPressed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 708266509}
+        m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
+        m_MethodName: ChooseMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1485953343}
+        m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
+        m_MethodName: ChangeSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1989764198}
+        m_TargetAssemblyTypeName: ButtonActions, Assembly-CSharp
+        m_MethodName: EndGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8655979947399083014
 GameObject:
   m_ObjectHideFlags: 0
