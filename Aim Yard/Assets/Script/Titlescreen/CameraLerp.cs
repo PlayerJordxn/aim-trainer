@@ -21,7 +21,9 @@ public class CameraLerp : MonoBehaviour
     float speed = 1.4f;
     float introLength;
 
-   
+
+
+    private bool introCompleted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,19 +40,33 @@ public class CameraLerp : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        IntroLerp();
+
+        if (!introCompleted)
+        {
+            introCompleted = IntroLerp();
+        }
+        else
+        {
+            Debug.Log("Mode Lerping Now");
+            //Mode Lerp
+        }
+
+
+
     }
 
-    public void IntroLerp()
+    public bool IntroLerp()
     {
         float dist = (Time.time - startTime) * speed;
         float journey = dist / introLength;
 
         transform.position = Vector3.Lerp(introStartPos, introEndPos, journey);
         transform.LookAt(whiteBoard);
+
+        return journey >= 1;
     }
 
-   
+
 
 
 }
