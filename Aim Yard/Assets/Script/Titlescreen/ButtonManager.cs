@@ -9,12 +9,11 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] Camera cam;
     public UnityEvent buttonPressed;
     float lookDistance;
-    bool clickable;
+    public bool clickable;
 
     // Start is called before the first frame update
     void Start()
     {
-        clickable = true;
 
         cam = GetComponent<Camera>();
 
