@@ -5367,7 +5367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7244220822026196141}
   m_LocalRotation: {x: -0.5043402, y: -0.49562186, z: -0.49562448, w: 0.50433755}
-  m_LocalPosition: {x: -6.21452, y: 0.4667242, z: -2.135637}
+  m_LocalPosition: {x: -6.21452, y: 0.419, z: -2.135637}
   m_LocalScale: {x: 9.308065, y: 13.669063, z: 15.65427}
   m_Children: []
   m_Father: {fileID: 8119243903948628312}
@@ -6746,6 +6746,8 @@ MonoBehaviour:
   introStartPos: {x: 50.777306, y: 3.67696, z: 41.585434}
   introEndPos: {x: 49.19, y: 2.84, z: 51.248077}
   whiteBoard: {fileID: 83945760}
+  modeStartLerpPos: {x: 0, y: 0, z: 0}
+  modeEndLerpPos: {x: 0, y: 0, z: 0}
 --- !u!114 &8632991739723108577
 MonoBehaviour:
   m_ObjectHideFlags: 0
