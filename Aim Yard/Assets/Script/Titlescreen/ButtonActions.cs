@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class ButtonActions : MonoBehaviour
 {
-    [SerializeField] CameraLerp cameraScript;
+  
     GameObject[] ButtonModes;
 
     private void Start()
     {
-        cameraScript = GameObject.FindObjectOfType<CameraLerp>();
+       
 
         //Set inactive buttons
         /*
@@ -22,7 +22,7 @@ public class ButtonActions : MonoBehaviour
 
     public void ChooseMode()
     {
-        cameraScript.gameModeLerpCompleted = false;
+        
     }
 
     public void ChangeSettings()
