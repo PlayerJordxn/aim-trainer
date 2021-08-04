@@ -28,27 +28,15 @@ public class ButtonManager : MonoBehaviour
     {
         if(Input.GetMouseButton(0) && clickable)
         {
-            
-            StartCoroutine(buttonRaycast(0.5f));
+            clickable = false;
+
+            RaycastHit hit;
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit, lookDistance))
+            {
+                buttonPressed.Invoke();
+            }
         }
     }
-
-    IEnumerator buttonRaycast(float wait)
-    {
-        clickable = false;
-
-        RaycastHit hit;
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-        if(Physics.Raycast(ray, out hit, lookDistance))
-        {
-            buttonPressed.Invoke();
-        }
-
-        yield return new WaitForSeconds(wait);
-
-        clickable = true;
-    }
-
-  
 }

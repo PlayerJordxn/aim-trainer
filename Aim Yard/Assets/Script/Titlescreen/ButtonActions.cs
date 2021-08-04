@@ -6,7 +6,6 @@ public class ButtonActions : MonoBehaviour
 {
     [SerializeField] CameraLerp cameraScript;
     GameObject[] ButtonModes;
-    bool completed;
 
     private void Start()
     {
@@ -23,14 +22,7 @@ public class ButtonActions : MonoBehaviour
 
     public void ChooseMode()
     {
-        if(!completed)
-        {
-            completed = cameraScript.gameModeLerp();
-        }
-        else
-        {
-            Debug.Log("Completed");
-        }
+        cameraScript.gameModeLerpCompleted = false;
     }
 
     public void ChangeSettings()
