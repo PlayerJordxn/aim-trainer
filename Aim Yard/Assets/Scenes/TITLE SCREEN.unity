@@ -1257,7 +1257,7 @@ GameObject:
   - component: {fileID: 708266509}
   m_Layer: 0
   m_Name: Game Modes Button
-  m_TagString: Untagged
+  m_TagString: Gamemode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1351,7 +1351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f191d42aac046e943bde2c0b19bcf722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraScript: {fileID: 0}
+  colorCordinationButton: {fileID: 0}
+  flickShotButton: {fileID: 0}
+  gridshotButton: {fileID: 0}
+  headshotModeButton: {fileID: 0}
+  rangeTrainingButton: {fileID: 0}
+  colorCordinationTracking: {fileID: 0}
+  singleTargetTracking: {fileID: 0}
 --- !u!4 &743459182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8bc49b458cce552448349befcce4115e, type: 3}
@@ -2741,7 +2747,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f191d42aac046e943bde2c0b19bcf722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraScript: {fileID: 0}
+  colorCordinationButton: {fileID: 0}
+  flickShotButton: {fileID: 0}
+  gridshotButton: {fileID: 0}
+  headshotModeButton: {fileID: 0}
+  rangeTrainingButton: {fileID: 0}
+  colorCordinationTracking: {fileID: 0}
+  singleTargetTracking: {fileID: 0}
 --- !u!205 &1648431883
 LODGroup:
   m_ObjectHideFlags: 0
@@ -4057,7 +4069,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f191d42aac046e943bde2c0b19bcf722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraScript: {fileID: 0}
+  colorCordinationButton: {fileID: 0}
+  flickShotButton: {fileID: 0}
+  gridshotButton: {fileID: 0}
+  headshotModeButton: {fileID: 0}
+  rangeTrainingButton: {fileID: 0}
+  colorCordinationTracking: {fileID: 0}
+  singleTargetTracking: {fileID: 0}
 --- !u!1 &2037594366
 GameObject:
   m_ObjectHideFlags: 0
@@ -6966,9 +6984,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1501023131833458426}
   - component: {fileID: 1256394194501575193}
-  - component: {fileID: 8632991739723108576}
   - component: {fileID: 8632991739723108577}
   - component: {fileID: 8632991739723108578}
+  - component: {fileID: 8632991739723108576}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -6985,16 +7003,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8632991739723108575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ead97fab5f07564c9c28b96715f1257, type: 3}
+  m_Script: {fileID: 11500000, guid: eb2d58a787bb7bb43956c34d54acedc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introStartPos: {x: 50.777306, y: 3.67696, z: 41.585434}
-  introEndPos: {x: 49.19, y: 2, z: 51.248077}
-  whiteBoard: {fileID: 83945760}
-  modeEndLerpPos: {x: 21.033886, y: 10.229189, z: -35.647926}
-  gameModesTransform: {fileID: 2136569954}
-  gameModeLerpCompleted: 1
-  settingsEndPos: {x: 0, y: 0, z: 0}
+  actions: {fileID: 0}
+  cam: {fileID: 0}
+  isShooting: 0
 --- !u!114 &8632991739723108577
 MonoBehaviour:
   m_ObjectHideFlags: 0

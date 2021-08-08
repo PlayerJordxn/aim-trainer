@@ -4,34 +4,37 @@ using UnityEngine;
 
 public class ButtonActions : MonoBehaviour
 {
-  
-    GameObject[] ButtonModes;
+    Animator anim;
+
+    //Game Modes
+    [SerializeField] GameObject colorCordinationButton;
+    [SerializeField] GameObject flickShotButton;
+    [SerializeField] GameObject gridshotButton;
+    [SerializeField] GameObject headshotModeButton;
+    [SerializeField] GameObject rangeTrainingButton;
+    [SerializeField] GameObject colorCordinationTracking;
+    [SerializeField] GameObject singleTargetTracking;
+
 
     private void Start()
     {
-       
+        anim = FindObjectOfType<Animator>();
 
-        //Set inactive buttons
-        /*
-        for(int i = 0; i < ButtonModes.Length; i++)
-        {
-            GameObject temp = Instantiate(ButtonModes[i]);//Add Pos
-        }
-        */
     }
 
     public void ChooseMode()
     {
-        
+        anim.SetTrigger("Gamemode");
+
     }
 
     public void ChangeSettings()
     {
-        Debug.Log("Change Settings");
+        anim.SetTrigger("Settings");
     }
 
     public void EndGame()
     {
-        Debug.Log("End Game");
+   
     }
 }
