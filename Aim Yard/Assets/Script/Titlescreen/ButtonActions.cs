@@ -15,26 +15,31 @@ public class ButtonActions : MonoBehaviour
     [SerializeField] GameObject colorCordinationTracking;
     [SerializeField] GameObject singleTargetTracking;
 
+    //Booleans
+    bool settings = false;
+    bool gamemodes = false;
 
     private void Start()
     {
         anim = FindObjectOfType<Animator>();
-
     }
 
     public void ChooseMode()
     {
-        anim.SetTrigger("Gamemode");
+        Debug.Log("Mode Chosen");
+        //anim.SetTrigger("Modes");
 
     }
 
     public void ChangeSettings()
-    {
-        anim.SetTrigger("Settings");
+    { 
+
+        Debug.Log("Settings Chosen");
+        //anim.SetTrigger("Settings");
     }
 
     public void EndGame()
     {
-   
+        Debug.Log("End Game Chosen");
     }
 }
