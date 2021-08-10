@@ -27,6 +27,7 @@ public class CanvasManager : MonoBehaviour
     bool settingsBool = false;
     bool modesBool = false;
     bool whiteboardBool = false;
+    bool modeToWhiteboard = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,28 +38,24 @@ public class CanvasManager : MonoBehaviour
         if(modeButton)//Whiteboard to mode screen
             modeButton.onClick.AddListener(ChooseMode);
     
-    
         if(settingsButton)
             settingsButton.onClick.AddListener(Settings);
 
         if(modesReturnButton)
             modesReturnButton.onClick.AddListener(ChooseModeReturn);
 
+        if (settingsReturnButton)
+            settingsReturnButton.onClick.AddListener(SettingsReturn);
+
         whiteboardButtons.SetActive(false);
         gamemodeButtons.SetActive(false);
         settingsButtons.SetActive(false);
 
-        //Intro
+        //Intro camera animation
         whiteboardBool = true;
         StartCoroutine(WaitTime(6f));
 
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     IEnumerator WaitTime(float wait)
@@ -80,29 +77,88 @@ public class CanvasManager : MonoBehaviour
         {
             settingsButtons.SetActive(true);
         }
+
+        if(modeToWhiteboard)
+        {
+            whiteboardButtons.SetActive(true);
+        }
     }
 
     void ChooseMode()
     {
+        //Trigger camera animation
         anim.SetTrigger("Modes");
+
+        //Disable buttons
         whiteboardButtons.SetActive(false);
+
+        //Toggle Booleans
+        settingsBool = false;
+        settingsBool = false;
         modesBool = true;
-        StartCoroutine(WaitTime(3.5f));
+        whiteboardBool = false;
+        modeToWhiteboard = false;
+
+        //Wait to toggle buttons after animation
+        StartCoroutine(WaitTime(3f));
+
+       
     }
 
     void ChooseModeReturn()
     {
-        anim.Play("Modes", -1);
+        //Trigger camera animation
+        anim.SetTrigger("ModeToWhiteboard");
+
+        //Disable buttons
+        gamemodeButtons.SetActive(false);
+
+        //Toggle Booleans
+        settingsBool = false;
+        settingsBool = false;
+        modesBool = false;
+        whiteboardBool = true;
+        modeToWhiteboard = false;
+
+        //Wait to toggle buttons after animation
+        StartCoroutine(WaitTime(3f));
+
+        
     }
 
     void Settings()
     {
+        //Trigger camera animation
         anim.SetTrigger("Settings");
+
+        //Disable buttons
         whiteboardButtons.SetActive(false);
-        StartCoroutine(WaitTime(6f));
-        
+        gamemodeButtons.SetActive(false);
+
+        //Toggle Booleans
         settingsBool = true;
-        
-        
+        modesBool = false;
+        whiteboardBool = false;
+        modeToWhiteboard = false;
+
+        //Wait to toggle buttons after animation
+        StartCoroutine(WaitTime(5f));
+    }
+
+    void SettingsReturn()
+    {
+        anim.SetTrigger("SettingsToWhiteboard");
+
+        settingsButtons.SetActive(false);
+
+        //Toggle Booleans
+        settingsBool = false;
+        settingsBool = false;
+        modesBool = false;
+        whiteboardBool = true;
+        modeToWhiteboard = false;
+
+        //Wait to toggle buttons after animation
+        StartCoroutine(WaitTime(3.5f));
     }
 }
