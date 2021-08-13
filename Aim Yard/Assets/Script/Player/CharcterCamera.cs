@@ -29,14 +29,10 @@ public class CharcterCamera : MonoBehaviour
         }
 
         if(mouseSensitivity <= 0)
-        {
             mouseSensitivity = 5.0f;
-        }
 
         if (playerSpeed <= 0)
-        {
             playerSpeed = 6f;
-        }
     }
 
     // Update is called once per frame
@@ -51,13 +47,13 @@ public class CharcterCamera : MonoBehaviour
 
         mouseDirection = Vector2.SmoothDamp(mouseDirection, mouseDelta, ref mouseDirectionVelocity, mouseSmoothValue);//Smooths mouse movement
 
-        cameraPitch -= mouseDelta.y * mouseSensitivity;//Sensitivity for camera left and right
+        cameraPitch -= mouseDelta.y * mouseSensitivity / 3;//Sensitivity for camera left and right
         
         cameraPitch = Mathf.Clamp(cameraPitch, -90f, 90f);// Clamps the camera at 90/-90 degrees
 
         playerCamera.localEulerAngles = Vector3.right * cameraPitch;// Rotate on the right vector using camera Pitch
 
-        transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity); //Rotate on x-axis using mouseDelta
+        transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity / 3); //Rotate on x-axis using mouseDelta
     }
 
 
