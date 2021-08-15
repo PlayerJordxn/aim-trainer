@@ -52,6 +52,11 @@ public class RaycastShoot : MonoBehaviour
     public bool rangeTrainingIsPlaying;
     public bool colorCordinationTrackingIsPlaying;
 
+    //Weapons - Determines what audio should be played
+    bool m4a1SfxBool = false;
+    bool glockSfxBool = false;
+    bool m16SfxBool = false;
+
 
 
     private void Awake()
@@ -100,7 +105,18 @@ public class RaycastShoot : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
+
+            //SFX
+            if(glockSfxBool)
             glockSFX.PlayOneShot(glockClipSFX);
+
+            if(m16SfxBool)
+            { }
+
+            if(m4a1SfxBool)
+            { }
+
+
         }
         
         //Tracking();
