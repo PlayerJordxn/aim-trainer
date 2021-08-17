@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CharcterCamera : MonoBehaviour
 {
 
+    [SerializeField] Slider _slider;
+    [SerializeField] TextMeshProUGUI sliderText;
+
     [SerializeField] Transform playerCamera;
-    [SerializeField] float mouseSensitivity;
+    [SerializeField] int mouseSensitivity;
     [SerializeField][Range(0.0f, 1.0f)] float mouseSmoothValue = 0.5f;
 
     Vector2 mouseDirection = Vector2.zero;
@@ -20,7 +25,7 @@ public class CharcterCamera : MonoBehaviour
     void Start()
     {
 
-        lockCursor = true;
+        lockCursor = false;
 
         if(lockCursor)
         {
@@ -29,7 +34,7 @@ public class CharcterCamera : MonoBehaviour
         }
 
         if(mouseSensitivity <= 0)
-            mouseSensitivity = 5.0f;
+            mouseSensitivity = 5;
 
         if (playerSpeed <= 0)
             playerSpeed = 6f;
@@ -38,6 +43,14 @@ public class CharcterCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (_slider)
+        {
+            sliderText.text = _slider.value.ToString();
+            mouseSensitivity = (int)_slider.value;
+        }
+
+        if(playerCamera)
         UpdateMouseLook();
     }
 
@@ -55,6 +68,9 @@ public class CharcterCamera : MonoBehaviour
 
         transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity / 3); //Rotate on x-axis using mouseDelta
     }
+
+    
+   
 
 
 }

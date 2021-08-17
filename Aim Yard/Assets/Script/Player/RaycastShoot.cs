@@ -34,8 +34,16 @@ public class RaycastShoot : MonoBehaviour
     [SerializeField] AudioSource glockSFX;
     [SerializeField] AudioClip glockClipSFX;
 
+    [SerializeField] AudioSource m16SFX;
+    [SerializeField] AudioClip m16ClipSFX;
+
+    [SerializeField] AudioSource m4a1SFX;
+    [SerializeField] AudioClip m4a1ClipSFX;
+
+    [SerializeField] AudioSource targetHitSFX;
+    [SerializeField] AudioClip targetHitClipSFX;
+
     //UI
-    [SerializeField] Image hitMarker;
     float time;
     float duration;
 
@@ -57,7 +65,9 @@ public class RaycastShoot : MonoBehaviour
     bool glockSfxBool = false;
     bool m16SfxBool = false;
 
-
+    //Score
+    int shotsFired = 0;
+    int shotsHit = 0;
 
     private void Awake()
     {
@@ -104,18 +114,20 @@ public class RaycastShoot : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            //SFX
+            if (glockSfxBool)
+                glockSFX.PlayOneShot(glockClipSFX);
+
+            if (m16SfxBool)
+                m16SFX.PlayOneShot(m16ClipSFX);
+
+            if (m4a1SfxBool)
+                m4a1SFX.PlayOneShot(m4a1ClipSFX);
+
             Shoot();
 
-            //SFX
-            if(glockSfxBool)
-            glockSFX.PlayOneShot(glockClipSFX);
-
-            if(m16SfxBool)
-            { }
-
-            if(m4a1SfxBool)
-            { }
-
+            if (gridshotIsPlaying || colorCordinationIsPlaying || flickshotModeIsPlaying || headshotModeIsPlaying || rangeTrainingIsPlaying)
+                shotsFired++;
 
         }
         
@@ -135,6 +147,13 @@ public class RaycastShoot : MonoBehaviour
                     //GRIDSHOT
                     gridshot.ReturnTarget(hit.collider.gameObject);
                     gridshotSpawner.targetsInScene--;
+
+                    //Audio
+                    targetHitSFX.PlayOneShot(targetHitClipSFX);
+
+                    //Score
+                    shotsHit++;
+
                 }
 
                 if (colorCordinationIsPlaying)
@@ -142,24 +161,48 @@ public class RaycastShoot : MonoBehaviour
                     //COLOR CORDINATION
                     colorCordination.ReturnTarget(hit.collider.gameObject);
                     colorCordinationSpawner.targetsInScene--;
+
+                    //Audio
+                    targetHitSFX.PlayOneShot(targetHitClipSFX);
+
+                    //Score
+                    shotsHit++;
                 }
 
                 if(headshotModeIsPlaying)
                 {
                     headshotMode.ReturnTarget(hit.collider.gameObject);
                     headshotModeSpawner.targetsInScene--;
+
+                    //Audio
+                    targetHitSFX.PlayOneShot(targetHitClipSFX);
+
+                    //Score
+                    shotsHit++;
                 }
 
                 if(flickshotModeIsPlaying)
                 {
                     flickshotMode.ReturnTarget(hit.collider.gameObject);
                     flickshotSpawner.targetsInScene--;
+
+                    //Audio
+                    targetHitSFX.PlayOneShot(targetHitClipSFX);
+
+                    //Score
+                    shotsHit++;
                 }
 
                 if (rangeTrainingIsPlaying)
                 {
                     rangeTrainingManager.ReturnTarget(hit.collider.gameObject);
                     rangeTrainingSpawner.targetsInScene--;
+
+                    //Audio
+                    targetHitSFX.PlayOneShot(targetHitClipSFX);
+
+                    //Score
+                    shotsHit++;
                 }
 
                 

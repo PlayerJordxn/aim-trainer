@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CanvasManager : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button settingsReturnButton;
 
+    //Buttons Load Scenes
+    [SerializeField] private Button gridshotLoadButton;
+
 
 
     //Quit Game
@@ -34,7 +38,7 @@ public class CanvasManager : MonoBehaviour
     {
         anim = FindObjectOfType<Animator>();
 
-        //Buttons
+        //Buttons - Camera Animations
         if(modeButton)//Whiteboard to mode screen
             modeButton.onClick.AddListener(ChooseMode);
     
@@ -46,6 +50,11 @@ public class CanvasManager : MonoBehaviour
 
         if (settingsReturnButton)
             settingsReturnButton.onClick.AddListener(SettingsReturn);
+
+        //Buttons Load Scenes
+        if (gridshotLoadButton)
+            gridshotLoadButton.onClick.AddListener(LoadGridshot);
+
 
         whiteboardButtons.SetActive(false);
         gamemodeButtons.SetActive(false);
@@ -104,7 +113,7 @@ public class CanvasManager : MonoBehaviour
 
        
     }
-
+    //Camera animations
     void ChooseModeReturn()
     {
         //Trigger camera animation
@@ -160,5 +169,12 @@ public class CanvasManager : MonoBehaviour
 
         //Wait to toggle buttons after animation
         StartCoroutine(WaitTime(3.5f));
+    }
+
+    //Button Methods
+    void LoadGridshot()
+    {
+        
+        SceneManager.LoadScene("GRIDSHOT 1");
     }
 }
