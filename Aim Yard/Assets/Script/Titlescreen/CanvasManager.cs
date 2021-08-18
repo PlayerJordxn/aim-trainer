@@ -8,6 +8,9 @@ public class CanvasManager : MonoBehaviour
 {
     Animator anim;
 
+    [SerializeField] GameObject loadingScreen;
+    [SerializeField] Slider loadingSlider;
+
     //Parents - enable or disable group of buttons
     [SerializeField] private GameObject whiteboardButtons;
     [SerializeField] private GameObject settingsButtons;
@@ -19,11 +22,6 @@ public class CanvasManager : MonoBehaviour
 
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button settingsReturnButton;
-
-    //Buttons Load Scenes
-    [SerializeField] private Button gridshotLoadButton;
-
-
 
     //Quit Game
     [SerializeField] private GameObject quitGame;
@@ -38,6 +36,8 @@ public class CanvasManager : MonoBehaviour
     {
         anim = FindObjectOfType<Animator>();
 
+        loadingScreen.SetActive(false);
+        
         //Buttons - Camera Animations
         if(modeButton)//Whiteboard to mode screen
             modeButton.onClick.AddListener(ChooseMode);
@@ -52,8 +52,8 @@ public class CanvasManager : MonoBehaviour
             settingsReturnButton.onClick.AddListener(SettingsReturn);
 
         //Buttons Load Scenes
-        if (gridshotLoadButton)
-            gridshotLoadButton.onClick.AddListener(LoadGridshot);
+  
+        
 
 
         whiteboardButtons.SetActive(false);
@@ -171,10 +171,27 @@ public class CanvasManager : MonoBehaviour
         StartCoroutine(WaitTime(3.5f));
     }
 
-    //Button Methods
-    void LoadGridshot()
+    public void LoadLevel(int sceneIndex)
     {
-        
-        SceneManager.LoadScene("GRIDSHOT 1");
+        StartCoroutine(LoadAsynchronously(sceneIndex));
     }
+
+    //Button Methods
+    IEnumerator LoadAsynchronously(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+
+        loadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            loadingSlider.value = progress;
+
+            yield return null;
+        }
+        
+    }
+
+    
 }
