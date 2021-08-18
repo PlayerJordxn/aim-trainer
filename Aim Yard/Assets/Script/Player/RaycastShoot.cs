@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class RaycastShoot : MonoBehaviour
@@ -69,6 +70,9 @@ public class RaycastShoot : MonoBehaviour
     int shotsFired = 0;
     int shotsHit = 0;
 
+    [SerializeField] TextMeshProUGUI shotsFiredText;
+    [SerializeField] TextMeshProUGUI shotsHitText;
+
     private void Awake()
     {
         gridshotIsPlaying = false;
@@ -102,6 +106,8 @@ public class RaycastShoot : MonoBehaviour
         colorCordinationTracking = FindObjectOfType<ColorCordinationTracking>();
         colorCordinationTrackingSpawner = FindObjectOfType<ColorCordinationTrackingSpawner>();
 
+        
+
         if (shootDistance <= 0)
             shootDistance = 150f;
 
@@ -112,6 +118,9 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        shotsFiredText.text = shotsFired.ToString();
+        shotsHitText.text = shotsHit.ToString();
+
         if (Input.GetButtonDown("Fire1"))
         {
             //SFX
