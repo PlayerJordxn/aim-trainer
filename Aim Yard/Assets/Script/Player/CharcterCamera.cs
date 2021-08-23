@@ -25,14 +25,6 @@ public class CharcterCamera : MonoBehaviour
     void Start()
     {
 
-        lockCursor = false;
-
-        if(lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;//Locks cursor at the center of the screen
-            Cursor.visible = false;//Makes cursor invisable
-        }
-
         if(mouseSensitivity <= 0)
             mouseSensitivity = 5;
 
