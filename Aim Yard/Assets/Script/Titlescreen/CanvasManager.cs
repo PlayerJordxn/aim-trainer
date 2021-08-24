@@ -186,6 +186,7 @@ public class CanvasManager : MonoBehaviour
         while (!operation.isDone)
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
+
             loadingSlider.value = progress;
 
             yield return null;

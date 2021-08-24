@@ -62,13 +62,13 @@ public class RaycastShoot : MonoBehaviour
     public bool colorCordinationTrackingIsPlaying;
 
     //Weapons - Determines what audio should be played
-    bool m4a1SfxBool = false;
-    bool glockSfxBool = false;
-    bool m16SfxBool = false;
+    public bool m4a1SfxBool = false;
+    public bool glockSfxBool = false;
+    public bool m16SfxBool = false;
 
     //Score
-    int shotsFired = 0;
-    int shotsHit = 0;
+    public int shotsFired = 0;
+    public int shotsHit = 0;
 
     [SerializeField] TextMeshProUGUI shotsFiredText;
     [SerializeField] TextMeshProUGUI shotsHitText;

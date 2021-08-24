@@ -75,7 +75,7 @@ public class GridshotSpawner : MonoBehaviour
             Cursor.visible = false;//Makes cursor invisable
         }
 
-        if (isPlaying)
+        if (isPlaying && !isDecrementing)
             StartCoroutine(DecrementTime(1));
         else if (!isPlaying)
         {
@@ -92,6 +92,16 @@ public class GridshotSpawner : MonoBehaviour
                 targetsInScene++;
             }
         }
+        else if(timeLeft <= 0)
+        {
+            isPlaying = false;
+
+            lockCursor = false;
+            Cursor.lockState = CursorLockMode.Confined;//Locks cursor at the center of the screen
+            Cursor.visible = true;//Makes cursor invisable
+
+            StartGameUI.SetActive(true);
+        }
     }
 
     IEnumerator DecrementTime(int _time)
@@ -106,6 +116,11 @@ public class GridshotSpawner : MonoBehaviour
 
     public void M4SetActive()
     {
+        raycastScript.m4a1SfxBool = true;
+        raycastScript.m16SfxBool = false;
+        raycastScript.glockSfxBool = false;
+
+
         M16_Object.SetActive(false);
         glock_Object.SetActive(false);
         M4_Object.SetActive(true);
@@ -113,6 +128,10 @@ public class GridshotSpawner : MonoBehaviour
 
     public void M16SetActive()
     {
+        raycastScript.m4a1SfxBool = false;
+        raycastScript.m16SfxBool = true;
+        raycastScript.glockSfxBool = false;
+
         glock_Object.SetActive(false);
         M4_Object.SetActive(false);
         M16_Object.SetActive(true);
@@ -120,6 +139,10 @@ public class GridshotSpawner : MonoBehaviour
 
     public void GlockSetActive()
     {
+        raycastScript.m4a1SfxBool = false;
+        raycastScript.m16SfxBool = false;
+        raycastScript.glockSfxBool = true;
+
         M4_Object.SetActive(false);
         M16_Object.SetActive(false);
         glock_Object.SetActive(true);
@@ -127,6 +150,8 @@ public class GridshotSpawner : MonoBehaviour
 
     public void BeginGame()
     {
+        raycastScript.shotsFired = 0;
+        raycastScript.shotsHit = 0;
         timeLeft = 60;
         isPlaying = true;
         lockCursor = true;

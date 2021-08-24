@@ -1829,7 +1829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -443, y: 34}
+  m_AnchoredPosition: {x: -298, y: 34}
   m_SizeDelta: {x: 321.9659, y: 176.2522}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &93639799
@@ -4754,7 +4754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 202.91272, y: -324}
+  m_AnchoredPosition: {x: 370.91272, y: -324}
   m_SizeDelta: {x: 247.1627, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &216507803
@@ -15547,7 +15547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: 173}
+  m_AnchoredPosition: {x: 149, y: 173}
   m_SizeDelta: {x: 409.3217, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &620044203
@@ -18129,7 +18129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: 30.25}
+  m_AnchoredPosition: {x: 140, y: 30.25}
   m_SizeDelta: {x: 321.96, y: 178.557}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &716641733
@@ -25939,7 +25939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 445, y: 29.191006}
+  m_AnchoredPosition: {x: 590, y: 29.191006}
   m_SizeDelta: {x: 321.96, y: 178.2549}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007405080
@@ -28087,7 +28087,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -262, y: -324}
+  m_AnchoredPosition: {x: -94, y: -324}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1109212895
@@ -34718,8 +34718,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.0278015, y: 3.389801}
-  m_SizeDelta: {x: 1663.0706, y: 752.7853}
+  m_AnchoredPosition: {x: 180.37009, y: 3.389801}
+  m_SizeDelta: {x: 2021.7551, y: 752.7853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1349738568
 MonoBehaviour:
@@ -36483,6 +36483,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetsInScene: 0
   isPlaying: 0
+  timeLeft: 0
+  isDecrementing: 0
   StartGameUI: {fileID: 1536255135}
   M4_Object: {fileID: 1831991822}
   glock_Object: {fileID: 863122823}
@@ -39830,8 +39832,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -184.35986, y: 0}
+  m_SizeDelta: {x: -268.7197, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1538854965
 GameObject:
@@ -49457,6 +49459,11 @@ MonoBehaviour:
   singleTargetTrackingIsPlaying: 0
   rangeTrainingIsPlaying: 0
   colorCordinationTrackingIsPlaying: 0
+  m4a1SfxBool: 0
+  glockSfxBool: 0
+  m16SfxBool: 0
+  shotsFired: 0
+  shotsHit: 0
   shotsFiredText: {fileID: 1780495603}
   shotsHitText: {fileID: 429328790}
 --- !u!82 &1961220464
