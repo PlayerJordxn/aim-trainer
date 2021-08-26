@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GridshotSpawner : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GridshotSpawner : MonoBehaviour
     bool lockCursor = false;
 
     [SerializeField] GameObject StartGameUI;
+    [SerializeField] TextMeshProUGUI timeText;
 
     [SerializeField] GameObject M4_Object;
     [SerializeField] GameObject glock_Object;
@@ -69,6 +71,8 @@ public class GridshotSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeText.text = timeLeft.ToString();
+
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;//Locks cursor at the center of the screen
@@ -106,7 +110,6 @@ public class GridshotSpawner : MonoBehaviour
 
     IEnumerator DecrementTime(int _time)
     {
-        
         isDecrementing = true;
         yield return new WaitForSecondsRealtime(_time);
         timeLeft -= 1;
@@ -157,6 +160,4 @@ public class GridshotSpawner : MonoBehaviour
         lockCursor = true;
         StartGameUI.SetActive(false);
     }
-
-
 }
