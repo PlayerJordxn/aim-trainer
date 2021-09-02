@@ -71,7 +71,7 @@ public class GridshotSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeText.text = timeLeft.ToString();
+        
 
         if (lockCursor)
         {

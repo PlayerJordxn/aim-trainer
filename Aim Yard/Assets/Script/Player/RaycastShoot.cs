@@ -67,11 +67,13 @@ public class RaycastShoot : MonoBehaviour
     public bool m16SfxBool = false;
 
     //Score
-    public int shotsFired = 0;
-    public int shotsHit = 0;
+    public float shotsFired = 0;
+    public float shotsHit = 0;
+    public float accuracy = 0;
 
     [SerializeField] TextMeshProUGUI shotsFiredText;
     [SerializeField] TextMeshProUGUI shotsHitText;
+    [SerializeField] TextMeshProUGUI accuracyText;
 
     private void Awake()
     {
@@ -118,6 +120,14 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(shotsFired > 0 && shotsHit > 0)
+        {
+            //Calcuate Percent
+            float percent = (shotsHit / shotsFired) * 100.0f;
+            Debug.Log("Percent: " + percent);
+            accuracyText.text = "Accuaracy: " + percent.ToString() + "%";
+        }
+        
         shotsFiredText.text = shotsFired.ToString();
         shotsHitText.text = shotsHit.ToString();
 
