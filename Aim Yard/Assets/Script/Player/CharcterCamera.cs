@@ -6,6 +6,7 @@ using TMPro;
 
 public class CharcterCamera : MonoBehaviour
 {
+    public static CharcterCamera instance;
 
     [SerializeField] Slider _slider;
     [SerializeField] TextMeshProUGUI sliderText;
@@ -20,6 +21,18 @@ public class CharcterCamera : MonoBehaviour
     float cameraPitch;
     bool lockCursor;
     float playerSpeed;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

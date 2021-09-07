@@ -125,7 +125,8 @@ public class RaycastShoot : MonoBehaviour
             //Calcuate Percent
             float percent = (shotsHit / shotsFired) * 100.0f;
             Debug.Log("Percent: " + percent);
-            accuracyText.text = "Accuaracy: " + percent.ToString() + "%";
+            float round = Mathf.Round(percent);
+            accuracyText.text = "Accuaracy: " + round.ToString() + "%";
         }
         
         shotsFiredText.text = shotsFired.ToString();

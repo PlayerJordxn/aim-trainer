@@ -7,7 +7,6 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] Rigidbody rb;
 
     bool isGrounded;
-
     float speed;
     float jumpForce;
     // Start is called before the first frame update
