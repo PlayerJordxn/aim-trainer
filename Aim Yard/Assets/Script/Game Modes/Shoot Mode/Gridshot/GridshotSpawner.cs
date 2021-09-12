@@ -18,6 +18,8 @@ public class GridshotSpawner : MonoBehaviour
     public bool isDecrementing = false;
     bool lockCursor = false;
 
+    int weaponShowcase = 0;
+
     //Rotating Weapons
     [SerializeField] GameObject M4_Showcase;
     [SerializeField] GameObject M16_Showcase;
@@ -26,10 +28,7 @@ public class GridshotSpawner : MonoBehaviour
     [SerializeField] Button weaponSwitchLeft;
     [SerializeField] Button weaponSwitchRight;
 
-    int weaponShowcase = 0;
-
-
-    [SerializeField] GameObject codeSprite;
+    [SerializeField] GameObject BlurGameobject;
     [SerializeField] GameObject scoreUI;
  
     [SerializeField] GameObject StartGameUI;
@@ -157,7 +156,7 @@ public class GridshotSpawner : MonoBehaviour
             isPlaying = false;
 
             //Deactivate UI
-            codeSprite.SetActive(true);
+            BlurGameobject.SetActive(true);
             StartGameUI.SetActive(true);
 
             //Decativate Current Weapon Objects
@@ -256,7 +255,7 @@ public class GridshotSpawner : MonoBehaviour
         CharcterCamera.instance.enabled = true;
 
         //Deactivate UI
-        codeSprite.SetActive(false);
+        BlurGameobject.SetActive(false);
         StartGameUI.SetActive(false);
 
         //Enable UI
