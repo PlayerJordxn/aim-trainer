@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Gridshot : MonoBehaviour
 {
+    public static Gridshot instance;
+
     //Target Prefab
     [SerializeField] GameObject targetPrefab;
 
@@ -18,6 +20,19 @@ public class Gridshot : MonoBehaviour
 
     //List
     List<int> storage = new List<int>();
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

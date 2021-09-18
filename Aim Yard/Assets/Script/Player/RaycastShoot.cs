@@ -8,9 +8,6 @@ using TMPro;
 public class RaycastShoot : MonoBehaviour
 {
     //Script Accsess
-    Gridshot gridshot;
-    GridshotSpawner gridshotSpawner;
-
     ColorCordination colorCordination;
     ColorCordinationSpawner colorCordinationSpawner;
 
@@ -87,9 +84,6 @@ public class RaycastShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gridshotSpawner = FindObjectOfType<GridshotSpawner>();
-        gridshot = FindObjectOfType<Gridshot>();
-
         colorCordination = FindObjectOfType<ColorCordination>();
         colorCordinationSpawner = FindObjectOfType<ColorCordinationSpawner>();
 
@@ -124,7 +118,6 @@ public class RaycastShoot : MonoBehaviour
         {
             //Calcuate Percent
             float percent = (shotsHit / shotsFired) * 100.0f;
-            Debug.Log("Percent: " + percent);
             float round = Mathf.Round(percent);
             accuracyText.text = "Accuaracy: " + round.ToString() + "%";
         }
@@ -146,7 +139,7 @@ public class RaycastShoot : MonoBehaviour
 
             Shoot();
 
-            if (gridshotIsPlaying || colorCordinationIsPlaying || flickshotModeIsPlaying || headshotModeIsPlaying || rangeTrainingIsPlaying)
+            if (GridshotSpawner.instance.isPlaying || colorCordinationIsPlaying || flickshotModeIsPlaying || headshotModeIsPlaying || rangeTrainingIsPlaying)
                 shotsFired++;
 
         }
@@ -165,8 +158,8 @@ public class RaycastShoot : MonoBehaviour
                 if (gridshotIsPlaying)
                 {   
                     //GRIDSHOT
-                    gridshot.ReturnTarget(hit.collider.gameObject);
-                    gridshotSpawner.targetsInScene--;
+                    Gridshot.instance.ReturnTarget(hit.collider.gameObject);
+                    GridshotSpawner.instance.targetsInScene--;
 
                     //Audio
                     targetHitSFX.PlayOneShot(targetHitClipSFX);
