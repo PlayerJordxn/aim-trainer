@@ -28,7 +28,6 @@ public class GridshotSpawner : MonoBehaviour
     [SerializeField] Button weaponSwitchLeft;
     [SerializeField] Button weaponSwitchRight;
 
-    [SerializeField] GameObject BlurGameobject;
     [SerializeField] GameObject scoreUI;
  
     [SerializeField] GameObject StartGameUI;
@@ -156,7 +155,6 @@ public class GridshotSpawner : MonoBehaviour
             isPlaying = false;
 
             //Deactivate UI
-            BlurGameobject.SetActive(true);
             StartGameUI.SetActive(true);
 
             //Decativate Current Weapon Objects
@@ -255,7 +253,6 @@ public class GridshotSpawner : MonoBehaviour
         CharcterCamera.instance.enabled = true;
 
         //Deactivate UI
-        BlurGameobject.SetActive(false);
         StartGameUI.SetActive(false);
 
         //Enable UI
