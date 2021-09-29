@@ -3,7 +3,32 @@ guid: 50814fc39caa07f41969246f6c410c8f
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 03088bd71a3e2ef44934d44b2913587f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey
+    second: {fileID: 2100000, guid: 1d501a8092b765f458fdc1f07e3c13b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light
+    second: {fileID: 2100000, guid: 5fdcdf5df5fc5d748b2af8c0df60fefc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rear Light
+    second: {fileID: 2100000, guid: edf06db4a47c083418992a5adc6c1f38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Sand
+    second: {fileID: 2100000, guid: 2fbe80b5b8e52bd4a89734d17446e7d2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
