@@ -16,6 +16,7 @@ public class GridshotSpawner : MonoBehaviour
     public bool isDecrementing = false;
     bool lockCursor = false;
 
+    bool rifleActive = false;
     int weaponShowcase = 0;
 
     //Rotating Weapons
@@ -54,13 +55,14 @@ public class GridshotSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         anim = FindObjectOfType<Animator>();
         scoreUI.SetActive(false);
         CharcterCamera.instance.enabled = false;
 
         StartGameUI.SetActive(true);
         M4_Object.SetActive(false);
-        glock_Object.SetActive(false);
+        glock_Object.SetActive(true);
         M16_Object.SetActive(false);
 
         if(weaponSwitchLeft)
@@ -92,13 +94,18 @@ public class GridshotSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(weaponShowcase == 0 && !isPlaying)
+
+        anim.SetBool("Rifle", rifleActive);
+
+        if (weaponShowcase == 0 && !isPlaying)
         {
             //Set M16 Active
             M16_Showcase.SetActive(true);
             glockShowcase.SetActive(false);
             M4_Showcase.SetActive(false);
-            
+            rifleActive = true;
+
+
         }
         else if(weaponShowcase == 1 && !isPlaying)
         {
@@ -106,7 +113,9 @@ public class GridshotSpawner : MonoBehaviour
             M4_Showcase.SetActive(true);
             M16_Showcase.SetActive(false);
             glockShowcase.SetActive(false);
-            
+            rifleActive = true;
+
+
         }
         else if(weaponShowcase == 2 && !isPlaying)
         {
@@ -114,6 +123,7 @@ public class GridshotSpawner : MonoBehaviour
             glockShowcase.SetActive(true);
             M4_Showcase.SetActive(false);
             M16_Showcase.SetActive(false);
+            rifleActive = false;
             
         }
         else if(weaponShowcase > 2)
@@ -151,9 +161,6 @@ public class GridshotSpawner : MonoBehaviour
         {
             CharcterCamera.instance.enabled = false;
             isPlaying = false;
-
-            //anim.SetBool("PistolIdle", false);
-            //anim.SetBool("AssualtIdle", false);
 
             //Deactivate UI
             StartGameUI.SetActive(true);
@@ -225,23 +232,21 @@ public class GridshotSpawner : MonoBehaviour
         {
             //M16
             M16SetActive();
-            anim.SetBool("Rifle", true);
-            anim.SetBool("Pistol", false);
+            
+            
         }
         else if (weaponShowcase == 1)
         {
             //M4
             M4SetActive();
-            anim.SetBool("Rifle", true);
-            anim.SetBool("Pistol", false);
+            
 
         }
         else if (weaponShowcase == 2)
         {
             //Glock
             GlockSetActive();
-            anim.SetBool("Pistol", true);
-            anim.SetBool("Rifle", false);
+            
 
         }
 
