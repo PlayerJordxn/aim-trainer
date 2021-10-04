@@ -97,6 +97,11 @@ public class RaycastShoot : MonoBehaviour
         shotsFiredText.text = shotsFired.ToString();
         shotsHitText.text = shotsHit.ToString();
 
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ScreenCapture.CaptureScreenshot("TrainingAreaScreenshot");
+        }
+
         if (Input.GetButtonDown("Fire1"))
         {
             //SFX
