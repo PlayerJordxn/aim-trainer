@@ -7,27 +7,8 @@ using TMPro;
 
 public class RaycastShoot : MonoBehaviour
 {
-    //Script Accsess
-    ColorCordination colorCordination;
-    ColorCordinationSpawner colorCordinationSpawner;
-
-    HeadshotMode headshotMode;
-    HeadshotModeSpawner headshotModeSpawner;
-
-    Flickshot flickshotMode;
-    FlickshotSpawner flickshotSpawner;
-
-    SingleTargetTracking singleTargetTracking;
-    SingleTrackingTargetSpawner singleTargetSpawner;
-    TargetBehavior targetBehaviourScript;
-
-    RangeTrainingMode rangeTrainingManager;
-    RangeTrainingSpawner rangeTrainingSpawner;
-
-    ColorCordinationTracking colorCordinationTracking;
-    ColorCordinationTrackingSpawner colorCordinationTrackingSpawner;
-   
-
+    public static RaycastShoot instance;
+    
     //Audio Source
     [SerializeField] AudioSource glockSFX;
     [SerializeField] AudioClip glockClipSFX;
@@ -74,6 +55,16 @@ public class RaycastShoot : MonoBehaviour
 
     private void Awake()
     {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+
         gridshotIsPlaying = false;
         colorCordinationIsPlaying = false;
         headshotModeIsPlaying = false;
@@ -84,25 +75,6 @@ public class RaycastShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        colorCordination = FindObjectOfType<ColorCordination>();
-        colorCordinationSpawner = FindObjectOfType<ColorCordinationSpawner>();
-
-        headshotMode = FindObjectOfType<HeadshotMode>();
-        headshotModeSpawner = FindObjectOfType<HeadshotModeSpawner>();
-
-        flickshotMode = FindObjectOfType<Flickshot>();
-        flickshotSpawner = FindObjectOfType<FlickshotSpawner>();
-
-        singleTargetTracking = FindObjectOfType<SingleTargetTracking>();
-        targetBehaviourScript = FindObjectOfType<TargetBehavior>();
-
-        rangeTrainingManager = FindObjectOfType<RangeTrainingMode>();
-        rangeTrainingSpawner = FindObjectOfType<RangeTrainingSpawner>();
-
-        colorCordinationTracking = FindObjectOfType<ColorCordinationTracking>();
-        colorCordinationTrackingSpawner = FindObjectOfType<ColorCordinationTrackingSpawner>();
-
-        
 
         if (shootDistance <= 0)
             shootDistance = 150f;
@@ -139,7 +111,11 @@ public class RaycastShoot : MonoBehaviour
 
             Shoot();
 
-            if (GridshotSpawner.instance.isPlaying || colorCordinationIsPlaying || flickshotModeIsPlaying || headshotModeIsPlaying || rangeTrainingIsPlaying)
+            if (gridshotIsPlaying 
+                || colorCordinationTrackingIsPlaying 
+                || flickshotModeIsPlaying 
+                || headshotModeIsPlaying 
+                || rangeTrainingIsPlaying)
                 shotsFired++;
 
         }
@@ -172,8 +148,8 @@ public class RaycastShoot : MonoBehaviour
                 if (colorCordinationIsPlaying)
                 {
                     //COLOR CORDINATION
-                    colorCordination.ReturnTarget(hit.collider.gameObject);
-                    colorCordinationSpawner.targetsInScene--;
+                    ColorCordination.instance.ReturnTarget(hit.collider.gameObject);
+                    ColorCordinationSpawner.instance.targetsInScene--;
 
                     //Audio
                     targetHitSFX.PlayOneShot(targetHitClipSFX);
@@ -184,8 +160,9 @@ public class RaycastShoot : MonoBehaviour
 
                 if(headshotModeIsPlaying)
                 {
-                    headshotMode.ReturnTarget(hit.collider.gameObject);
-                    headshotModeSpawner.targetsInScene--;
+                    //HEADSHOT MODE
+                    HeadshotMode.instance.ReturnTarget(hit.collider.gameObject);
+                    HeadshotModeSpawner.instance.targetsInScene--;
 
                     //Audio
                     targetHitSFX.PlayOneShot(targetHitClipSFX);
@@ -196,8 +173,9 @@ public class RaycastShoot : MonoBehaviour
 
                 if(flickshotModeIsPlaying)
                 {
-                    flickshotMode.ReturnTarget(hit.collider.gameObject);
-                    flickshotSpawner.targetsInScene--;
+                    //FLICKSHOT MODE
+                    Flickshot.instance.ReturnTarget(hit.collider.gameObject);
+                    FlickshotSpawner.instance.targetsInScene--;
 
                     //Audio
                     targetHitSFX.PlayOneShot(targetHitClipSFX);
@@ -208,8 +186,9 @@ public class RaycastShoot : MonoBehaviour
 
                 if (rangeTrainingIsPlaying)
                 {
-                    rangeTrainingManager.ReturnTarget(hit.collider.gameObject);
-                    rangeTrainingSpawner.targetsInScene--;
+                    //RANGE TRAINING
+                    RangeTrainingMode.instance.ReturnTarget(hit.collider.gameObject);
+                    RangeTrainingSpawner.instance.targetsInScene--;
 
                     //Audio
                     targetHitSFX.PlayOneShot(targetHitClipSFX);

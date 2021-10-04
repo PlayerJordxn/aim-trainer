@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class HeadshotModeSpawner : MonoBehaviour
 {
+    public static HeadshotModeSpawner instance;
+
     HeadshotMode headshotManager;
     RaycastShoot raycastScript;
 
     bool isPlaying;
     public int targetsInScene = 0;
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

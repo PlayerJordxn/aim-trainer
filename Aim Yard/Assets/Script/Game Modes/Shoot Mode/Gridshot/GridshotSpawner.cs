@@ -7,9 +7,7 @@ using TMPro;
 public class GridshotSpawner : MonoBehaviour
 {
     public static GridshotSpawner instance;
-
-    Gridshot gridshot;
-    RaycastShoot raycastScript;
+    Animator anim;
 
     public int targetsInScene = 0;
     public bool isPlaying;
@@ -56,6 +54,7 @@ public class GridshotSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = FindObjectOfType<Animator>();
         scoreUI.SetActive(false);
         CharcterCamera.instance.enabled = false;
 
@@ -81,10 +80,9 @@ public class GridshotSpawner : MonoBehaviour
 
         
 
-        gridshot = FindObjectOfType<Gridshot>();
-        raycastScript = FindObjectOfType<RaycastShoot>();
+       
 
-        raycastScript.gridshotIsPlaying = true;
+        RaycastShoot.instance.gridshotIsPlaying = true;
         isPlaying = false;
 
         if (timeLeft <= 0)
@@ -145,7 +143,7 @@ public class GridshotSpawner : MonoBehaviour
         {
             if (targetsInScene < 5)
             {
-                gridshot.GetTarget();
+                Gridshot.instance.GetTarget();
                 targetsInScene++;
             }
         }
@@ -153,6 +151,9 @@ public class GridshotSpawner : MonoBehaviour
         {
             CharcterCamera.instance.enabled = false;
             isPlaying = false;
+
+            //anim.SetBool("PistolIdle", false);
+            //anim.SetBool("AssualtIdle", false);
 
             //Deactivate UI
             StartGameUI.SetActive(true);
@@ -186,9 +187,9 @@ public class GridshotSpawner : MonoBehaviour
 
     public void M4SetActive()
     {
-        raycastScript.m4a1SfxBool = true;
-        raycastScript.m16SfxBool = false;
-        raycastScript.glockSfxBool = false;
+        RaycastShoot.instance.m4a1SfxBool = true;
+        RaycastShoot.instance.m16SfxBool = false;
+        RaycastShoot.instance.glockSfxBool = false;
 
 
         M16_Object.SetActive(false);
@@ -198,9 +199,9 @@ public class GridshotSpawner : MonoBehaviour
 
     public void M16SetActive()
     {
-        raycastScript.m4a1SfxBool = false;
-        raycastScript.m16SfxBool = true;
-        raycastScript.glockSfxBool = false;
+        RaycastShoot.instance.m4a1SfxBool = false;
+        RaycastShoot.instance.m16SfxBool = true;
+        RaycastShoot.instance.glockSfxBool = false;
 
         glock_Object.SetActive(false);
         M4_Object.SetActive(false);
@@ -209,9 +210,9 @@ public class GridshotSpawner : MonoBehaviour
 
     public void GlockSetActive()
     {
-        raycastScript.m4a1SfxBool = false;
-        raycastScript.m16SfxBool = false;
-        raycastScript.glockSfxBool = true;
+        RaycastShoot.instance.m4a1SfxBool = false;
+        RaycastShoot.instance.m16SfxBool = false;
+        RaycastShoot.instance.glockSfxBool = true;
 
         M4_Object.SetActive(false);
         M16_Object.SetActive(false);
@@ -223,25 +224,25 @@ public class GridshotSpawner : MonoBehaviour
         if (weaponShowcase == 0)
         {
             //M16
-            M16_Object.SetActive(true);
-            glock_Object.SetActive(false);
-            M4_Object.SetActive(false);
+            M16SetActive();
+            anim.SetBool("Rifle", true);
+            anim.SetBool("Pistol", false);
         }
         else if (weaponShowcase == 1)
         {
             //M4
-            M4_Object.SetActive(true);
-            M16_Object.SetActive(false);
-            glock_Object.SetActive(false);
-            
+            M4SetActive();
+            anim.SetBool("Rifle", true);
+            anim.SetBool("Pistol", false);
+
         }
         else if (weaponShowcase == 2)
         {
             //Glock
-            glock_Object.SetActive(true);
-            M4_Object.SetActive(false);
-            M16_Object.SetActive(false);
-            
+            GlockSetActive();
+            anim.SetBool("Pistol", true);
+            anim.SetBool("Rifle", false);
+
         }
 
         //Disable Weapon Showcase
@@ -259,8 +260,8 @@ public class GridshotSpawner : MonoBehaviour
         scoreUI.SetActive(true);
 
         //Reset Score + Accuracy + Time 
-        raycastScript.shotsFired = 0;
-        raycastScript.shotsHit = 0;
+        RaycastShoot.instance.shotsFired = 0;
+        RaycastShoot.instance.shotsHit = 0;
         timeLeft = 60;
 
         //Game Start

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Flickshot : MonoBehaviour
 {
+    public static Flickshot instance;
+
     //Target Prefab
     [SerializeField] GameObject targetPrefab;
 
@@ -15,6 +17,19 @@ public class Flickshot : MonoBehaviour
 
     //Queue
     public Queue<GameObject> pool = new Queue<GameObject>();
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

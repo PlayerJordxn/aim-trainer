@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ColorCordination : MonoBehaviour
 {
+    public static ColorCordination instance;
+
     //Target Prefab
     [SerializeField] GameObject targetPrefab;
 
@@ -21,6 +23,19 @@ public class ColorCordination : MonoBehaviour
 
     //List
     List<int> storage = new List<int>();
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

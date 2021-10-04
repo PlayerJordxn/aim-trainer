@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SingleTrackingTargetSpawner : MonoBehaviour
 {
+    public static SingleTrackingTargetSpawner instance;
+
     //Script Access
     SingleTargetTracking singleTargetTrackingManager;
     RaycastShoot raycastScript;
@@ -12,6 +14,19 @@ public class SingleTrackingTargetSpawner : MonoBehaviour
 
     bool isPlaying;
     public int targetsInScene = 0;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

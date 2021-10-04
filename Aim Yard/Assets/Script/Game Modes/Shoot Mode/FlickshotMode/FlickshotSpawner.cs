@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class FlickshotSpawner : MonoBehaviour
 {
+    public static FlickshotSpawner instance;
+
     RaycastShoot raycastScript;
     Flickshot flickshotManager;
 
     bool isPlaying;
 
     public int targetsInScene = 0;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

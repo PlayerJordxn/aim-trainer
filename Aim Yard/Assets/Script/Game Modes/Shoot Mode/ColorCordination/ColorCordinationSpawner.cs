@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ColorCordinationSpawner : MonoBehaviour
 {
+    public static ColorCordinationSpawner instance;
+
     //Script Access
     ColorCordination colorCordination;
     RaycastShoot raycastScript;
@@ -14,6 +16,19 @@ public class ColorCordinationSpawner : MonoBehaviour
     //bool check
     public bool isPlaying;
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
+
     private void Start()
     {
         colorCordination = FindObjectOfType<ColorCordination>();
@@ -22,6 +37,8 @@ public class ColorCordinationSpawner : MonoBehaviour
         raycastScript.colorCordinationIsPlaying = true;
         isPlaying = true;
     }
+
+
 
     private void Update()
     {

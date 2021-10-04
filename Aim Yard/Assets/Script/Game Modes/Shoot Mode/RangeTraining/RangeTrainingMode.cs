@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RangeTrainingMode : MonoBehaviour
 {
+    public static RangeTrainingMode instance;
+
     //Target Prefab
     [SerializeField] GameObject targetPrefab;
 
@@ -18,6 +20,19 @@ public class RangeTrainingMode : MonoBehaviour
 
     //List
     List<int> storage = new List<int>();
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

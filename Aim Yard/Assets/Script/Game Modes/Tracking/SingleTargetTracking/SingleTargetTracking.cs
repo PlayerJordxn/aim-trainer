@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SingleTargetTracking : MonoBehaviour
 {
+    public static SingleTargetTracking instance;
+
     [SerializeField] GameObject trackingTarget;
 
     GameObject[] transformAsGameobjects;
@@ -12,6 +14,18 @@ public class SingleTargetTracking : MonoBehaviour
 
     Queue<GameObject> pool = new Queue<GameObject>();
 
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
 
     private void Start()
     {

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ColorCordinationTracking : MonoBehaviour
 {
+    public static ColorCordinationTracking instance;
+
     [SerializeField] GameObject[] trackingTarget;
 
     GameObject[] transformAsGameobjects;
@@ -12,7 +14,18 @@ public class ColorCordinationTracking : MonoBehaviour
 
     Queue<GameObject> pool = new Queue<GameObject>();
 
-
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
     private void Start()
     {
         //Gathers all spawn locations
