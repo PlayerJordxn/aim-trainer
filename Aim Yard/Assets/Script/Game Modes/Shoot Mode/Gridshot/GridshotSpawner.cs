@@ -59,6 +59,7 @@ public class GridshotSpawner : MonoBehaviour
         anim = FindObjectOfType<Animator>();
         scoreUI.SetActive(false);
         CharcterCamera.instance.enabled = false;
+        rifleActive = false;
 
         StartGameUI.SetActive(true);
         M4_Object.SetActive(false);
@@ -94,7 +95,7 @@ public class GridshotSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        timeText.text = timeLeft.ToString();
         anim.SetBool("Rifle", rifleActive);
 
         if (weaponShowcase == 0 && !isPlaying)
@@ -103,7 +104,6 @@ public class GridshotSpawner : MonoBehaviour
             M16_Showcase.SetActive(true);
             glockShowcase.SetActive(false);
             M4_Showcase.SetActive(false);
-            rifleActive = true;
 
 
         }
@@ -113,7 +113,7 @@ public class GridshotSpawner : MonoBehaviour
             M4_Showcase.SetActive(true);
             M16_Showcase.SetActive(false);
             glockShowcase.SetActive(false);
-            rifleActive = true;
+            
 
 
         }
@@ -123,7 +123,6 @@ public class GridshotSpawner : MonoBehaviour
             glockShowcase.SetActive(true);
             M4_Showcase.SetActive(false);
             M16_Showcase.SetActive(false);
-            rifleActive = false;
             
         }
         else if(weaponShowcase > 2)
@@ -232,6 +231,7 @@ public class GridshotSpawner : MonoBehaviour
         {
             //M16
             M16SetActive();
+            rifleActive = true;
             
             
         }
@@ -239,6 +239,7 @@ public class GridshotSpawner : MonoBehaviour
         {
             //M4
             M4SetActive();
+            rifleActive = true;
             
 
         }
