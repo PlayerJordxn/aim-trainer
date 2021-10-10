@@ -81,10 +81,6 @@ public class GridshotSpawner : MonoBehaviour
             StartGame_Button.onClick.AddListener(BeginGame);
         }
 
-        
-
-       
-
         RaycastShoot.instance.gridshotIsPlaying = true;
         isPlaying = false;
 
@@ -98,41 +94,8 @@ public class GridshotSpawner : MonoBehaviour
         timeText.text = timeLeft.ToString();
         anim.SetBool("Rifle", rifleActive);
 
-        if (weaponShowcase == 0 && !isPlaying)
-        {
-            //Set M16 Active
-            M16_Showcase.SetActive(true);
-            glockShowcase.SetActive(false);
-            M4_Showcase.SetActive(false);
+        StartScreenGunDisplay(weaponShowcase, isPlaying);
 
-
-        }
-        else if(weaponShowcase == 1 && !isPlaying)
-        {
-            //Set M4 Active
-            M4_Showcase.SetActive(true);
-            M16_Showcase.SetActive(false);
-            glockShowcase.SetActive(false);
-            
-
-
-        }
-        else if(weaponShowcase == 2 && !isPlaying)
-        {
-            //Set Glock Active   
-            glockShowcase.SetActive(true);
-            M4_Showcase.SetActive(false);
-            M16_Showcase.SetActive(false);
-            
-        }
-        else if(weaponShowcase > 2)
-        {
-            weaponShowcase = 0;
-        }
-        else if(weaponShowcase < 0)
-        {
-            weaponShowcase = 2;
-        }
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;//Locks cursor at the center of the screen
@@ -142,10 +105,7 @@ public class GridshotSpawner : MonoBehaviour
         if (isPlaying && !isDecrementing)
             StartCoroutine(DecrementTime(1));
         else if (!isPlaying)
-        {
-            //lockCursor = false;
             StartGameUI.SetActive(true);
-        }
 
 
         if (isPlaying && timeLeft > 0)
@@ -156,8 +116,10 @@ public class GridshotSpawner : MonoBehaviour
                 targetsInScene++;
             }
         }
-        else if(timeLeft <= 0)
+        
+        if(timeLeft <= 0)
         {
+            //Character disabled
             CharcterCamera.instance.enabled = false;
             isPlaying = false;
 
@@ -172,14 +134,40 @@ public class GridshotSpawner : MonoBehaviour
             //Enable UI
             scoreUI.SetActive(false);
 
+            //Set Cursor Active
             lockCursor = false;
-            Cursor.lockState = CursorLockMode.Confined;//Locks cursor at the center of the screen
-            Cursor.visible = true;//Makes cursor invisable
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
 
             StartGameUI.SetActive(true);
         }
+    }
+
+    public void StartScreenGunDisplay(int _num, bool _playing)
+    {
+        if (_num == 0 && !_playing)
+        {
+            //Set M16 Active
+            M16_Showcase.SetActive(true);
+            glockShowcase.SetActive(false);
+            M4_Showcase.SetActive(false);
 
 
+        }
+        else if (_num == 1 && !_playing)
+        {
+            //Set M4 Active
+            M4_Showcase.SetActive(true);
+            M16_Showcase.SetActive(false);
+            glockShowcase.SetActive(false);
+        }
+        else if (_num == 2 && !_playing)
+        {
+            //Set Glock Active   
+            glockShowcase.SetActive(true);
+            M4_Showcase.SetActive(false);
+            M16_Showcase.SetActive(false);
+        }
     }
 
     IEnumerator DecrementTime(int _time)
@@ -188,7 +176,6 @@ public class GridshotSpawner : MonoBehaviour
         yield return new WaitForSecondsRealtime(_time);
         timeLeft -= 1;
         isDecrementing = false;
-
     }
 
     public void M4SetActive()
@@ -227,29 +214,7 @@ public class GridshotSpawner : MonoBehaviour
 
     public void BeginGame()
     {
-        if (weaponShowcase == 0)
-        {
-            //M16
-            M16SetActive();
-            rifleActive = true;
-            
-            
-        }
-        else if (weaponShowcase == 1)
-        {
-            //M4
-            M4SetActive();
-            rifleActive = true;
-            
-
-        }
-        else if (weaponShowcase == 2)
-        {
-            //Glock
-            GlockSetActive();
-            
-
-        }
+        GunSelected(weaponShowcase, rifleActive);
 
         //Disable Weapon Showcase
         M4_Showcase.SetActive(false);
@@ -273,7 +238,6 @@ public class GridshotSpawner : MonoBehaviour
         //Game Start
         isPlaying = true;
         lockCursor = true;
-        
     }
 
     public void LeftSwitch()
@@ -285,4 +249,27 @@ public class GridshotSpawner : MonoBehaviour
     {
         weaponShowcase++;
     }
+
+    public void GunSelected(int _weaponChosen, bool activateRifle)
+    {
+        if (_weaponChosen == 0)
+        {
+            //M16
+            M16SetActive();
+            activateRifle = true;
+        }
+        else if (_weaponChosen == 1)
+        {
+            //M4
+            M4SetActive();
+            activateRifle = true;
+        }
+        else if (_weaponChosen == 2)
+        {
+            //Glock
+            GlockSetActive();
+            activateRifle = false;
+        }
+    }
+
 }
