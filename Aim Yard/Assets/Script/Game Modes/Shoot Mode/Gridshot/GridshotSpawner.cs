@@ -87,6 +87,8 @@ public class GridshotSpawner : MonoBehaviour
     void Update()
     {
         anim.SetBool("GlockBool", glock);
+        anim.SetBool("M4Bool", M4);
+        anim.SetBool("M16Bool", M16);
         StartScreenGunDisplay(weaponShowcase, isPlaying);
         timeText.text = "TIME: " + timeLeft.ToString();
         
@@ -251,7 +253,7 @@ public class GridshotSpawner : MonoBehaviour
             //M16
             M16SetActive();
             anim.SetTrigger("M16Pullout");
-            anim.SetBool("M16Bool", true);
+            M16 = true;
             
 
         }
@@ -259,8 +261,9 @@ public class GridshotSpawner : MonoBehaviour
         {
             //M4
             M4SetActive();
-            
-            
+            anim.SetTrigger("M4Pullout");
+            M4 = true;
+
 
         }
         else if (_weaponChosen == 2)
@@ -268,7 +271,7 @@ public class GridshotSpawner : MonoBehaviour
             //Glock
             GlockSetActive();
             anim.SetTrigger("GlockPullout");
-            anim.SetBool("GlockBool", true);
+            glock = true;
 
         }
     }
