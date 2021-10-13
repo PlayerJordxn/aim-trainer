@@ -45,7 +45,7 @@ public class RaycastShoot : MonoBehaviour
     public bool playM16Audio = false;
 
     //Score
-    public float shotsFired = 0;
+    public float missed = 0;
     public float shotsHit = 0;
     public float accuracy = 0;
 
@@ -86,7 +86,7 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, shotsFired, accuracy);
+        ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
 
         if (Input.GetButtonDown("Fire1"))
         {
@@ -107,7 +107,7 @@ public class RaycastShoot : MonoBehaviour
                 || flickshotModeIsPlaying 
                 || headshotModeIsPlaying 
                 || rangeTrainingIsPlaying)
-                shotsFired++;
+                missed++;
 
         }
        
@@ -119,7 +119,12 @@ public class RaycastShoot : MonoBehaviour
 
         if(Physics.Raycast(lookFrom.transform.position, lookFrom.transform.forward, out hit, shootDistance))
         {
-            if(hit.collider.tag == "Target")
+            if (hit.collider.tag != "Target")
+            {
+                missed++;
+            }
+
+            if (hit.collider.tag == "Target")
             {
                 if (gridshotIsPlaying)
                 {   
@@ -185,6 +190,8 @@ public class RaycastShoot : MonoBehaviour
 
                     //Score
                     shotsHit++;
+
+                    
                 }
 
                 
@@ -210,24 +217,27 @@ public class RaycastShoot : MonoBehaviour
                     hit.collider.gameObject.GetComponent<TargetBehavior>().RemoveHealthColorCordinationTracking(hit.collider.gameObject);
                 }
             }
+
+            
         }
+
+
     }
 
-    public void ScoreUI(Text _shotsFiredText, Text _shotsHitText, Text _accuracyText, float _hit, float _shotsFired, float _accuracy)
+    public void ScoreUI(Text _shotsFiredText, Text _shotsHitText, Text _accuracyText, float _hit, float _missed, float _accuracy)
     {
         //Text
-        _shotsFiredText.text = _shotsFired.ToString();
-        _shotsHitText.text = _hit.ToString();
+        _shotsFiredText.text = "Missed: " + missed.ToString();
+        _shotsHitText.text = "Hit: " +_hit.ToString();
 
         //Accuracy
-        if (shotsFired > 0 && shotsHit > 0)
+        if (missed > 0 && shotsHit > 0)
         {
             //Calcuate Percent
-            float percent = (shotsHit / shotsFired) * 100.0f;
+            float percent = (shotsHit / missed) * 100.0f;
             float round = Mathf.Round(percent);
             
-            _accuracyText.text = "Accuaracy: " +
-                "" + round.ToString() + "%";
+            _accuracyText.text = "Accuaracy: " + round.ToString() + "%";
         }
     }
 }

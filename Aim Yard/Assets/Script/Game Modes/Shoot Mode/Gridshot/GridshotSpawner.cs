@@ -15,8 +15,6 @@ public class GridshotSpawner : MonoBehaviour
     public int timeLeft;
     public bool isDecrementing = false;
     bool lockCursor = false;
-
-    bool rifleActive = false;
     int weaponShowcase = 0;
 
     //Rotating Weapons
@@ -59,7 +57,7 @@ public class GridshotSpawner : MonoBehaviour
         anim = FindObjectOfType<Animator>();
         scoreUI.SetActive(false);
         CharcterCamera.instance.enabled = false;
-        rifleActive = false;
+        
 
         StartGameUI.SetActive(true);
         M4_Object.SetActive(false);
@@ -93,23 +91,22 @@ public class GridshotSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeText.text = timeLeft.ToString();
-        anim.SetBool("Rifle", rifleActive);
-
         StartScreenGunDisplay(weaponShowcase, isPlaying);
-
+        timeText.text = timeLeft.ToString();
+        
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;//Locks cursor at the center of the screen
             Cursor.visible = false;//Makes cursor invisable
         }
 
+        //Timer
         if (isPlaying && !isDecrementing)
             StartCoroutine(DecrementTime(1));
         else if (!isPlaying)
             StartGameUI.SetActive(true);
 
-
+        //Targets Spawn
         if (isPlaying && timeLeft > 0)
         {
             if (targetsInScene < 5)
@@ -125,23 +122,11 @@ public class GridshotSpawner : MonoBehaviour
             CharcterCamera.instance.enabled = false;
             isPlaying = false;
 
-            //Deactivate UI
-            StartGameUI.SetActive(true);
-
-            //Decativate Current Weapon Objects
-            M4_Object.SetActive(false);
-            M16_Object.SetActive(false);
-            glock_Object.SetActive(false);
-
-            //Enable UI
-            scoreUI.SetActive(false);
-
             //Set Cursor Active
             lockCursor = false;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
-
-            StartGameUI.SetActive(true);
+            timeLeft = 60;
         }
     }
 
@@ -215,27 +200,13 @@ public class GridshotSpawner : MonoBehaviour
     }
 
     public void BeginGame()
-    {
-        GunSelected(weaponShowcase, rifleActive);
-
-        //Disable Weapon Showcase
-        M4_Showcase.SetActive(false);
-        M16_Showcase.SetActive(false);
-        glockShowcase.SetActive(false);
-        
+    {   
         //Enable Mouse Movement
         CharcterCamera.instance.enabled = true;
 
-        //Deactivate UI
-        StartGameUI.SetActive(false);
-
-        //Enable UI
-        scoreUI.SetActive(true);
-
         //Reset Score + Accuracy + Time 
-        RaycastShoot.instance.shotsFired = 0;
+        RaycastShoot.instance.missed = 0;
         RaycastShoot.instance.shotsHit = 0;
-        timeLeft = 60;
 
         //Game Start
         isPlaying = true;
