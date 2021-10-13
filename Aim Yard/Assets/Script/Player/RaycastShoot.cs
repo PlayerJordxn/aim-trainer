@@ -75,6 +75,8 @@ public class RaycastShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (accuracy <= 0)
+            accuracy = 100f;
 
         if (shootDistance <= 0)
             shootDistance = 150f;
@@ -231,13 +233,11 @@ public class RaycastShoot : MonoBehaviour
         _shotsHitText.text = "Hit: " +_hit.ToString();
 
         //Accuracy
-        if (missed > 0 && shotsHit > 0)
-        {
-            //Calcuate Percent
-            float percent = (shotsHit / missed) * 100.0f;
-            float round = Mathf.Round(percent);
+        //Calcuate Percent
+        float percent = (shotsHit / missed) * 100.0f;
+        float round = Mathf.Round(percent);
             
-            _accuracyText.text = "Accuaracy: " + round.ToString() + "%";
-        }
+        _accuracyText.text = "Accuaracy: " + round.ToString() + "%";
+        
     }
 }

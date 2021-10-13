@@ -24,11 +24,10 @@ public class GridshotSpawner : MonoBehaviour
 
     [SerializeField] Button weaponSwitchLeft;
     [SerializeField] Button weaponSwitchRight;
-
-    [SerializeField] GameObject scoreUI;
+    
  
     [SerializeField] GameObject StartGameUI;
-    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] Text timeText;
 
     [SerializeField] GameObject M4_Object;
     [SerializeField] GameObject glock_Object;
@@ -38,7 +37,8 @@ public class GridshotSpawner : MonoBehaviour
     [SerializeField] Button ReturnToTitleScreen;
 
     private void Awake()
-    {
+    { 
+
         if(instance == null)
         {
             instance = this;
@@ -56,9 +56,6 @@ public class GridshotSpawner : MonoBehaviour
         
         anim = FindObjectOfType<Animator>();
         scoreUI.SetActive(false);
-        CharcterCamera.instance.enabled = false;
-        
-
         StartGameUI.SetActive(true);
         M4_Object.SetActive(false);
         glock_Object.SetActive(true);
@@ -92,7 +89,7 @@ public class GridshotSpawner : MonoBehaviour
     void Update()
     {
         StartScreenGunDisplay(weaponShowcase, isPlaying);
-        timeText.text = timeLeft.ToString();
+        timeText.text = "TIME: " + timeLeft.ToString();
         
         if (lockCursor)
         {
@@ -104,7 +101,7 @@ public class GridshotSpawner : MonoBehaviour
         if (isPlaying && !isDecrementing)
             StartCoroutine(DecrementTime(1));
         else if (!isPlaying)
-            StartGameUI.SetActive(true);
+            //StartGameUI.SetActive(true);
 
         //Targets Spawn
         if (isPlaying && timeLeft > 0)
@@ -115,8 +112,7 @@ public class GridshotSpawner : MonoBehaviour
                 targetsInScene++;
             }
         }
-        
-        if(timeLeft <= 0)
+        else if(timeLeft <= 0 && !isPlaying)
         {
             //Character disabled
             CharcterCamera.instance.enabled = false;
@@ -203,6 +199,8 @@ public class GridshotSpawner : MonoBehaviour
     {   
         //Enable Mouse Movement
         CharcterCamera.instance.enabled = true;
+
+        RaycastShoot.instance.accuracy = 100;
 
         //Reset Score + Accuracy + Time 
         RaycastShoot.instance.missed = 0;
