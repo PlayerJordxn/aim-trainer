@@ -7,38 +7,41 @@ using TMPro;
 public class GridshotSpawner : MonoBehaviour
 {
     public static GridshotSpawner instance;
-    Animator anim;
+    [SerializeField] Animator anim;
 
     public int targetsInScene = 0;
     public bool isPlaying;
 
-    public int timeLeft;
+    public int timeLeft = 60;
     public bool isDecrementing = false;
     bool lockCursor = false;
-    int weaponShowcase = 0;
+    public int weaponShowcase = 0; //0 = M16, 1 = M4, 2 = Glock
 
-    //Rotating Weapons
-    [SerializeField] GameObject M4_Showcase;
-    [SerializeField] GameObject M16_Showcase;
-    [SerializeField] GameObject glockShowcase;
+    [SerializeField] private GameObject Crosshair;
 
-    [SerializeField] Button weaponSwitchLeft;
-    [SerializeField] Button weaponSwitchRight;
-    
- 
-    [SerializeField] GameObject StartGameUI;
-    [SerializeField] Text timeText;
+    [SerializeField] private GameObject M4_Showcase;
+    [SerializeField] private GameObject M16_Showcase;
+    [SerializeField] private GameObject glockShowcase;
 
-    [SerializeField] GameObject M4_Object;
-    [SerializeField] GameObject glock_Object;
-    [SerializeField] GameObject M16_Object;
+    [SerializeField] private Button weaponSwitchLeft;
+    [SerializeField] private Button weaponSwitchRight;
+   
+    [SerializeField] private GameObject StartGameUI;
+    [SerializeField] private Text timeText;
 
-    [SerializeField] Button StartGame_Button;
-    [SerializeField] Button ReturnToTitleScreen;
+    [SerializeField] private GameObject M4_Object;
+    [SerializeField] private GameObject glock_Object;
+    [SerializeField] private GameObject M16_Object;
+
+    [SerializeField] private Button StartGame_Button;
+    [SerializeField] private Button ReturnToTitleScreen;
+
+    bool glock = false;
+    bool M4 = false;
+    bool M16 = false;
 
     private void Awake()
-    { 
-
+    {
         if(instance == null)
         {
             instance = this;
@@ -53,9 +56,11 @@ public class GridshotSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         anim = FindObjectOfType<Animator>();
-        scoreUI.SetActive(false);
+        Crosshair.SetActive(false);
+        //Set Play Mode True
+        RaycastShoot.instance.gridshotIsPlaying = true;
+        isPlaying = false;
         StartGameUI.SetActive(true);
         M4_Object.SetActive(false);
         glock_Object.SetActive(true);
@@ -76,18 +81,12 @@ public class GridshotSpawner : MonoBehaviour
         {
             StartGame_Button.onClick.AddListener(BeginGame);
         }
-
-        //Set Play Mode True
-        RaycastShoot.instance.gridshotIsPlaying = true;
-        isPlaying = false;
-
-        if (timeLeft <= 0)
-            timeLeft = 60;
     }
 
     // Update is called once per frame
     void Update()
     {
+        anim.SetBool("GlockBool", glock);
         StartScreenGunDisplay(weaponShowcase, isPlaying);
         timeText.text = "TIME: " + timeLeft.ToString();
         
@@ -97,24 +96,24 @@ public class GridshotSpawner : MonoBehaviour
             Cursor.visible = false;//Makes cursor invisable
         }
 
+        if (weaponShowcase > 2)
+            weaponShowcase = 0;
+        else if (weaponShowcase < 0)
+            weaponShowcase = 2;
+
         //Timer
         if (isPlaying && !isDecrementing)
             StartCoroutine(DecrementTime(1));
-        else if (!isPlaying)
-            //StartGameUI.SetActive(true);
+        
+        //Reset UI + Time
+        if (!isPlaying)
+        {
+            
 
-        //Targets Spawn
-        if (isPlaying && timeLeft > 0)
-        {
-            if (targetsInScene < 5)
-            {
-                Gridshot.instance.GetTarget();
-                targetsInScene++;
-            }
-        }
-        else if(timeLeft <= 0 && !isPlaying)
-        {
-            //Character disabled
+            //Enable Crosshair
+            Crosshair.SetActive(false);
+
+            //Character disabled + Gamemode Disable
             CharcterCamera.instance.enabled = false;
             isPlaying = false;
 
@@ -122,7 +121,22 @@ public class GridshotSpawner : MonoBehaviour
             lockCursor = false;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
+            
+            //Reset UI
             timeLeft = 60;
+            StartGameUI.SetActive(true);
+        }
+            
+
+        //Targets Spawn
+        if (isPlaying && timeLeft > 0)
+        {
+            Crosshair.SetActive(true);
+            if (targetsInScene < 5)
+            {
+                Gridshot.instance.GetTarget();
+                targetsInScene++;
+            }
         }
     }
 
@@ -151,6 +165,7 @@ public class GridshotSpawner : MonoBehaviour
             M4_Showcase.SetActive(false);
             M16_Showcase.SetActive(false);
         }
+
     }
 
     IEnumerator DecrementTime(int _time)
@@ -163,6 +178,8 @@ public class GridshotSpawner : MonoBehaviour
 
     public void M4SetActive()
     {
+        glock = true;
+
         RaycastShoot.instance.playM4Audio = true;
         RaycastShoot.instance.playM16Audio = false;
         RaycastShoot.instance.playGlockAudio = false;
@@ -196,9 +213,15 @@ public class GridshotSpawner : MonoBehaviour
     }
 
     public void BeginGame()
-    {   
+    {
+        
         //Enable Mouse Movement
         CharcterCamera.instance.enabled = true;
+
+        GunSelected(weaponShowcase);
+
+        //Start UI Disable
+        StartGameUI.SetActive(false);
 
         RaycastShoot.instance.accuracy = 100;
 
@@ -221,25 +244,32 @@ public class GridshotSpawner : MonoBehaviour
         weaponShowcase++;
     }
 
-    public void GunSelected(int _weaponChosen, bool activateRifle)
+    public void GunSelected(int _weaponChosen)
     {
         if (_weaponChosen == 0)
         {
             //M16
             M16SetActive();
-            activateRifle = true;
+            anim.SetTrigger("M16Pullout");
+            anim.SetBool("M16Bool", true);
+            
+
         }
         else if (_weaponChosen == 1)
         {
             //M4
             M4SetActive();
-            activateRifle = true;
+            
+            
+
         }
         else if (_weaponChosen == 2)
         {
             //Glock
             GlockSetActive();
-            activateRifle = false;
+            anim.SetTrigger("GlockPullout");
+            anim.SetBool("GlockBool", true);
+
         }
     }
 

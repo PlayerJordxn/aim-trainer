@@ -8,7 +8,7 @@ using TMPro;
 public class RaycastShoot : MonoBehaviour
 {
     public static RaycastShoot instance;
-    
+
     //Audio Source
     [SerializeField] AudioSource glockSFX;
     [SerializeField] AudioClip glockClipSFX;
@@ -55,6 +55,8 @@ public class RaycastShoot : MonoBehaviour
 
     private void Awake()
     {
+        
+
         if (instance == null)
         {
             instance = this;
@@ -88,6 +90,8 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
 
         if (Input.GetButtonDown("Fire1"))
