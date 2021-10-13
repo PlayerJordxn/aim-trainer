@@ -40,18 +40,18 @@ public class RaycastShoot : MonoBehaviour
     public bool colorCordinationTrackingIsPlaying;
 
     //Weapons - Determines what audio should be played
-    public bool m4a1SfxBool = false;
-    public bool glockSfxBool = false;
-    public bool m16SfxBool = false;
+    public bool playM4Audio = false;
+    public bool playGlockAudio = false;
+    public bool playM16Audio = false;
 
     //Score
     public float shotsFired = 0;
     public float shotsHit = 0;
     public float accuracy = 0;
 
-    [SerializeField] TextMeshProUGUI shotsFiredText;
-    [SerializeField] TextMeshProUGUI shotsHitText;
-    [SerializeField] TextMeshProUGUI accuracyText;
+    [SerializeField] Text shotsFiredText;
+    [SerializeField] Text shotsHitText;
+    [SerializeField] Text accuracyText;
 
     private void Awake()
     {
@@ -86,32 +86,18 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(shotsFired > 0 && shotsHit > 0)
-        {
-            //Calcuate Percent
-            float percent = (shotsHit / shotsFired) * 100.0f;
-            float round = Mathf.Round(percent);
-            accuracyText.text = "Accuaracy: " + round.ToString() + "%";
-        }
-        
-        shotsFiredText.text = shotsFired.ToString();
-        shotsHitText.text = shotsHit.ToString();
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ScreenCapture.CaptureScreenshot("TrainingAreaScreenshot");
-        }
+        ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, shotsFired, accuracy);
 
         if (Input.GetButtonDown("Fire1"))
         {
             //SFX
-            if (glockSfxBool)
+            if (playGlockAudio)
                 glockSFX.PlayOneShot(glockClipSFX);
 
-            if (m16SfxBool)
+            if (playM16Audio)
                 m16SFX.PlayOneShot(m16ClipSFX);
 
-            if (m4a1SfxBool)
+            if (playM4Audio)
                 m4a1SFX.PlayOneShot(m4a1ClipSFX);
 
             Shoot();
@@ -124,8 +110,7 @@ public class RaycastShoot : MonoBehaviour
                 shotsFired++;
 
         }
-        
-        //Tracking();
+       
     }
 
     public void Shoot()
@@ -225,6 +210,24 @@ public class RaycastShoot : MonoBehaviour
                     hit.collider.gameObject.GetComponent<TargetBehavior>().RemoveHealthColorCordinationTracking(hit.collider.gameObject);
                 }
             }
+        }
+    }
+
+    public void ScoreUI(Text _shotsFiredText, Text _shotsHitText, Text _accuracyText, float _hit, float _shotsFired, float _accuracy)
+    {
+        //Text
+        _shotsFiredText.text = _shotsFired.ToString();
+        _shotsHitText.text = _hit.ToString();
+
+        //Accuracy
+        if (shotsFired > 0 && shotsHit > 0)
+        {
+            //Calcuate Percent
+            float percent = (shotsHit / shotsFired) * 100.0f;
+            float round = Mathf.Round(percent);
+            
+            _accuracyText.text = "Accuaracy: " +
+                "" + round.ToString() + "%";
         }
     }
 }

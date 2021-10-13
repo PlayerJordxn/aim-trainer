@@ -66,6 +66,7 @@ public class GridshotSpawner : MonoBehaviour
         glock_Object.SetActive(true);
         M16_Object.SetActive(false);
 
+        //Buttons
         if(weaponSwitchLeft)
         {
             weaponSwitchLeft.onClick.AddListener(LeftSwitch);
@@ -81,6 +82,7 @@ public class GridshotSpawner : MonoBehaviour
             StartGame_Button.onClick.AddListener(BeginGame);
         }
 
+        //Set Play Mode True
         RaycastShoot.instance.gridshotIsPlaying = true;
         isPlaying = false;
 
@@ -180,9 +182,9 @@ public class GridshotSpawner : MonoBehaviour
 
     public void M4SetActive()
     {
-        RaycastShoot.instance.m4a1SfxBool = true;
-        RaycastShoot.instance.m16SfxBool = false;
-        RaycastShoot.instance.glockSfxBool = false;
+        RaycastShoot.instance.playM4Audio = true;
+        RaycastShoot.instance.playM16Audio = false;
+        RaycastShoot.instance.playGlockAudio = false;
 
 
         M16_Object.SetActive(false);
@@ -192,9 +194,9 @@ public class GridshotSpawner : MonoBehaviour
 
     public void M16SetActive()
     {
-        RaycastShoot.instance.m4a1SfxBool = false;
-        RaycastShoot.instance.m16SfxBool = true;
-        RaycastShoot.instance.glockSfxBool = false;
+        RaycastShoot.instance.playM4Audio = false;
+        RaycastShoot.instance.playM16Audio = true;
+        RaycastShoot.instance.playGlockAudio = false;
 
         glock_Object.SetActive(false);
         M4_Object.SetActive(false);
@@ -203,9 +205,9 @@ public class GridshotSpawner : MonoBehaviour
 
     public void GlockSetActive()
     {
-        RaycastShoot.instance.m4a1SfxBool = false;
-        RaycastShoot.instance.m16SfxBool = false;
-        RaycastShoot.instance.glockSfxBool = true;
+        RaycastShoot.instance.playM4Audio = false;
+        RaycastShoot.instance.playM16Audio = false;
+        RaycastShoot.instance.playGlockAudio = true;
 
         M4_Object.SetActive(false);
         M16_Object.SetActive(false);
