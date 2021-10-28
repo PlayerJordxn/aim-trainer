@@ -14,7 +14,7 @@ public class GridshotSpawner : MonoBehaviour
 
     public int timeLeft = 60;
     public bool isDecrementing = false;
-    bool lockCursor = false;
+    private bool lockCursor = false;
     public int weaponShowcase = 0; //0 = M16, 1 = M4, 2 = Glock
 
     [SerializeField] private GameObject Crosshair;
@@ -33,8 +33,15 @@ public class GridshotSpawner : MonoBehaviour
     [SerializeField] private GameObject glock_Object;
     [SerializeField] private GameObject M16_Object;
 
-    [SerializeField] private Button StartGame_Button;
-    [SerializeField] private Button ReturnToTitleScreen;
+    [SerializeField] private Button startGameButton;
+    [SerializeField] private Button returnToTitlescreen;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Button pauseMenuTitlescreenButton;
+    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button resumeButton;
+
+    private bool paused = false;
+
 
     bool glock = false;
     bool M4 = false;
@@ -58,7 +65,6 @@ public class GridshotSpawner : MonoBehaviour
     {
         anim = FindObjectOfType<Animator>();
         Crosshair.SetActive(false);
-        //Set Play Mode True
         RaycastShoot.instance.gridshotIsPlaying = true;
         isPlaying = false;
         StartGameUI.SetActive(true);
@@ -77,15 +83,71 @@ public class GridshotSpawner : MonoBehaviour
             weaponSwitchRight.onClick.AddListener(RightSwitch);
         }
 
-        if (StartGame_Button)
+        if (startGameButton)
         {
-            StartGame_Button.onClick.AddListener(BeginGame);
+            startGameButton.onClick.AddListener(BeginGame);
         }
+
+        if(pauseMenuTitlescreenButton)
+        {
+            //pauseMenuTitlescreenButton.onClick.AddListener()
+        }
+
+        if(settingsButton)
+        {
+            //settingsButton.onClick.AddListener();
+        }
+
+        if (resumeButton)
+        {
+            resumeButton.onClick.AddListener(ResumeFromPause);
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(paused)
+            {
+                pauseMenu.SetActive(false);
+                //Game Start
+                RaycastShoot.instance.gameStarted = true;
+
+                //Enable Mouse Movement
+                CharcterCamera.instance.enabled = true;
+
+                //Game Start
+                lockCursor = true;
+
+                RaycastShoot.instance.paused = false;
+
+                paused = false;
+            }
+            else
+            {
+                //Enable UI
+                pauseMenu.SetActive(true);
+
+                //Enable Crosshair
+                Crosshair.SetActive(false);
+
+                //Character disabled + Gamemode Disable
+                CharcterCamera.instance.enabled = false;
+
+                //Set Cursor Active
+                lockCursor = false;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+
+                RaycastShoot.instance.paused = true;
+
+                paused = true;
+            }
+        }
+
         anim.SetBool("GlockBool", glock);
         anim.SetBool("M4Bool", M4);
         anim.SetBool("M16Bool", M16);
@@ -110,7 +172,7 @@ public class GridshotSpawner : MonoBehaviour
         //Reset UI + Time
         if (!isPlaying)
         {
-            
+            RaycastShoot.instance.gameStarted = false;
 
             //Enable Crosshair
             Crosshair.SetActive(false);
@@ -173,8 +235,12 @@ public class GridshotSpawner : MonoBehaviour
     IEnumerator DecrementTime(int _time)
     {
         isDecrementing = true;
+
         yield return new WaitForSecondsRealtime(_time);
+
+        if(!paused)
         timeLeft -= 1;
+
         isDecrementing = false;
     }
 
@@ -216,7 +282,9 @@ public class GridshotSpawner : MonoBehaviour
 
     public void BeginGame()
     {
-        
+        //Game Start
+        RaycastShoot.instance.gameStarted = true;
+
         //Enable Mouse Movement
         CharcterCamera.instance.enabled = true;
 
@@ -274,6 +342,23 @@ public class GridshotSpawner : MonoBehaviour
             glock = true;
 
         }
+    }
+
+    public void ResumeFromPause()
+    {
+        pauseMenu.SetActive(false);
+        //Game Start
+        RaycastShoot.instance.gameStarted = true;
+
+        //Enable Mouse Movement
+        CharcterCamera.instance.enabled = true;
+
+        //Game Start
+        lockCursor = true;
+
+        RaycastShoot.instance.paused = false;
+
+        paused = false;
     }
 
 }

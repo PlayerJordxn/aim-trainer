@@ -3,32 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.VFX;
 
 public class RaycastShoot : MonoBehaviour
 {
+    [SerializeField] private VisualEffect m4MuzzleFlash;
+    [SerializeField] private VisualEffect m16MuzzleFlash;
+
+    [SerializeField] private VisualEffect impactParticle;
+
+
+
     public static RaycastShoot instance;
 
     //Audio Source
-    [SerializeField] AudioSource glockSFX;
-    [SerializeField] AudioClip glockClipSFX;
+    [SerializeField] private AudioSource glockSFX;
+    [SerializeField] private AudioClip glockClipSFX;
 
-    [SerializeField] AudioSource m16SFX;
-    [SerializeField] AudioClip m16ClipSFX;
+    [SerializeField] private AudioSource m16SFX;
+    [SerializeField] private AudioClip m16ClipSFX;
 
-    [SerializeField] AudioSource m4a1SFX;
-    [SerializeField] AudioClip m4a1ClipSFX;
+    [SerializeField] private AudioSource m4a1SFX;
+    [SerializeField] private AudioClip m4a1ClipSFX;
 
-    [SerializeField] AudioSource targetHitSFX;
-    [SerializeField] AudioClip targetHitClipSFX;
+    [SerializeField] private AudioSource targetHitSFX;
+    [SerializeField] private AudioClip targetHitClipSFX;
 
     //UI
-    float time;
-    float duration;
+    private float time;
+    private float duration;
 
     //Raycast Variables
     [SerializeField] Camera lookFrom;
-    float shootDistance;
+    private float shootDistance;
 
     //Gamemodes
     public bool gridshotIsPlaying;
@@ -38,6 +45,9 @@ public class RaycastShoot : MonoBehaviour
     public bool singleTargetTrackingIsPlaying;
     public bool rangeTrainingIsPlaying;
     public bool colorCordinationTrackingIsPlaying;
+
+    public bool gameStarted = false;
+    public bool paused = false;
 
     //Weapons - Determines what audio should be played
     public bool playM4Audio = false;
@@ -56,7 +66,6 @@ public class RaycastShoot : MonoBehaviour
     private void Awake()
     {
         
-
         if (instance == null)
         {
             instance = this;
@@ -73,15 +82,19 @@ public class RaycastShoot : MonoBehaviour
         flickshotModeIsPlaying = false;
         singleTargetTrackingIsPlaying = false;
         colorCordinationTrackingIsPlaying = false;
+
+       
     }
     // Start is called before the first frame update
     void Start()
     {
+        
+
         if (accuracy <= 0)
             accuracy = 100f;
 
         if (shootDistance <= 0)
-            shootDistance = 150f;
+            shootDistance = 500f;
 
         if (duration <= 0)
             duration = 2f;
@@ -94,26 +107,33 @@ public class RaycastShoot : MonoBehaviour
 
         ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
 
-        if (Input.GetButtonDown("Fire1"))
+       
+
+        if (Input.GetButtonDown("Fire1") && !paused)
         {
             //SFX
             if (playGlockAudio)
                 glockSFX.PlayOneShot(glockClipSFX);
+                
 
             if (playM16Audio)
+            {
                 m16SFX.PlayOneShot(m16ClipSFX);
+                m16MuzzleFlash.Play();
+            }
 
             if (playM4Audio)
+            {
+                m4MuzzleFlash.Play();
                 m4a1SFX.PlayOneShot(m4a1ClipSFX);
+            }
+                
 
             Shoot();
 
-            if (gridshotIsPlaying 
-                || colorCordinationTrackingIsPlaying 
-                || flickshotModeIsPlaying 
-                || headshotModeIsPlaying 
-                || rangeTrainingIsPlaying)
+            if (gameStarted)
                 missed++;
+                
 
         }
        
@@ -125,6 +145,12 @@ public class RaycastShoot : MonoBehaviour
 
         if(Physics.Raycast(lookFrom.transform.position, lookFrom.transform.forward, out hit, shootDistance))
         {
+            if(hit.collider != null)
+            {
+                impactParticle.transform.position = hit.point;
+                impactParticle.Play();
+            }
+
             if (hit.collider.tag != "Target")
             {
                 missed++;
@@ -223,11 +249,7 @@ public class RaycastShoot : MonoBehaviour
                     hit.collider.gameObject.GetComponent<TargetBehavior>().RemoveHealthColorCordinationTracking(hit.collider.gameObject);
                 }
             }
-
-            
         }
-
-
     }
 
     public void ScoreUI(Text _shotsFiredText, Text _shotsHitText, Text _accuracyText, float _hit, float _missed, float _accuracy)
