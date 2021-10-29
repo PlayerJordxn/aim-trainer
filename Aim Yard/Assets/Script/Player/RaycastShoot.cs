@@ -148,6 +148,7 @@ public class RaycastShoot : MonoBehaviour
             if(hit.collider != null)
             {
                 impactParticle.transform.position = hit.point;
+                impactParticle.transform.rotation = Quaternion.LookRotation(hit.normal);
                 impactParticle.Play();
             }
 
