@@ -36,7 +36,7 @@ namespace Interface.Elements.Scripts
             
             if (!_i)
             {
-                Debug.LogError("No AudioManager instance running");
+                //Debug.LogError("No AudioManager instance running");
                 return;
             }
 

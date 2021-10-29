@@ -108,7 +108,7 @@ public class GridshotSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !StartGameUI.activeSelf)
         {
             if(paused)
             {
@@ -145,6 +145,7 @@ public class GridshotSpawner : MonoBehaviour
                 RaycastShoot.instance.paused = true;
 
                 paused = true;
+                transform.LookAt(settingsButton.gameObject.transform.position);
             }
         }
 

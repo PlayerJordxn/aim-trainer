@@ -109,7 +109,7 @@ public class RaycastShoot : MonoBehaviour
 
        
 
-        if (Input.GetButtonDown("Fire1") && !paused)
+        if (Input.GetButtonDown("Fire1") && !paused && GridshotSpawner.instance.isPlaying)
         {
             //SFX
             if (playGlockAudio)
@@ -127,14 +127,9 @@ public class RaycastShoot : MonoBehaviour
                 m4MuzzleFlash.Play();
                 m4a1SFX.PlayOneShot(m4a1ClipSFX);
             }
-                
-
+        
             Shoot();
-
-            if (gameStarted)
-                missed++;
-                
-
+            missed++;
         }
        
     }
