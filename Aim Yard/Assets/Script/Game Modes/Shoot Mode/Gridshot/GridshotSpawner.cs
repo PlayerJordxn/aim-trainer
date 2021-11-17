@@ -17,7 +17,18 @@ public class GridshotSpawner : MonoBehaviour
     private bool lockCursor = false;
     public int weaponShowcase = 0; //0 = M16, 1 = M4, 2 = Glock
 
+    private Vector3 pauseMenuStartPosition;
+    private Quaternion pauseMenuStartRotation;
+
+    private Vector3 playerStartPosition;
+    private Quaternion playerStartRotation;
+
+    [SerializeField] private Transform canvasTransform;
+
+    [SerializeField] private Transform playerTransform;
+
     [SerializeField] private GameObject Crosshair;
+    [SerializeField] private Transform pauseMenuTransform;
 
     [SerializeField] private GameObject M4_Showcase;
     [SerializeField] private GameObject M16_Showcase;
@@ -63,6 +74,9 @@ public class GridshotSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseMenuStartPosition = pauseMenu.transform.position;
+        pauseMenuStartRotation = pauseMenu.transform.rotation;
+
         anim = FindObjectOfType<Animator>();
         Crosshair.SetActive(false);
         RaycastShoot.instance.gridshotIsPlaying = true;
@@ -90,12 +104,12 @@ public class GridshotSpawner : MonoBehaviour
 
         if(pauseMenuTitlescreenButton)
         {
-            //pauseMenuTitlescreenButton.onClick.AddListener()
+           
         }
 
         if(settingsButton)
         {
-            //settingsButton.onClick.AddListener();
+            
         }
 
         if (resumeButton)
@@ -128,6 +142,9 @@ public class GridshotSpawner : MonoBehaviour
             }
             else
             {
+                pauseMenu.transform.position = pauseMenuStartPosition;
+                pauseMenu.transform.rotation = pauseMenuStartRotation;
+
                 //Enable UI
                 pauseMenu.SetActive(true);
 
@@ -171,8 +188,11 @@ public class GridshotSpawner : MonoBehaviour
             StartCoroutine(DecrementTime(1));
         
         //Reset UI + Time
-        if (!isPlaying)
+        if (!isPlaying && timeLeft <= 0)
         {
+            pauseMenu.transform.position = pauseMenuStartPosition;
+            pauseMenu.transform.rotation = pauseMenuStartRotation;
+
             RaycastShoot.instance.gameStarted = false;
 
             //Enable Crosshair
@@ -191,8 +211,10 @@ public class GridshotSpawner : MonoBehaviour
             timeLeft = 60;
             StartGameUI.SetActive(true);
         }
-            
 
+        if (timeLeft <= 0)
+            isPlaying = false;
+            
         //Targets Spawn
         if (isPlaying && timeLeft > 0)
         {
@@ -303,6 +325,9 @@ public class GridshotSpawner : MonoBehaviour
         //Game Start
         isPlaying = true;
         lockCursor = true;
+        glockShowcase.SetActive(false);
+        M4_Showcase.SetActive(false);
+        M16_Showcase.SetActive(false);
     }
 
     public void LeftSwitch()
@@ -361,5 +386,4 @@ public class GridshotSpawner : MonoBehaviour
 
         paused = false;
     }
-
 }
