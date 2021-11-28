@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GridshotSpawner : MonoBehaviour
 {
@@ -104,7 +105,7 @@ public class GridshotSpawner : MonoBehaviour
 
         if(pauseMenuTitlescreenButton)
         {
-           
+            //pauseMenuTitlescreenButton.onClick.AddListener(LoadLevel(0));
         }
 
         if(settingsButton)
@@ -122,48 +123,9 @@ public class GridshotSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !StartGameUI.activeSelf)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(paused)
-            {
-                pauseMenu.SetActive(false);
-                //Game Start
-                RaycastShoot.instance.gameStarted = true;
-
-                //Enable Mouse Movement
-                CharcterCamera.instance.enabled = true;
-
-                //Game Start
-                lockCursor = true;
-
-                RaycastShoot.instance.paused = false;
-
-                paused = false;
-            }
-            else
-            {
-                pauseMenu.transform.position = pauseMenuStartPosition;
-                pauseMenu.transform.rotation = pauseMenuStartRotation;
-
-                //Enable UI
-                pauseMenu.SetActive(true);
-
-                //Enable Crosshair
-                Crosshair.SetActive(false);
-
-                //Character disabled + Gamemode Disable
-                CharcterCamera.instance.enabled = false;
-
-                //Set Cursor Active
-                lockCursor = false;
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-
-                RaycastShoot.instance.paused = true;
-
-                paused = true;
-                transform.LookAt(settingsButton.gameObject.transform.position);
-            }
+            ResumeFromPause();
         }
 
         anim.SetBool("GlockBool", glock);
@@ -254,6 +216,8 @@ public class GridshotSpawner : MonoBehaviour
         }
 
     }
+
+   
 
     IEnumerator DecrementTime(int _time)
     {
@@ -372,18 +336,45 @@ public class GridshotSpawner : MonoBehaviour
 
     public void ResumeFromPause()
     {
-        pauseMenu.SetActive(false);
-        //Game Start
-        RaycastShoot.instance.gameStarted = true;
+        if (!StartGameUI.activeSelf)
+        {
+            if (paused)
+            {
+                pauseMenu.SetActive(false);
+                //Game Start
+                RaycastShoot.instance.gameStarted = true;
 
-        //Enable Mouse Movement
-        CharcterCamera.instance.enabled = true;
+                //Enable Mouse Movement
+                CharcterCamera.instance.enabled = true;
 
-        //Game Start
-        lockCursor = true;
+                //Game Start
+                lockCursor = true;
 
-        RaycastShoot.instance.paused = false;
+                RaycastShoot.instance.paused = false;
 
-        paused = false;
+                paused = false;
+            }
+            else
+            {
+                //Enable UI
+                pauseMenu.SetActive(true);
+
+                //Enable Crosshair
+                Crosshair.SetActive(false);
+
+                //Character disabled + Gamemode Disable
+                CharcterCamera.instance.enabled = false;
+
+                //Set Cursor Active
+                lockCursor = false;
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+
+                RaycastShoot.instance.paused = true;
+
+                paused = true;
+                //transform.LookAt(settingsButton.gameObject.transform.position);
+            }
+        }
     }
 }
