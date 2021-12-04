@@ -8,13 +8,7 @@ public class TitleScreenMethods : MonoBehaviour
 {
     //Beginning UI
     [SerializeField] private Button playButton;
-    [SerializeField] private Button settingsButton;
     [SerializeField] private Button QuitButton;
-
-    //Begining UI Clicked
-
-    //Settings
-    [SerializeField] private GameObject settings;
 
     //Modes Buttons
     [SerializeField] private Button trackingModesButton;
@@ -39,17 +33,11 @@ public class TitleScreenMethods : MonoBehaviour
 
         //First Active UI
         playButton.gameObject.SetActive(true);
-        settingsButton.gameObject.SetActive(true);
         QuitButton.gameObject.SetActive(true);
 
         if(playButton)
         {
             playButton.onClick.AddListener(PlayButtonClick);
-        }
-
-        if(settingsButton)
-        {
-            settingsButton.onClick.AddListener(SettingsButtonClick);
         }
 
         if(QuitButton)
@@ -78,9 +66,6 @@ public class TitleScreenMethods : MonoBehaviour
     public void PlayButtonClick()
     {
 
-        //Set Settings In-Active
-        settings.SetActive(false);
-
         //Set Middle Row Active
         trackingModesButton.gameObject.SetActive(true);
         shootingModesButton.gameObject.SetActive(true);
@@ -96,9 +81,6 @@ public class TitleScreenMethods : MonoBehaviour
         trackingModesButton.gameObject.SetActive(false);
         shootingModesButton.gameObject.SetActive(false);
         killHouseModesButton.gameObject.SetActive(false);
-
-        //Set Settings Active
-        settings.SetActive(true);
     }
 
     public void TrackingModesEnable()
@@ -135,8 +117,6 @@ public class TitleScreenMethods : MonoBehaviour
     {
 
     }
-
-   
 
     public void LoadLevel(int sceneIndex)
     {
