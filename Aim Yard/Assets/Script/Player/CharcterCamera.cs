@@ -9,7 +9,7 @@ public class CharcterCamera : MonoBehaviour
     public static CharcterCamera instance;
 
     [SerializeField] Slider _slider;
-    [SerializeField] TextMeshProUGUI sliderText;
+    [SerializeField] Text sliderText;
 
     [SerializeField] Transform playerCamera;
     [SerializeField] float mouseSensitivity;
@@ -39,6 +39,8 @@ public class CharcterCamera : MonoBehaviour
     {
         mouseSensitivity = PlayerPrefs.GetFloat("Sensititvty");
 
+        if (mouseSensitivity == 0)
+            _slider.value = 5;
 
         if(mouseSensitivity <= 0)
             mouseSensitivity = 5;
@@ -47,17 +49,19 @@ public class CharcterCamera : MonoBehaviour
             playerSpeed = 6f;
     }
 
+    public void ValueChangeCheck()
+    {
+        sliderText.text = mouseSensitivity.ToString();
+    }
+
     // Update is called once per frame
     void Update()
     {
         
-
-        if (_slider != null)
-        {
-            PlayerPrefs.SetFloat("Sensitivity", _slider.value);
-            sliderText.text = _slider.value.ToString();
-            mouseSensitivity = (int)_slider.value;
-        }
+        PlayerPrefs.SetFloat("Sensitivity", mouseSensitivity);
+        sliderText.text = mouseSensitivity.ToString();
+        mouseSensitivity = _slider.value;
+        
 
         if(playerCamera)
         UpdateMouseLook();
@@ -77,9 +81,4 @@ public class CharcterCamera : MonoBehaviour
 
         transform.Rotate(Vector3.up * mouseDelta.x * mouseSensitivity / 3); //Rotate on x-axis using mouseDelta
     }
-
-    
-   
-
-
 }

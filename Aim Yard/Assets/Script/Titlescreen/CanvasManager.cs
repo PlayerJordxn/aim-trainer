@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-
 public class CanvasManager : MonoBehaviour
 {
     public static CanvasManager instance;
     [SerializeField] GameObject loadingScreen;
     [SerializeField] Image loadingImage;
+
 
     private void Awake()
     {

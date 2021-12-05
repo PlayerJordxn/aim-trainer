@@ -88,8 +88,6 @@ public class RaycastShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-
         if (accuracy <= 0)
             accuracy = 100f;
 
@@ -103,6 +101,8 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (float.IsNaN(accuracy))
+            accuracy = 100;
         
 
         ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);

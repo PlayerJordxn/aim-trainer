@@ -24,17 +24,19 @@ public class GridshotSpawner : MonoBehaviour
     private Vector3 playerStartPosition;
     private Quaternion playerStartRotation;
 
+    //Transforms
     [SerializeField] private Transform canvasTransform;
-
     [SerializeField] private Transform playerTransform;
-
-    [SerializeField] private GameObject Crosshair;
     [SerializeField] private Transform pauseMenuTransform;
 
+    [SerializeField] private GameObject Crosshair;
+
+    //Weapon showcase before start
     [SerializeField] private GameObject M4_Showcase;
     [SerializeField] private GameObject M16_Showcase;
     [SerializeField] private GameObject glockShowcase;
 
+    //Showcase left and right buttons
     [SerializeField] private Button weaponSwitchLeft;
     [SerializeField] private Button weaponSwitchRight;
    
@@ -45,12 +47,15 @@ public class GridshotSpawner : MonoBehaviour
     [SerializeField] private GameObject glock_Object;
     [SerializeField] private GameObject M16_Object;
 
+    //UI
     [SerializeField] private Button startGameButton;
     [SerializeField] private Button returnToTitlescreen;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private Button pauseMenuTitlescreenButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button resumeButton;
+    [SerializeField] private Button settingsMenuButton;
+    [SerializeField] private GameObject settingsMenu;
 
     private bool paused = false;
 
@@ -103,19 +108,14 @@ public class GridshotSpawner : MonoBehaviour
             startGameButton.onClick.AddListener(BeginGame);
         }
 
-        if(pauseMenuTitlescreenButton)
-        {
-            //pauseMenuTitlescreenButton.onClick.AddListener(LoadLevel(0));
-        }
-
-        if(settingsButton)
-        {
-            
-        }
-
         if (resumeButton)
         {
             resumeButton.onClick.AddListener(ResumeFromPause);
+        }
+
+        if(settingsMenuButton)
+        {
+            settingsButton.onClick.AddListener(EnableSettingsMenu);
         }
 
     }
@@ -171,6 +171,7 @@ public class GridshotSpawner : MonoBehaviour
             
             //Reset UI
             timeLeft = 60;
+
             StartGameUI.SetActive(true);
         }
 
@@ -217,8 +218,6 @@ public class GridshotSpawner : MonoBehaviour
 
     }
 
-   
-
     IEnumerator DecrementTime(int _time)
     {
         isDecrementing = true;
@@ -231,7 +230,7 @@ public class GridshotSpawner : MonoBehaviour
         isDecrementing = false;
     }
 
-    public void M4SetActive()
+    private void M4SetActive()
     {
         glock = true;
 
@@ -245,7 +244,7 @@ public class GridshotSpawner : MonoBehaviour
         M4_Object.SetActive(true);
     }
 
-    public void M16SetActive()
+    private void M16SetActive()
     {
         RaycastShoot.instance.playM4Audio = false;
         RaycastShoot.instance.playM16Audio = true;
@@ -256,7 +255,7 @@ public class GridshotSpawner : MonoBehaviour
         M16_Object.SetActive(true);
     }
 
-    public void GlockSetActive()
+    private void GlockSetActive()
     {
         RaycastShoot.instance.playM4Audio = false;
         RaycastShoot.instance.playM16Audio = false;
@@ -267,7 +266,7 @@ public class GridshotSpawner : MonoBehaviour
         glock_Object.SetActive(true);
     }
 
-    public void BeginGame()
+    private void BeginGame()
     {
         //Game Start
         RaycastShoot.instance.gameStarted = true;
@@ -294,17 +293,17 @@ public class GridshotSpawner : MonoBehaviour
         M16_Showcase.SetActive(false);
     }
 
-    public void LeftSwitch()
+    private void LeftSwitch()
     {
         weaponShowcase--;
     }
 
-    public void RightSwitch()
+    private void RightSwitch()
     {
         weaponShowcase++;
     }
 
-    public void GunSelected(int _weaponChosen)
+    private void GunSelected(int _weaponChosen)
     {
         if (_weaponChosen == 0)
         {
@@ -334,13 +333,15 @@ public class GridshotSpawner : MonoBehaviour
         }
     }
 
-    public void ResumeFromPause()
+    private void ResumeFromPause()
     {
         if (!StartGameUI.activeSelf)
         {
             if (paused)
             {
                 pauseMenu.SetActive(false);
+
+                settingsMenu.SetActive(false);
                 //Game Start
                 RaycastShoot.instance.gameStarted = true;
 
@@ -376,5 +377,18 @@ public class GridshotSpawner : MonoBehaviour
                 //transform.LookAt(settingsButton.gameObject.transform.position);
             }
         }
+    }
+
+    public void LoadTitlescreen(int _index)
+    {
+        SceneManager.LoadScene(_index);
+    }
+
+    
+
+    void EnableSettingsMenu()
+    {
+        settingsMenu.SetActive(true);
+        
     }
 }
