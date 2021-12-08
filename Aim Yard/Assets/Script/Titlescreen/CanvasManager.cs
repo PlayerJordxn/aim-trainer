@@ -52,8 +52,26 @@ public class CanvasManager : MonoBehaviour
 
             yield return null;
         }
-        
+      
     }
 
-    
+    IEnumerator UnloadAsynchronously(int sceneIndex)
+    {
+        AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneIndex);
+
+        if (loadingScreen)
+            loadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+
+            loadingImage.fillAmount = progress;
+
+            yield return null;
+        }
+
+    }
+
+
 }

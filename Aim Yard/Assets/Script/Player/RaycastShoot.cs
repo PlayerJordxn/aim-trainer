@@ -103,9 +103,17 @@ public class RaycastShoot : MonoBehaviour
     {
         if (float.IsNaN(accuracy))
             accuracy = 100;
-        
 
-        ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
+        if (shotsHit > 0 && missed > 0)
+            ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
+        else
+        {
+            //Text
+            shotsFiredText.text = "Missed: 0";
+            shotsHitText.text = "Hit: 0";
+            accuracyText.text = "Accuaracy: 0%";
+        }
+            
 
        
 
