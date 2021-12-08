@@ -80,8 +80,7 @@ public class GridshotSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenuStartPosition = pauseMenu.transform.position;
-        pauseMenuStartRotation = pauseMenu.transform.rotation;
+        
 
         anim = FindObjectOfType<Animator>();
         Crosshair.SetActive(false);
@@ -123,22 +122,25 @@ public class GridshotSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            ResumeFromPause();
-        }
-
         anim.SetBool("GlockBool", glock);
         anim.SetBool("M4Bool", M4);
         anim.SetBool("M16Bool", M16);
         StartScreenGunDisplay(weaponShowcase, isPlaying);
         timeText.text = "TIME: " + timeLeft.ToString();
-        
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ResumeFromPause();
+        }
+
         if (lockCursor)
         {
             Cursor.lockState = CursorLockMode.Locked;//Locks cursor at the center of the screen
             Cursor.visible = false;//Makes cursor invisable
         }
+
+        if (timeLeft <= 0)
+            isPlaying = false;
 
         if (weaponShowcase > 2)
             weaponShowcase = 0;
@@ -152,9 +154,6 @@ public class GridshotSpawner : MonoBehaviour
         //Reset UI + Time
         if (!isPlaying && timeLeft <= 0)
         {
-            pauseMenu.transform.position = pauseMenuStartPosition;
-            pauseMenu.transform.rotation = pauseMenuStartRotation;
-
             RaycastShoot.instance.gameStarted = false;
 
             //Enable Crosshair
@@ -174,10 +173,7 @@ public class GridshotSpawner : MonoBehaviour
 
             StartGameUI.SetActive(true);
         }
-
-        if (timeLeft <= 0)
-            isPlaying = false;
-            
+    
         //Targets Spawn
         if (isPlaying && timeLeft > 0)
         {
@@ -383,8 +379,6 @@ public class GridshotSpawner : MonoBehaviour
     {
         SceneManager.LoadScene(_index);
     }
-
-    
 
     void EnableSettingsMenu()
     {

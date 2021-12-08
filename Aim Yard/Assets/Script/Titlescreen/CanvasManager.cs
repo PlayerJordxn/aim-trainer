@@ -33,13 +33,21 @@ public class CanvasManager : MonoBehaviour
 
     public void LoadLevel(int sceneIndex)
     {
+        
         StartCoroutine(LoadAsynchronously(sceneIndex));
+    }
+
+    public void UnloadLevel(int sceneIndex)
+    {
+        
+        StartCoroutine(UnloadAsynchronously(sceneIndex));
     }
 
     //Button Methods
     IEnumerator LoadAsynchronously(int sceneIndex)
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
+
 
         if(loadingScreen)
         loadingScreen.SetActive(true);
@@ -48,6 +56,7 @@ public class CanvasManager : MonoBehaviour
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
+            if(loadingImage)
             loadingImage.fillAmount = progress;
 
             yield return null;
@@ -57,7 +66,7 @@ public class CanvasManager : MonoBehaviour
 
     IEnumerator UnloadAsynchronously(int sceneIndex)
     {
-        AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManager.UnloadSceneAsync(sceneIndex, UnloadSceneOptions.None);
 
         if (loadingScreen)
             loadingScreen.SetActive(true);
@@ -66,6 +75,7 @@ public class CanvasManager : MonoBehaviour
         {
             float progress = Mathf.Clamp01(operation.progress / 0.9f);
 
+            if(loadingImage)
             loadingImage.fillAmount = progress;
 
             yield return null;
