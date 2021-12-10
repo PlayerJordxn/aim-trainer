@@ -10,18 +10,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] Image loadingImage;
 
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if (instance != null)
-        {
-            Destroy(this);
-        }
-    }
+  
 
     // Start is called before the first frame update
     void Start()
@@ -33,14 +22,15 @@ public class CanvasManager : MonoBehaviour
 
     public void LoadLevel(int sceneIndex)
     {
-        
-        StartCoroutine(LoadAsynchronously(sceneIndex));
+        SceneManager.LoadScene(1);
+        //StartCoroutine(LoadScene());
+        //StartCoroutine(LoadAsynchronously(sceneIndex));
     }
 
     public void UnloadLevel(int sceneIndex)
     {
         
-        StartCoroutine(UnloadAsynchronously(sceneIndex));
+        StartCoroutine(LoadScene());
     }
 
     //Button Methods
@@ -61,7 +51,16 @@ public class CanvasManager : MonoBehaviour
 
             yield return null;
         }
-      
+    }
+
+    IEnumerator LoadScene()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+
+        while(!operation.isDone)
+        {
+            yield return null;
+        }
     }
 
     IEnumerator UnloadAsynchronously(int sceneIndex)
