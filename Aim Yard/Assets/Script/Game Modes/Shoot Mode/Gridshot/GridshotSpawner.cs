@@ -24,10 +24,14 @@ public class GridshotSpawner : MonoBehaviour
     private Vector3 playerStartPosition;
     private Quaternion playerStartRotation;
 
+    private Vector2 spineStartPosition;
+    private Quaternion spineStartRotation;
+
     //Transforms
     [SerializeField] private Transform canvasTransform;
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform pauseMenuTransform;
+    [SerializeField] private Transform spineTransform;
 
     [SerializeField] private GameObject Crosshair;
 
@@ -80,7 +84,9 @@ public class GridshotSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+     
+
+
 
         anim = FindObjectOfType<Animator>();
         Crosshair.SetActive(false);
@@ -154,6 +160,8 @@ public class GridshotSpawner : MonoBehaviour
         //Reset UI + Time
         if (!isPlaying && timeLeft <= 0)
         {
+           
+
             RaycastShoot.instance.gameStarted = false;
 
             //Enable Crosshair

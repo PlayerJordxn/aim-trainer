@@ -38,7 +38,6 @@ public class CanvasManager : MonoBehaviour
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
 
-
         if(loadingScreen)
         loadingScreen.SetActive(true);
 

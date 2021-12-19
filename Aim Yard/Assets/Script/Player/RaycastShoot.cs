@@ -101,9 +101,7 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (float.IsNaN(accuracy))
-            accuracy = 100;
-
+        
         if (shotsHit > 0 && missed > 0)
             ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
         else
