@@ -24,7 +24,7 @@ public class GridshotSpawner : MonoBehaviour
     private Vector3 playerStartPosition;
     private Quaternion playerStartRotation;
 
-    private Vector2 spineStartPosition;
+    private Vector3 spineStartPosition;
     private Quaternion spineStartRotation;
 
     //Transforms
@@ -32,6 +32,8 @@ public class GridshotSpawner : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private Transform pauseMenuTransform;
     [SerializeField] private Transform spineTransform;
+    [SerializeField] private Transform spineTransformLookAt;
+
 
     [SerializeField] private GameObject Crosshair;
 
@@ -62,11 +64,9 @@ public class GridshotSpawner : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
 
     private bool paused = false;
-
-
-    bool glock = false;
-    bool M4 = false;
-    bool M16 = false;
+    private bool glock = false;
+    private bool M4 = false;
+    private bool M16 = false;
 
     private void Awake()
     {
@@ -84,9 +84,8 @@ public class GridshotSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-     
-
-
+        spineStartPosition = spineTransform.position;
+        spineStartRotation = spineTransform.rotation;
 
         anim = FindObjectOfType<Animator>();
         Crosshair.SetActive(false);
@@ -160,8 +159,8 @@ public class GridshotSpawner : MonoBehaviour
         //Reset UI + Time
         if (!isPlaying && timeLeft <= 0)
         {
-           
-
+            spineTransform.transform.position = spineStartPosition;
+            spineTransform.transform.rotation = spineStartRotation;
             RaycastShoot.instance.gameStarted = false;
 
             //Enable Crosshair
@@ -361,6 +360,9 @@ public class GridshotSpawner : MonoBehaviour
             }
             else
             {
+                spineTransform.transform.position = spineStartPosition;
+                spineTransform.transform.rotation = spineStartRotation;
+
                 //Enable UI
                 pauseMenu.SetActive(true);
 
