@@ -12,8 +12,6 @@ public class RaycastShoot : MonoBehaviour
 
     [SerializeField] private VisualEffect impactParticle;
 
-
-
     public static RaycastShoot instance;
 
     //Audio Source
@@ -33,6 +31,10 @@ public class RaycastShoot : MonoBehaviour
     private float time;
     private float duration;
 
+    [SerializeField] private Slider sensitivitySlider;
+    [SerializeField] private Text sensitivityText;
+
+
     //Raycast Variables
     [SerializeField] Camera lookFrom;
     private float shootDistance;
@@ -48,6 +50,7 @@ public class RaycastShoot : MonoBehaviour
 
     public bool gameStarted = false;
     public bool paused = false;
+    
 
     //Weapons - Determines what audio should be played
     public bool playM4Audio = false;
@@ -59,9 +62,19 @@ public class RaycastShoot : MonoBehaviour
     public float shotsHit = 0;
     public float accuracy = 0;
 
-    [SerializeField] Text shotsFiredText;
-    [SerializeField] Text shotsHitText;
-    [SerializeField] Text accuracyText;
+    //Lifetime Statistics
+    [SerializeField] private Text StatsMissedText;
+    [SerializeField] private Text StatsHitText;
+    [SerializeField] private Text StatsAccuracyText;
+    private float lifetimeMissedShots = 0;
+    private float lifetimeHitShots = 0;
+    private float lifetimeAccuracy = 0;
+
+
+
+    [SerializeField] private  Text shotsFiredText;
+    [SerializeField] private Text shotsHitText;
+    [SerializeField] private Text accuracyText;
 
     private void Awake()
     {
@@ -88,6 +101,19 @@ public class RaycastShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
+        if (PlayerPrefs.GetFloat("Sensitivity") == 0)
+        {
+            sensitivitySlider.value = 5;
+            PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
+        }
+        else
+        {
+            CharcterCamera.instance.mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        }
+        */
+        sensitivitySlider.value = 5;
+
         if (accuracy <= 0)
             accuracy = 100f;
 
@@ -101,27 +127,43 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        CharcterCamera.instance.mouseSensitivity = sensitivitySlider.value;
+        sensitivityText.text = sensitivitySlider.value.ToString();
+        //Sensitivity
+        //PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
+        //CharcterCamera.instance.mouseSensitivity = PlayerPrefs.GetFloat("Sensititvty");
+
+
         if (shotsHit > 0 && missed > 0)
+        {
             ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
+            PlayerStatistics(StatsMissedText, StatsHitText, StatsAccuracyText, shotsHit, missed, accuracy);
+        } 
         else
         {
             //Text
             shotsFiredText.text = "Missed: 0";
             shotsHitText.text = "Hit: 0";
             accuracyText.text = "Accuaracy: 0%";
+
+            StatsMissedText.text = "Missed: 0";
+            StatsHitText.text = "Hit: 0";
+            StatsAccuracyText.text = "Accuaracy: 0%";
         }
+
+
             
 
        
 
-        if (Input.GetButtonDown("Fire1") && !paused && GridshotSpawner.instance.isPlaying)
+        if (Input.GetButtonDown("Fire1") && !paused && gameStarted)
         {
+            
             //SFX
             if (playGlockAudio)
                 glockSFX.PlayOneShot(glockClipSFX);
                 
-
             if (playM16Audio)
             {
                 m16SFX.PlayOneShot(m16ClipSFX);
@@ -135,7 +177,7 @@ public class RaycastShoot : MonoBehaviour
             }
         
             Shoot();
-            missed++;
+            
         }
        
     }
@@ -165,12 +207,14 @@ public class RaycastShoot : MonoBehaviour
                     //GRIDSHOT
                     Gridshot.instance.ReturnTarget(hit.collider.gameObject);
                     GridshotSpawner.instance.targetsInScene--;
+                    
 
                     //Audio
                     targetHitSFX.PlayOneShot(targetHitClipSFX);
 
                     //Score
                     shotsHit++;
+                    //lifetimeHitShots++;
 
                 }
 
@@ -185,9 +229,11 @@ public class RaycastShoot : MonoBehaviour
 
                     //Score
                     shotsHit++;
+                    //lifetimeHitShots++;
+
                 }
 
-                if(headshotModeIsPlaying)
+                if (headshotModeIsPlaying)
                 {
                     //HEADSHOT MODE
                     HeadshotMode.instance.ReturnTarget(hit.collider.gameObject);
@@ -198,9 +244,11 @@ public class RaycastShoot : MonoBehaviour
 
                     //Score
                     shotsHit++;
+                    //lifetimeHitShots++;
+
                 }
 
-                if(flickshotModeIsPlaying)
+                if (flickshotModeIsPlaying)
                 {
                     //FLICKSHOT MODE
                     Flickshot.instance.ReturnTarget(hit.collider.gameObject);
@@ -211,6 +259,8 @@ public class RaycastShoot : MonoBehaviour
 
                     //Score
                     shotsHit++;
+                    //lifetimeHitShots++;
+
                 }
 
                 if (rangeTrainingIsPlaying)
@@ -224,11 +274,9 @@ public class RaycastShoot : MonoBehaviour
 
                     //Score
                     shotsHit++;
-
-                    
+                    //lifetimeHitShots++;
                 }
-
-                
+                missed++;
             }
         }
     }
@@ -254,7 +302,7 @@ public class RaycastShoot : MonoBehaviour
         }
     }
 
-    public void ScoreUI(Text _shotsFiredText, Text _shotsHitText, Text _accuracyText, float _hit, float _missed, float _accuracy)
+    private void ScoreUI(Text _shotsFiredText, Text _shotsHitText, Text _accuracyText, float _hit, float _missed, float _accuracy)
     {
         //Text
         _shotsFiredText.text = "Missed: " + missed.ToString();
@@ -267,5 +315,20 @@ public class RaycastShoot : MonoBehaviour
             
         _accuracyText.text = "Accuaracy: " + round.ToString() + "%";
         
+    }
+
+    private void PlayerStatistics(Text _shotsFiredText, Text _shotsHitText, Text _accuracyText, float _hit, float _missed, float _accuracy)
+    {
+        //Text
+        _shotsFiredText.text = missed.ToString();
+        _shotsHitText.text = _hit.ToString();
+
+        //Accuracy
+        //Calcuate Percent
+        float percent = (shotsHit / missed) * 100.0f;
+        float round = Mathf.Round(percent);
+
+        _accuracyText.text = round.ToString() + "%";
+
     }
 }

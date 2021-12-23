@@ -8,15 +8,14 @@ public class CharcterCamera : MonoBehaviour
 {
     public static CharcterCamera instance;
 
-    [SerializeField] Slider _slider;
-    [SerializeField] Text sliderText;
+    [SerializeField] private Slider _slider;
 
-    [SerializeField] Transform playerCamera;
-    [SerializeField] float mouseSensitivity;
-    [SerializeField][Range(0.0f, 1.0f)] float mouseSmoothValue = 0.5f;
+    [SerializeField] private Transform playerCamera;
+    public float mouseSensitivity;
+    [SerializeField][Range(0.0f, 1.0f)] private float mouseSmoothValue = 0.5f;
 
-    Vector2 mouseDirection = Vector2.zero;
-    Vector2 mouseDirectionVelocity = Vector2.zero;
+    private Vector2 mouseDirection = Vector2.zero;
+    private Vector2 mouseDirectionVelocity = Vector2.zero;
 
     float cameraPitch;
     bool lockCursor;
@@ -24,6 +23,19 @@ public class CharcterCamera : MonoBehaviour
 
     private void Awake()
     {
+        /*
+        if (PlayerPrefs.GetFloat("Sensitivity") == 0)
+        {
+            PlayerPrefs.SetFloat("Sensitivity", 1);
+            mouseSensitivity = PlayerPrefs.GetFloat("Sensititvty");
+            _slider.value = PlayerPrefs.GetFloat("Sensititvty");
+        }
+        else
+        {
+            mouseSensitivity = PlayerPrefs.GetFloat("Sensititvty");
+            _slider.value = PlayerPrefs.GetFloat("Sensititvty");
+        }
+        */
         if (instance == null)
         {
             instance = this;
@@ -37,32 +49,18 @@ public class CharcterCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        mouseSensitivity = PlayerPrefs.GetFloat("Sensititvty");
-
-        if (mouseSensitivity == 0)
-            _slider.value = 5;
-
-        if(mouseSensitivity <= 0)
-            mouseSensitivity = 5;
+       
 
         if (playerSpeed <= 0)
             playerSpeed = 6f;
-    }
-
-    public void ValueChangeCheck()
-    {
-        sliderText.text = mouseSensitivity.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        PlayerPrefs.SetFloat("Sensitivity", mouseSensitivity);
-        sliderText.text = mouseSensitivity.ToString();
-        mouseSensitivity = _slider.value;
+       
         
-
         if(playerCamera)
         UpdateMouseLook();
     }

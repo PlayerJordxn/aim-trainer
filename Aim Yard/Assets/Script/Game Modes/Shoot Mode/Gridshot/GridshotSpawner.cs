@@ -28,13 +28,7 @@ public class GridshotSpawner : MonoBehaviour
     private Quaternion spineStartRotation;
 
     //Transforms
-    [SerializeField] private Transform canvasTransform;
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private Transform pauseMenuTransform;
     [SerializeField] private Transform spineTransform;
-    [SerializeField] private Transform spineTransformLookAt;
-
-
     [SerializeField] private GameObject Crosshair;
 
     //Weapon showcase before start
@@ -60,8 +54,6 @@ public class GridshotSpawner : MonoBehaviour
     [SerializeField] private Button pauseMenuTitlescreenButton;
     [SerializeField] private Button settingsButton;
     [SerializeField] private Button resumeButton;
-    [SerializeField] private Button settingsMenuButton;
-    [SerializeField] private GameObject settingsMenu;
 
     private bool paused = false;
     private bool glock = false;
@@ -115,11 +107,6 @@ public class GridshotSpawner : MonoBehaviour
         if (resumeButton)
         {
             resumeButton.onClick.AddListener(ResumeFromPause);
-        }
-
-        if(settingsMenuButton)
-        {
-            settingsButton.onClick.AddListener(EnableSettingsMenu);
         }
 
     }
@@ -184,6 +171,7 @@ public class GridshotSpawner : MonoBehaviour
         //Targets Spawn
         if (isPlaying && timeLeft > 0)
         {
+            RaycastShoot.instance.gameStarted = true;
             Crosshair.SetActive(true);
             if (targetsInScene < 5)
             {
@@ -235,7 +223,6 @@ public class GridshotSpawner : MonoBehaviour
 
     private void M4SetActive()
     {
-        glock = true;
 
         RaycastShoot.instance.playM4Audio = true;
         RaycastShoot.instance.playM16Audio = false;
@@ -344,7 +331,6 @@ public class GridshotSpawner : MonoBehaviour
             {
                 pauseMenu.SetActive(false);
 
-                settingsMenu.SetActive(false);
                 //Game Start
                 RaycastShoot.instance.gameStarted = true;
 
@@ -383,16 +369,5 @@ public class GridshotSpawner : MonoBehaviour
                 //transform.LookAt(settingsButton.gameObject.transform.position);
             }
         }
-    }
-
-    public void LoadTitlescreen(int _index)
-    {
-        SceneManager.LoadScene(_index);
-    }
-
-    void EnableSettingsMenu()
-    {
-        settingsMenu.SetActive(true);
-        
     }
 }
