@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GridshotSpawner : MonoBehaviour
 {
     public static GridshotSpawner instance;
-    [SerializeField] Animator anim;
+    private Animator anim;
 
     public int targetsInScene = 0;
     public bool isPlaying;
@@ -81,6 +81,7 @@ public class GridshotSpawner : MonoBehaviour
 
         anim = FindObjectOfType<Animator>();
         Crosshair.SetActive(false);
+        CharcterCamera.instance.enabled = false;
         RaycastShoot.instance.gridshotIsPlaying = true;
         isPlaying = false;
         StartGameUI.SetActive(true);
@@ -149,6 +150,10 @@ public class GridshotSpawner : MonoBehaviour
             spineTransform.transform.position = spineStartPosition;
             spineTransform.transform.rotation = spineStartRotation;
             RaycastShoot.instance.gameStarted = false;
+
+            M4 = false;
+            M16 = false;
+            glock = false;
 
             //Enable Crosshair
             Crosshair.SetActive(false);

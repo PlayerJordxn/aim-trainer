@@ -17,9 +17,9 @@ public class CharcterCamera : MonoBehaviour
     private Vector2 mouseDirection = Vector2.zero;
     private Vector2 mouseDirectionVelocity = Vector2.zero;
 
-    float cameraPitch;
-    bool lockCursor;
-    float playerSpeed;
+    private float cameraPitch;
+    public bool lockCursor;
+    private float playerSpeed;
 
     private void Awake()
     {
@@ -58,10 +58,10 @@ public class CharcterCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-       
-        
-        if(playerCamera)
+
+
+        Debug.Log(lockCursor);
+        if(playerCamera && !lockCursor)
         UpdateMouseLook();
     }
 

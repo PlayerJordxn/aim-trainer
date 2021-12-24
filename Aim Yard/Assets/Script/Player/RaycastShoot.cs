@@ -70,6 +70,10 @@ public class RaycastShoot : MonoBehaviour
     private float lifetimeHitShots = 0;
     private float lifetimeAccuracy = 0;
 
+    [SerializeField] private Text trackingScoreText;
+    private float trackingScore = 0;
+    private float trackingScoreMultiplier = 0;
+
 
 
     [SerializeField] private  Text shotsFiredText;
@@ -133,31 +137,44 @@ public class RaycastShoot : MonoBehaviour
         //Sensitivity
         //PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
         //CharcterCamera.instance.mouseSensitivity = PlayerPrefs.GetFloat("Sensititvty");
-
+        if (singleTargetTrackingIsPlaying || colorCordinationTrackingIsPlaying)
+        {
+            trackingScoreText.text = "Score: " + trackingScore.ToString();
+            StatsAccuracyText.text = trackingScore.ToString();
+        }
 
         if (shotsHit > 0 && missed > 0)
         {
-            ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
-            PlayerStatistics(StatsMissedText, StatsHitText, StatsAccuracyText, shotsHit, missed, accuracy);
+            if (!singleTargetTrackingIsPlaying && !colorCordinationTrackingIsPlaying)
+            {
+                ScoreUI(shotsFiredText, shotsHitText, accuracyText, shotsHit, missed, accuracy);
+                PlayerStatistics(StatsMissedText, StatsHitText, StatsAccuracyText, shotsHit, missed, accuracy);
+            }
+            
         } 
         else
         {
-            //Text
-            shotsFiredText.text = "Missed: 0";
-            shotsHitText.text = "Hit: 0";
-            accuracyText.text = "Accuaracy: 0%";
+            if(!colorCordinationTrackingIsPlaying && !singleTargetTrackingIsPlaying)
+            {
+                //Text
+                shotsFiredText.text = "Missed: 0";
+                shotsHitText.text = "Hit: 0";
+                accuracyText.text = "Accuaracy: 0%";
 
-            StatsMissedText.text = "Missed: 0";
-            StatsHitText.text = "Hit: 0";
-            StatsAccuracyText.text = "Accuaracy: 0%";
+                StatsMissedText.text = "Missed: 0";
+                StatsHitText.text = "Hit: 0";
+                StatsAccuracyText.text = "Accuaracy: 0%";
+            }
+            
         }
 
 
-            
+        if (colorCordinationTrackingIsPlaying || singleTargetTrackingIsPlaying)
+            Tracking();
 
        
 
-        if (Input.GetButtonDown("Fire1") && !paused && gameStarted)
+        if (Input.GetButtonDown("Fire1") && !paused && gameStarted && !colorCordinationTrackingIsPlaying && !singleTargetTrackingIsPlaying)
         {
             
             //SFX
@@ -175,8 +192,12 @@ public class RaycastShoot : MonoBehaviour
                 m4MuzzleFlash.Play();
                 m4a1SFX.PlayOneShot(m4a1ClipSFX);
             }
-        
-            Shoot();
+
+           
+                Shoot();
+
+            if(colorCordinationTrackingIsPlaying || singleTargetTrackingIsPlaying)
+                Tracking();
             
         }
        
@@ -196,9 +217,9 @@ public class RaycastShoot : MonoBehaviour
             }
 
             if (hit.collider.tag != "Target")
-            {
                 missed++;
-            }
+           
+           
 
             if (hit.collider.tag == "Target")
             {
@@ -276,13 +297,14 @@ public class RaycastShoot : MonoBehaviour
                     shotsHit++;
                     //lifetimeHitShots++;
                 }
-                missed++;
             }
+            missed++;
         }
     }
 
     public void Tracking()
     {
+        Debug.Log("tracking");
         RaycastHit hit;
 
         if (Physics.Raycast(lookFrom.transform.position, lookFrom.transform.forward, out hit, shootDistance))
@@ -292,14 +314,18 @@ public class RaycastShoot : MonoBehaviour
                 if(singleTargetTrackingIsPlaying)
                 {
                     hit.collider.gameObject.GetComponent<TargetBehavior>().RemoveHealthSingleTarget(hit.collider.gameObject);
+                    ScoreManager();
                 }
 
                 if (colorCordinationTrackingIsPlaying)
                 {
                     hit.collider.gameObject.GetComponent<TargetBehavior>().RemoveHealthColorCordinationTracking(hit.collider.gameObject);
+                    ScoreManager();
+
                 }
             }
-        }
+            trackingScoreMultiplier = 0f;
+        } 
     }
 
     private void ScoreUI(Text _shotsFiredText, Text _shotsHitText, Text _accuracyText, float _hit, float _missed, float _accuracy)
@@ -331,4 +357,12 @@ public class RaycastShoot : MonoBehaviour
         _accuracyText.text = round.ToString() + "%";
 
     }
+
+    private void ScoreManager()
+    {
+        trackingScore += 175f + trackingScoreMultiplier;
+        trackingScoreMultiplier += 50f;
+    }
+
+   
 }

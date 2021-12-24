@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class HeadshotModeSpawner : MonoBehaviour
 {
     public static HeadshotModeSpawner instance;
-    [SerializeField] Animator anim;
+    private Animator anim;
+    private CharcterCamera camScript;
 
     public int targetsInScene = 0;
     public bool isPlaying;
@@ -78,9 +79,12 @@ public class HeadshotModeSpawner : MonoBehaviour
         spineStartPosition = spineTransform.position;
         spineStartRotation = spineTransform.rotation;
 
+        CharcterCamera.instance.enabled = false;
+        camScript = FindObjectOfType<CharcterCamera>();
         anim = FindObjectOfType<Animator>();
         Crosshair.SetActive(false);
-        RaycastShoot.instance.gridshotIsPlaying = true;
+        RaycastShoot.instance.headshotModeIsPlaying = true;
+       
         isPlaying = false;
         StartGameUI.SetActive(true);
         M4_Object.SetActive(false);
@@ -148,6 +152,10 @@ public class HeadshotModeSpawner : MonoBehaviour
             spineTransform.transform.position = spineStartPosition;
             spineTransform.transform.rotation = spineStartRotation;
             RaycastShoot.instance.gameStarted = false;
+
+            M4 = false;
+            M16 = false;
+            glock = false;
 
             //Enable Crosshair
             Crosshair.SetActive(false);
