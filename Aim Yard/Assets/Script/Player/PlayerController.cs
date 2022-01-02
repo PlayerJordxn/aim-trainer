@@ -10,19 +10,23 @@ public class PlayerController : MonoBehaviour
 
     //Movement
     [Header("Movement Settings")]
-    public float speed = 150f;
+    public float speed = 0;
     public float gravity = 9.81f;
     private float verticalMovement = 0f;
     public float jumpForce = 8f;
-    private bool isGrounded = false;
 
     [Header("Camera Settings")]
     [Range(0, 1)] public float cameraSmoothValue = 0.5f;
     public float cameraRotationSpeed = 5f;
     private Vector2 mouseDirection = Vector2.zero;
     private Vector2 mouseDirectionVelocity = Vector2.zero;
-    private float rotationY = 0f;
     private float rotationX = 0f;
+    public float acceleration = 0f;
+    public float maxJumpTime = 0.3f;
+    public float maxAirAcceleration = 4f;
+    public float minRunSpeed = 7f;
+    public float maxRunSpeed = 9f;
+    private bool isRunning = false;
     
     // Start is called before the first frame update
     void Start()
@@ -40,6 +44,41 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isRunning = true;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false;
+        }
+
+        if(isRunning && cc.isGrounded)
+        {
+            if(speed < maxRunSpeed)
+            {
+                speed += Time.deltaTime * 50;
+            }
+            else
+            {
+                speed = maxRunSpeed;
+            }
+        }
+        else if (!isRunning)
+        {
+            if (speed > minRunSpeed)
+            {
+                speed -= Time.deltaTime * 50;
+            }
+            
+        }
+
+        if (speed > maxRunSpeed)
+            speed = maxRunSpeed;
+
+        if (speed < minRunSpeed)
+            speed = minRunSpeed;
+
         //>> CAMERA MOVEMENT <<//
         //Input
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -63,6 +102,7 @@ public class PlayerController : MonoBehaviour
         //Input
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
+        
 
         //Move
         Vector3 moveForward = transform.forward * verticalInput;
@@ -79,4 +119,5 @@ public class PlayerController : MonoBehaviour
             verticalMovement = jumpForce;
 
     }
+
 }
