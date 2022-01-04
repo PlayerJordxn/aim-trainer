@@ -123,6 +123,27 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &17324310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5215503157196098495, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
+  m_PrefabInstance: {fileID: 1278625746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &17324314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17324310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2737b014d54bc6b4f81f04bcd631222e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 1.5
+  speed: 1
+  xMovement: 0
+  zMovement: 1
 --- !u!1 &23398582 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -726419639312200415, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
@@ -755,6 +776,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3283997, y: 0.16924214, z: 2.6194916}
   m_Center: {x: 0.61539704, y: 2.614688, z: -4.545201}
+--- !u!1 &563381613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7417301941804136196, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
+  m_PrefabInstance: {fileID: 1278625746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &563381617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 563381613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2737b014d54bc6b4f81f04bcd631222e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 1.5
+  speed: 1
+  xMovement: 0
+  zMovement: 1
 --- !u!1 &581966991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7952392608381558018, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
@@ -1759,6 +1801,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 468242524457288171, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.396
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
       propertyPath: m_Name
       value: Killhouse 2
@@ -2330,6 +2376,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3283997, y: 0.16924219, z: 2.6194918}
   m_Center: {x: 0.61539704, y: -0.08461974, z: -1.9257106}
+--- !u!1 &1726276190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1660786337637168190, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
+  m_PrefabInstance: {fileID: 1278625746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1726276194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1726276190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2737b014d54bc6b4f81f04bcd631222e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 1.5
+  speed: 1
+  xMovement: 1
+  zMovement: 0
 --- !u!1 &1730570941 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1367847954364398340, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
@@ -2402,6 +2469,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1692416, y: 2.530069, z: 2.0331454}
   m_Center: {x: -0.67677665, y: 1.2650346, z: 0.86851823}
+--- !u!1 &1770674805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2783470936672849163, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
+  m_PrefabInstance: {fileID: 1278625746}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1770674809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770674805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2737b014d54bc6b4f81f04bcd631222e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  length: 1.5
+  speed: 1
+  xMovement: 0
+  zMovement: 1
 --- !u!1 &1789852960 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8042952436234092725, guid: 5a2de5db3da722247a4d17c39cdacc84, type: 3}
