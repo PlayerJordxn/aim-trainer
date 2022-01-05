@@ -5,8 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     public CharacterController cc;
     public Camera cam;
+    public GameObject spine001;
 
     //Movement
     [Header("Movement Settings")]
@@ -26,8 +28,21 @@ public class PlayerController : MonoBehaviour
     public float maxAirAcceleration = 4f;
     public float minRunSpeed = 7f;
     public float maxRunSpeed = 9f;
-    private bool isRunning = false;
+    public bool isRunning = false;
     
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if(instance != null)
+        {
+            Destroy(this);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -92,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         //New Rotation
         Vector3 mouseMovement = new Vector3(rotationX, transform.eulerAngles.y, transform.eulerAngles.z);
-        cam.transform.eulerAngles = mouseMovement;
+        spine001.transform.eulerAngles = mouseMovement;
         mouseMovement = Vector2.SmoothDamp(mouseMovement, mouseDelta, ref mouseDirectionVelocity, cameraSmoothValue);
 
         //>> PLAYER MOVEMENT <<//
