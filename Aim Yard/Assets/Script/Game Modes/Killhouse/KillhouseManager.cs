@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KillhouseManager : MonoBehaviour
 {
     public static KillhouseManager instance;
     private Animator anim;
     private Camera cam;
+
+    [SerializeField] private Text timerText;
+    [SerializeField] private Text targetsRemaingText;
 
     [SerializeField] private AudioClip glockSfxClip;
     [SerializeField] private AudioSource glockSfx;
@@ -25,6 +29,7 @@ public class KillhouseManager : MonoBehaviour
     private bool isDecrementing = false;
     public float timer = 0;
     public float timeCompletion = 0;
+    public float targetsHit = 0;
 
     void Awake()
     {
@@ -51,8 +56,17 @@ public class KillhouseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float timerRound = (float)System.Math.Round(timer, 2);
+        timerText.text = "TIME: " + timerRound.ToString();
+        targetsRemaingText.text = "Target Count: " + targetsHit.ToString() + " / 25";
         anim.SetBool("isRunning", PlayerController.instance.isRunning);
         WeaponSwitch();
+
+        if(timer <= 0)
+        {
+            PlayerController.instance.isPlaying = false;
+
+        }
 
         //Shoot
         if(Input.GetKeyDown(KeyCode.Mouse0) && canSwapWeapon && glock.activeSelf && !PlayerController.instance.isRunning)
@@ -63,18 +77,19 @@ public class KillhouseManager : MonoBehaviour
 
         if(PlayerController.instance.isPlaying)
         {
-            if(!isDecrementing)
-            StartCoroutine(Timer(1f));
+            timer -= Time.deltaTime;
+            
         }
         else
         {
-
+            timer = 60f;    
         }
 
         Debug.Log("Time Left: " + timer);
 
-       
-        
+        Debug.Log(timeCompletion);
+
+
     }
 
     private IEnumerator WeaponDelayEnable(float _wait, GameObject _currentWeapon, GameObject _disableWeapon)
@@ -90,14 +105,6 @@ public class KillhouseManager : MonoBehaviour
         canSwapWeapon = false;
         yield return new WaitForSecondsRealtime(.6f);
         canSwapWeapon = true;
-    }
-
-    private IEnumerator Timer(float _wait)
-    {
-        isDecrementing = true;
-        yield return new WaitForSecondsRealtime(_wait);
-        timer--;
-        isDecrementing = false;
     }
 
     private void WeaponSwitch()
@@ -143,22 +150,31 @@ public class KillhouseManager : MonoBehaviour
             if(hit.collider.tag == "TargetBody")
             {
                 TargetSfx.PlayOneShot(TargetSfxClip);
+                targetsHit++;
             }
 
             if (hit.collider.tag == "TargetHead")
             {
                 TargetSfx.PlayOneShot(TargetSfxClip);
+                targetsHit++;
 
             }
 
             if (hit.collider.tag == "TargetNeck")
             {
                 TargetSfx.PlayOneShot(TargetSfxClip);
-
+                targetsHit++;
             }
         }
     }
-   
+
+    private IEnumerator EnableKillemblem(float _wait, GameObject _image)
+    {
+        _image.SetActive(true);
+        yield return new WaitForSecondsRealtime(_wait);
+        _image.SetActive(false);
+    }
+
 
 
 }

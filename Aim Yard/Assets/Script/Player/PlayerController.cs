@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             isRunning = true;
@@ -134,7 +136,6 @@ public class PlayerController : MonoBehaviour
             verticalMovement = jumpForce;
 
     }
-
     
 
     private void OnTriggerEnter(Collider other)
@@ -149,7 +150,7 @@ public class PlayerController : MonoBehaviour
         {
             isPlaying = false;
             KillhouseManager.instance.timeCompletion = 60f - KillhouseManager.instance.timer;
-            Debug.Log(KillhouseManager.instance.timeCompletion);
+           
         }
     }
 
