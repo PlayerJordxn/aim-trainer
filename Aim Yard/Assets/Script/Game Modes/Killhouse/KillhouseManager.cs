@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class KillhouseManager : MonoBehaviour
 {
+    public static KillhouseManager instance;
     private Animator anim;
+    private Camera cam;
 
     [SerializeField] private AudioClip glockSfxClip;
     [SerializeField] private AudioSource glockSfx;
+
+    [SerializeField] private AudioClip TargetSfxClip;
+    [SerializeField] private AudioSource TargetSfx;
+
 
 
     [SerializeField] private GameObject knife;
@@ -16,9 +22,27 @@ public class KillhouseManager : MonoBehaviour
     private bool knifeEquipped = true;
     private bool canSwapWeapon = true;
 
+    private bool isDecrementing = false;
+    public float timer = 0;
+    public float timeCompletion = 0;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        cam = FindObjectOfType<Camera>();
         anim = FindObjectOfType<Animator>();
         glock.SetActive(false);
         knife.SetActive(true);
@@ -28,17 +52,61 @@ public class KillhouseManager : MonoBehaviour
     void Update()
     {
         anim.SetBool("isRunning", PlayerController.instance.isRunning);
+        WeaponSwitch();
 
+        //Shoot
         if(Input.GetKeyDown(KeyCode.Mouse0) && canSwapWeapon && glock.activeSelf && !PlayerController.instance.isRunning)
         {
             glockSfx.PlayOneShot(glockSfxClip);
+            Shoot();
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(PlayerController.instance.isPlaying)
         {
-            if(knifeEquipped)
+            if(!isDecrementing)
+            StartCoroutine(Timer(1f));
+        }
+        else
+        {
+
+        }
+
+        Debug.Log("Time Left: " + timer);
+
+       
+        
+    }
+
+    private IEnumerator WeaponDelayEnable(float _wait, GameObject _currentWeapon, GameObject _disableWeapon)
+    {
+        _disableWeapon.SetActive(false);
+        yield return new WaitForSecondsRealtime(_wait);
+        _currentWeapon.SetActive(true);
+        
+    }
+
+    private IEnumerator WeaponChangeDelay()
+    {
+        canSwapWeapon = false;
+        yield return new WaitForSecondsRealtime(.6f);
+        canSwapWeapon = true;
+    }
+
+    private IEnumerator Timer(float _wait)
+    {
+        isDecrementing = true;
+        yield return new WaitForSecondsRealtime(_wait);
+        timer--;
+        isDecrementing = false;
+    }
+
+    private void WeaponSwitch()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (knifeEquipped)
             {
-                if(canSwapWeapon)
+                if (canSwapWeapon)
                 {
                     knifeEquipped = false;
                     anim.SetBool("KnifeEquipped", true);
@@ -51,7 +119,7 @@ public class KillhouseManager : MonoBehaviour
             }
             else
             {
-                if(canSwapWeapon)
+                if (canSwapWeapon)
                 {
                     knifeEquipped = true;
                     anim.SetBool("KnifeEquipped", false);
@@ -63,23 +131,34 @@ public class KillhouseManager : MonoBehaviour
 
             }
         }
-
-       
-        
     }
 
-    IEnumerator WeaponDelayEnable(float _wait, GameObject _currentWeapon, GameObject _disableWeapon)
+    private void Shoot()
     {
-        _disableWeapon.SetActive(false);
-        yield return new WaitForSecondsRealtime(_wait);
-        _currentWeapon.SetActive(true);
-        
-    }
+        RaycastHit hit;
+        if (Physics.Raycast(cam.transform.position, transform.TransformDirection(Vector3.forward), out hit, 50f))
+        {
+            Debug.Log("Gun Fired");
 
-    IEnumerator WeaponChangeDelay()
-    {
-        canSwapWeapon = false;
-        yield return new WaitForSecondsRealtime(.6f);
-        canSwapWeapon = true;
+            if(hit.collider.tag == "TargetBody")
+            {
+                TargetSfx.PlayOneShot(TargetSfxClip);
+            }
+
+            if (hit.collider.tag == "TargetHead")
+            {
+                TargetSfx.PlayOneShot(TargetSfxClip);
+
+            }
+
+            if (hit.collider.tag == "TargetNeck")
+            {
+                TargetSfx.PlayOneShot(TargetSfxClip);
+
+            }
+        }
     }
+   
+
+
 }

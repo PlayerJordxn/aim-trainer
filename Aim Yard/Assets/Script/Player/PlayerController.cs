@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -28,7 +26,9 @@ public class PlayerController : MonoBehaviour
     public float maxAirAcceleration = 4f;
     public float minRunSpeed = 7f;
     public float maxRunSpeed = 9f;
+
     public bool isRunning = false;
+    public bool isPlaying = false;
     
     void Awake()
     {
@@ -133,6 +133,24 @@ public class PlayerController : MonoBehaviour
         if (cc.isGrounded && Input.GetKeyDown(KeyCode.Space))
             verticalMovement = jumpForce;
 
+    }
+
+    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Start")
+        {
+            isPlaying = true;
+            KillhouseManager.instance.timer = 60;
+        }
+
+        if (other.gameObject.tag == "End")
+        {
+            isPlaying = false;
+            KillhouseManager.instance.timeCompletion = 60f - KillhouseManager.instance.timer;
+            Debug.Log(KillhouseManager.instance.timeCompletion);
+        }
     }
 
 }
