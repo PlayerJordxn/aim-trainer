@@ -18,18 +18,32 @@ public class KillhouseManager : MonoBehaviour
     [SerializeField] private AudioClip TargetSfxClip;
     [SerializeField] private AudioSource TargetSfx;
 
-
+    [SerializeField] private GameObject headshotEmblem;
+    [SerializeField] private GameObject bodyShotEmblem;
 
     [SerializeField] private GameObject knife;
     [SerializeField] private GameObject glock;
 
+    //Final Statisitics
+    [SerializeField] private Text timeText;
+    [SerializeField] private Text headshotsText;
+    [SerializeField] private Text targetsText;
+    [SerializeField] private Text accuracyText;
+
     private bool knifeEquipped = true;
     private bool canSwapWeapon = true;
 
+    private int bulletsHit = 0;
+    private int bulletsMissed = 0;
+
     private bool isDecrementing = false;
     public float timer = 0;
-    public float timeCompletion = 0;
-    public float targetsHit = 0;
+    public int targetsHit = 0;
+    public int headshotHits = 0;
+
+    public float finalTimeCompletion = 0;
+    public int finalTargetsHit = 0;
+    public int finalHeadshotCount = 0;
 
     void Awake()
     {
@@ -56,40 +70,44 @@ public class KillhouseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Final Statistics Wall
+        timeText.text = "TIME: " + finalTimeCompletion.ToString();
+        headshotsText.text = "HEADSHOTS: " + finalHeadshotCount.ToString();
+        targetsText.text = "TARGET COUNT: " + finalTargetsHit.ToString();
+
+        if(bulletsHit > 0 && bulletsMissed > 0)
+        {
+            float percent = (bulletsHit / bulletsMissed) * 100.0f;
+            float round = (float)System.Math.Round(percent, 2);
+            Debug.Log("Percent: " + percent + "Round: " + round);
+            
+        }
+        
+
+        //Camera UI
         float timerRound = (float)System.Math.Round(timer, 2);
         timerText.text = "TIME: " + timerRound.ToString();
-        targetsRemaingText.text = "Target Count: " + targetsHit.ToString() + " / 25";
+        targetsRemaingText.text = "Target Count: " + targetsHit.ToString() + " / 15";
+
+        //Animation
         anim.SetBool("isRunning", PlayerController.instance.isRunning);
         WeaponSwitch();
 
         if(timer <= 0)
-        {
             PlayerController.instance.isPlaying = false;
 
-        }
+        if (PlayerController.instance.isPlaying)
+            timer -= Time.deltaTime;
+        else
+            timer = 60f;
+
 
         //Shoot
-        if(Input.GetKeyDown(KeyCode.Mouse0) && canSwapWeapon && glock.activeSelf && !PlayerController.instance.isRunning)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canSwapWeapon && glock.activeSelf && !PlayerController.instance.isRunning)
         {
             glockSfx.PlayOneShot(glockSfxClip);
             Shoot();
         }
-
-        if(PlayerController.instance.isPlaying)
-        {
-            timer -= Time.deltaTime;
-            
-        }
-        else
-        {
-            timer = 60f;    
-        }
-
-        Debug.Log("Time Left: " + timer);
-
-        Debug.Log(timeCompletion);
-
-
     }
 
     private IEnumerator WeaponDelayEnable(float _wait, GameObject _currentWeapon, GameObject _disableWeapon)
@@ -128,6 +146,7 @@ public class KillhouseManager : MonoBehaviour
             {
                 if (canSwapWeapon)
                 {
+                    PlayerController.instance.isRunning = false;
                     knifeEquipped = true;
                     anim.SetBool("KnifeEquipped", false);
                     StartCoroutine(WeaponDelayEnable(0.3f, knife, glock));
@@ -143,29 +162,46 @@ public class KillhouseManager : MonoBehaviour
     private void Shoot()
     {
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, transform.TransformDirection(Vector3.forward), out hit, 50f))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 50f))
         {
-            Debug.Log("Gun Fired");
-
-            if(hit.collider.tag == "TargetBody")
+            
+            
+            if(hit.collider.tag == "Body")
             {
                 TargetSfx.PlayOneShot(TargetSfxClip);
                 targetsHit++;
+                StartCoroutine(EnableKillemblem(0.5f, bodyShotEmblem));
+                hit.collider.gameObject.transform.parent.gameObject.SetActive(false);
+                bulletsHit++;
             }
 
-            if (hit.collider.tag == "TargetHead")
+            if (hit.collider.tag == "Head")
             {
                 TargetSfx.PlayOneShot(TargetSfxClip);
                 targetsHit++;
-
+                StartCoroutine(EnableKillemblem(0.5f, headshotEmblem));
+                hit.collider.gameObject.transform.parent.gameObject.SetActive(false);
+                headshotHits++;
+                bulletsHit++;
             }
 
-            if (hit.collider.tag == "TargetNeck")
+            if (hit.collider.tag == "Neck")
             {
                 TargetSfx.PlayOneShot(TargetSfxClip);
                 targetsHit++;
+                StartCoroutine(EnableKillemblem(0.5f, bodyShotEmblem));
+                hit.collider.gameObject.transform.parent.gameObject.SetActive(false);
+                bulletsHit++;
             }
-        }
+
+            
+            if(hit.collider.tag != "Head" && hit.collider.tag != "Neck" && hit.collider.tag != "Body")
+            {
+                bulletsMissed++;
+            }
+
+            Debug.Log(bulletsMissed);
+        }      
     }
 
     private IEnumerator EnableKillemblem(float _wait, GameObject _image)

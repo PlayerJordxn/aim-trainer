@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController cc;
     public Camera cam;
     public GameObject spine001;
+    [SerializeField] private GameObject[] targets;
 
     //Movement
     [Header("Movement Settings")]
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        targets = GameObject.FindGameObjectsWithTag("KillhouseTarget");
         Cursor.lockState = CursorLockMode.Locked;
 
         if (!cc)
@@ -144,13 +146,23 @@ public class PlayerController : MonoBehaviour
         {
             isPlaying = true;
             KillhouseManager.instance.timer = 60;
+            KillhouseManager.instance.targetsHit = 0;
         }
 
         if (other.gameObject.tag == "End")
         {
             isPlaying = false;
-            KillhouseManager.instance.timeCompletion = 60f - KillhouseManager.instance.timer;
-           
+            KillhouseManager.instance.finalTimeCompletion = 60f - KillhouseManager.instance.timer;
+
+            for(int i = 0; i < targets.Length; i++)
+            {
+                if(!targets[i].activeSelf)
+                targets[i].gameObject.SetActive(true);
+            }
+            KillhouseManager.instance.finalHeadshotCount = KillhouseManager.instance.headshotHits;
+            KillhouseManager.instance.finalTargetsHit = KillhouseManager.instance.targetsHit;
+            KillhouseManager.instance.targetsHit = 0;
+            KillhouseManager.instance.headshotHits = 0;
         }
     }
 
