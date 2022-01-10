@@ -9,6 +9,16 @@ public class KillhouseManager : MonoBehaviour
     private Animator anim;
     private Camera cam;
 
+    private Vector3 spineStartPosition;
+    private Quaternion spineStartRotation;
+
+    [SerializeField] private Button resumeButton;
+
+    [SerializeField] private Transform spineTransform;
+
+    [SerializeField] private GameObject Crosshair;
+    [SerializeField] private GameObject pauseMenu;
+
     [SerializeField] private Text timerText;
     [SerializeField] private Text targetsRemaingText;
 
@@ -29,6 +39,10 @@ public class KillhouseManager : MonoBehaviour
     [SerializeField] private Text headshotsText;
     [SerializeField] private Text targetsText;
     [SerializeField] private Text accuracyText;
+
+    private bool paused = false;
+    private bool lockCursor = false;
+
 
     private bool knifeEquipped = true;
     private bool canSwapWeapon = true;
@@ -64,10 +78,19 @@ public class KillhouseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lockCursor = true;
+        spineStartPosition = spineTransform.position;
+        spineStartRotation = spineTransform.rotation;
+
         cam = FindObjectOfType<Camera>();
         anim = FindObjectOfType<Animator>();
         glock.SetActive(false);
         knife.SetActive(true);
+
+        if (resumeButton)
+        {
+            resumeButton.onClick.AddListener(ResumeFromPause);
+        }
     }
 
     // Update is called once per frame
@@ -78,15 +101,32 @@ public class KillhouseManager : MonoBehaviour
         headshotsText.text = "HEADSHOTS: " + finalHeadshotCount.ToString();
         targetsText.text = "TARGET COUNT: " + finalTargetsHit.ToString();
 
-        if(bulletsHit > 0 && bulletsMissed > 0)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ResumeFromPause();
+        }
+
+        if (bulletsHit > 0 && bulletsMissed > 0)
         {
             float percent = (bulletsHit / bulletsMissed) * 100f;
             float round = Mathf.Round(percent);
             //double round = System.Math.Round(percent, 2);
             Debug.Log("Percent: " + percent );
-            
         }
-        
+
+        if (lockCursor)
+        {
+            Cursor.lockState = CursorLockMode.Locked;//Locks cursor at the center of the screen
+            Cursor.visible = false;//Makes cursor invisable
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Confined;//Locks cursor at the center of the screen
+            Cursor.visible = true;//Makes cursor invisable
+
+        }
+
+
 
         //Camera UI
         float timerRound = (float)System.Math.Round(timer, 2);
@@ -158,7 +198,6 @@ public class KillhouseManager : MonoBehaviour
                     if (canSwapWeapon)
                         StartCoroutine(WeaponChangeDelay());
                 }
-
             }
         }
     }
@@ -215,6 +254,48 @@ public class KillhouseManager : MonoBehaviour
         _image.SetActive(false);
     }
 
+    private void ResumeFromPause()
+    {
+        if (paused)
+        {
+            pauseMenu.SetActive(false);
 
+            //Game Start
+            RaycastShoot.instance.gameStarted = true;
+
+            //Enable Mouse Movement
+            CharcterCamera.instance.enabled = true;
+
+            //Game Start
+            lockCursor = true;
+
+            RaycastShoot.instance.paused = false;
+
+            paused = false;
+        }
+        else
+        {
+            spineTransform.transform.position = spineStartPosition;
+            spineTransform.transform.rotation = spineStartRotation;
+
+            //Enable UI
+            pauseMenu.SetActive(true);
+
+            //Enable Crosshair
+            Crosshair.SetActive(false);
+
+            //Character disabled + Gamemode Disable
+            CharcterCamera.instance.enabled = false;
+
+            //Set Cursor Active
+            lockCursor = false;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
+
+            RaycastShoot.instance.paused = true;
+
+            paused = true;
+        }
+    }
 
 }
