@@ -9,9 +9,6 @@ public class KillhouseManager : MonoBehaviour
     private Animator anim;
     private Camera cam;
 
-    private Vector3 spineStartPosition;
-    private Quaternion spineStartRotation;
-
     [SerializeField] private Button resumeButton;
 
     [SerializeField] private Transform spineTransform;
@@ -79,9 +76,6 @@ public class KillhouseManager : MonoBehaviour
     void Start()
     {
         lockCursor = true;
-        spineStartPosition = spineTransform.position;
-        spineStartRotation = spineTransform.rotation;
-
         cam = FindObjectOfType<Camera>();
         anim = FindObjectOfType<Animator>();
         glock.SetActive(false);
@@ -96,6 +90,7 @@ public class KillhouseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         //Final Statistics Wall
         timeText.text = "TIME: " + finalTimeCompletion.ToString();
         headshotsText.text = "HEADSHOTS: " + finalHeadshotCount.ToString();
@@ -111,7 +106,7 @@ public class KillhouseManager : MonoBehaviour
             float percent = (bulletsHit / bulletsMissed) * 100f;
             float round = Mathf.Round(percent);
             //double round = System.Math.Round(percent, 2);
-            Debug.Log("Percent: " + percent );
+            Debug.Log("Hit: " + bulletsHit + " --- Missed: " + bulletsMissed + " --- Percent: " + percent);
         }
 
         if (lockCursor)
@@ -137,17 +132,21 @@ public class KillhouseManager : MonoBehaviour
         anim.SetBool("isRunning", PlayerController.instance.isRunning);
         WeaponSwitch();
 
-        if(timer <= 0)
-            PlayerController.instance.isPlaying = false;
+        if(!paused)
+        {
+            if (timer <= 0)
+                PlayerController.instance.isPlaying = false;
 
-        if (PlayerController.instance.isPlaying)
-            timer -= Time.deltaTime;
-        else
-            timer = 60f;
+            if (PlayerController.instance.isPlaying)
+                timer -= Time.deltaTime;
+            else
+                timer = 60f;
+        }
+        
 
 
         //Shoot
-        if (Input.GetKeyDown(KeyCode.Mouse0) && canSwapWeapon && glock.activeSelf && !PlayerController.instance.isRunning)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && canSwapWeapon && glock.activeSelf && !PlayerController.instance.isRunning &&!paused)
         {
             glockSfx.PlayOneShot(glockSfxClip);
             Shoot();
@@ -171,7 +170,7 @@ public class KillhouseManager : MonoBehaviour
 
     private void WeaponSwitch()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && !paused)
         {
             if (knifeEquipped)
             {
@@ -243,7 +242,7 @@ public class KillhouseManager : MonoBehaviour
                 bulletsMissed++;
             }
 
-            Debug.Log(bulletsMissed);
+            
         }      
     }
 
@@ -260,23 +259,17 @@ public class KillhouseManager : MonoBehaviour
         {
             pauseMenu.SetActive(false);
 
-            //Game Start
-            RaycastShoot.instance.gameStarted = true;
 
             //Enable Mouse Movement
-            CharcterCamera.instance.enabled = true;
+            PlayerController.instance.enabled = true;
 
             //Game Start
             lockCursor = true;
-
-            RaycastShoot.instance.paused = false;
 
             paused = false;
         }
         else
         {
-            spineTransform.transform.position = spineStartPosition;
-            spineTransform.transform.rotation = spineStartRotation;
 
             //Enable UI
             pauseMenu.SetActive(true);
@@ -285,14 +278,13 @@ public class KillhouseManager : MonoBehaviour
             Crosshair.SetActive(false);
 
             //Character disabled + Gamemode Disable
-            CharcterCamera.instance.enabled = false;
+            PlayerController.instance.enabled = false;
 
             //Set Cursor Active
             lockCursor = false;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
 
-            RaycastShoot.instance.paused = true;
 
             paused = true;
         }
