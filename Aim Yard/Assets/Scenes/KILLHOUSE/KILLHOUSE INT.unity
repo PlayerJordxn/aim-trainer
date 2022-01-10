@@ -3463,7 +3463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &990829188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10135,7 +10135,7 @@ MonoBehaviour:
   jumpForce: 3
   cameraSmoothValue: 0.5
   cameraRotationSpeed: 300
-  acceleration: 0
+  acceleration: 1
   maxJumpTime: 0.2
   maxAirAcceleration: 4
   minRunSpeed: 2

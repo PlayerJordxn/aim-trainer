@@ -40709,7 +40709,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2110d129486259a43bc5e42ae728c5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
   targetsInScene: 0
   isPlaying: 0
   timeLeft: 0
@@ -61350,6 +61349,10 @@ PrefabInstance:
       propertyPath: impactParticle
       value: 
       objectReference: {fileID: 1321143956}
+    - target: {fileID: 2370213789813959414, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3147840556389347403, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -61402,6 +61405,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1614767787}
+    - target: {fileID: 3247080754703986520, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3247080754789689621, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -61413,6 +61420,10 @@ PrefabInstance:
     - target: {fileID: 3247080754789689621, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247080754886056521, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3247080755126472269, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
       propertyPath: m_AnchorMax.y
@@ -61434,6 +61445,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1818117365}
+    - target: {fileID: 3247080755488973631, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3247080755503765720, guid: d45a78c084c4bab44a0dd504ba55f251, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

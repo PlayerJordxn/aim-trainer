@@ -352,7 +352,7 @@ public class RaycastShoot : MonoBehaviour
         //Accuracy
         //Calcuate Percent
         float percent = (shotsHit / missed) * 100.0f;
-        float round = (float)System.Math.Round(percent, 2);
+        float round = Mathf.Round(percent);
 
         _accuracyText.text = round.ToString() + "%";
 

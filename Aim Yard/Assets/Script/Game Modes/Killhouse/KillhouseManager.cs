@@ -35,6 +35,7 @@ public class KillhouseManager : MonoBehaviour
 
     private int bulletsHit = 0;
     private int bulletsMissed = 0;
+    private int bulletTotal = 0;
 
     private bool isDecrementing = false;
     public float timer = 0;
@@ -44,6 +45,8 @@ public class KillhouseManager : MonoBehaviour
     public float finalTimeCompletion = 0;
     public int finalTargetsHit = 0;
     public int finalHeadshotCount = 0;
+
+    
 
     void Awake()
     {
@@ -77,9 +80,10 @@ public class KillhouseManager : MonoBehaviour
 
         if(bulletsHit > 0 && bulletsMissed > 0)
         {
-            float percent = (bulletsHit / bulletsMissed) * 100.0f;
-            float round = (float)System.Math.Round(percent, 2);
-            Debug.Log("Percent: " + percent + "Round: " + round);
+            float percent = (bulletsHit / bulletsMissed) * 100f;
+            float round = Mathf.Round(percent);
+            //double round = System.Math.Round(percent, 2);
+            Debug.Log("Percent: " + percent );
             
         }
         
@@ -164,7 +168,7 @@ public class KillhouseManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 50f))
         {
-            
+            bulletTotal++;
             
             if(hit.collider.tag == "Body")
             {
