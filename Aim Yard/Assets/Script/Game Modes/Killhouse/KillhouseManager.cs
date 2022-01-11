@@ -22,14 +22,21 @@ public class KillhouseManager : MonoBehaviour
     [SerializeField] private AudioClip glockSfxClip;
     [SerializeField] private AudioSource glockSfx;
 
-    [SerializeField] private AudioClip TargetSfxClip;
-    [SerializeField] private AudioSource TargetSfx;
+    [SerializeField] private AudioClip TargetHeadshotSfxClip;
+    [SerializeField] private AudioSource TargetHeadshotSfx;
+
+    [SerializeField] private AudioClip TargetHitSfxClip;
+    [SerializeField] private AudioSource TargetHitSfx;
 
     [SerializeField] private GameObject headshotEmblem;
     [SerializeField] private GameObject bodyShotEmblem;
 
     [SerializeField] private GameObject knife;
     [SerializeField] private GameObject glock;
+
+    [SerializeField] private Slider sensitivitySlider;
+    [SerializeField] private Text sensitivityTextValue;
+
 
     //Final Statisitics
     [SerializeField] private Text timeText;
@@ -75,6 +82,8 @@ public class KillhouseManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sensitivitySlider.value = 5;
+        PlayerController.instance.cameraRotationSpeed = 5f;
         lockCursor = true;
         cam = FindObjectOfType<Camera>();
         anim = FindObjectOfType<Animator>();
@@ -90,7 +99,9 @@ public class KillhouseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        PlayerController.instance.cameraRotationSpeed = sensitivitySlider.value * 50;
+        sensitivityTextValue.text = sensitivitySlider.value.ToString();
+
         //Final Statistics Wall
         timeText.text = "TIME: " + finalTimeCompletion.ToString();
         headshotsText.text = "HEADSHOTS: " + finalHeadshotCount.ToString();
@@ -210,7 +221,7 @@ public class KillhouseManager : MonoBehaviour
             
             if(hit.collider.tag == "Body")
             {
-                TargetSfx.PlayOneShot(TargetSfxClip);
+                TargetHeadshotSfx.PlayOneShot(TargetHeadshotSfxClip);
                 targetsHit++;
                 StartCoroutine(EnableKillemblem(0.5f, bodyShotEmblem));
                 hit.collider.gameObject.transform.parent.gameObject.SetActive(false);
@@ -219,7 +230,8 @@ public class KillhouseManager : MonoBehaviour
 
             if (hit.collider.tag == "Head")
             {
-                TargetSfx.PlayOneShot(TargetSfxClip);
+                
+                TargetHeadshotSfx.PlayOneShot(TargetHeadshotSfxClip);
                 targetsHit++;
                 StartCoroutine(EnableKillemblem(0.5f, headshotEmblem));
                 hit.collider.gameObject.transform.parent.gameObject.SetActive(false);
@@ -229,15 +241,21 @@ public class KillhouseManager : MonoBehaviour
 
             if (hit.collider.tag == "Neck")
             {
-                TargetSfx.PlayOneShot(TargetSfxClip);
+                
+                TargetHeadshotSfx.PlayOneShot(TargetHeadshotSfxClip);
                 targetsHit++;
                 StartCoroutine(EnableKillemblem(0.5f, bodyShotEmblem));
                 hit.collider.gameObject.transform.parent.gameObject.SetActive(false);
                 bulletsHit++;
             }
 
-            
-            if(hit.collider.tag != "Head" && hit.collider.tag != "Neck" && hit.collider.tag != "Body")
+            if(hit.collider.tag == "Wall")
+            {
+                TargetHitSfx.PlayOneShot(TargetHitSfxClip);
+            }
+
+
+            if (hit.collider.tag != "Head" && hit.collider.tag != "Neck" && hit.collider.tag != "Body")
             {
                 bulletsMissed++;
             }

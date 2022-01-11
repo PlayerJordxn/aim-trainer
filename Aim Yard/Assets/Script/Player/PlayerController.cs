@@ -30,7 +30,15 @@ public class PlayerController : MonoBehaviour
 
     public bool isRunning = false;
     public bool isPlaying = false;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip BeginSfxClip;
+    [SerializeField] private AudioSource BeginSfx;
+
+    [SerializeField] private AudioClip CompleteSfxClip;
+    [SerializeField] private AudioSource CompleteSfx;
     
+
     void Awake()
     {
         if(instance == null)
@@ -144,6 +152,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Start")
         {
+            for (int i = 0; i < targets.Length; i++)
+            {
+                if (!targets[i].activeSelf)
+                    targets[i].gameObject.SetActive(true);
+            }
+            BeginSfx.PlayOneShot(BeginSfxClip);
             isPlaying = true;
             KillhouseManager.instance.timer = 60;
             KillhouseManager.instance.targetsHit = 0;
@@ -151,6 +165,8 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag == "End")
         {
+            CompleteSfx.PlayOneShot(CompleteSfxClip);
+
             isPlaying = false;
             KillhouseManager.instance.finalTimeCompletion = 60f - KillhouseManager.instance.timer;
 
