@@ -166,7 +166,6 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "End")
         {
             CompleteSfx.PlayOneShot(CompleteSfxClip);
-
             isPlaying = false;
             KillhouseManager.instance.finalTimeCompletion = 60f - KillhouseManager.instance.timer;
 
@@ -179,6 +178,7 @@ public class PlayerController : MonoBehaviour
             KillhouseManager.instance.finalTargetsHit = KillhouseManager.instance.targetsHit;
             KillhouseManager.instance.targetsHit = 0;
             KillhouseManager.instance.headshotHits = 0;
+            KillhouseManager.instance.finalAccuracy = KillhouseManager.instance.accuracy;
         }
     }
 

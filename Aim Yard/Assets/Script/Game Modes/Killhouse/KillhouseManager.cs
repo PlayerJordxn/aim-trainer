@@ -51,18 +51,20 @@ public class KillhouseManager : MonoBehaviour
     private bool knifeEquipped = true;
     private bool canSwapWeapon = true;
 
-    private int bulletsHit = 0;
-    private int bulletsMissed = 0;
+    private float bulletsHit = 0;
+    private float bulletsMissed = 0;
     private int bulletTotal = 0;
+    public double accuracy = 0f;
 
     private bool isDecrementing = false;
     public float timer = 0;
     public int targetsHit = 0;
     public int headshotHits = 0;
 
-    public float finalTimeCompletion = 0;
+    public float finalTimeCompletion = 0f;
     public int finalTargetsHit = 0;
     public int finalHeadshotCount = 0;
+    public double finalAccuracy = 0f;
 
     
 
@@ -105,7 +107,8 @@ public class KillhouseManager : MonoBehaviour
         //Final Statistics Wall
         timeText.text = "TIME: " + finalTimeCompletion.ToString();
         headshotsText.text = "HEADSHOTS: " + finalHeadshotCount.ToString();
-        targetsText.text = "TARGET COUNT: " + finalTargetsHit.ToString();
+        targetsText.text = "TARGET COUNT: " + finalTargetsHit.ToString() + " / " + " 15";
+        accuracyText.text = "ACCURACY: " + accuracy + "%";
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -115,9 +118,9 @@ public class KillhouseManager : MonoBehaviour
         if (bulletsHit > 0 && bulletsMissed > 0)
         {
             float percent = (bulletsHit / bulletsMissed) * 100f;
-            float round = Mathf.Round(percent);
-            //double round = System.Math.Round(percent, 2);
-            Debug.Log("Hit: " + bulletsHit + " --- Missed: " + bulletsMissed + " --- Percent: " + percent);
+            double round = System.Math.Round(percent, 2);
+            accuracy = round;
+            Debug.Log("Hit: " + bulletsHit + " --- Missed: " + bulletsMissed + " --- Percent: " + round);
         }
 
         if (lockCursor)
@@ -214,6 +217,7 @@ public class KillhouseManager : MonoBehaviour
 
     private void Shoot()
     {
+        bulletsMissed++;
         RaycastHit hit;
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 50f))
         {
@@ -257,7 +261,7 @@ public class KillhouseManager : MonoBehaviour
 
             if (hit.collider.tag != "Head" && hit.collider.tag != "Neck" && hit.collider.tag != "Body")
             {
-                bulletsMissed++;
+               
             }
 
             

@@ -214,12 +214,14 @@ MonoBehaviour:
   headshotsText: {fileID: 946606282}
   targetsText: {fileID: 1589020822}
   accuracyText: {fileID: 990829189}
+  accuracy: 0
   timer: 0
   targetsHit: 0
   headshotHits: 0
   finalTimeCompletion: 0
   finalTargetsHit: 0
   finalHeadshotCount: 0
+  finalAccuracy: 0
 --- !u!1 &9980175 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8100456883067129439, guid: 04646aaa51691ae40a35067e89bb6ec8, type: 3}
@@ -4037,7 +4039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &990829188
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7833,7 +7835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 7.1, y: 1.081}
+  m_AnchoredPosition: {x: 8.39, y: 1.081}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1641184704 stripped
