@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
+
 
 public class KillhouseManager : MonoBehaviour
 {
     public static KillhouseManager instance;
     private Animator anim;
     private Camera cam;
+
+    [SerializeField] private VisualEffect impactParticle;
 
     [SerializeField] private Button resumeButton;
 
@@ -256,13 +260,13 @@ public class KillhouseManager : MonoBehaviour
             if(hit.collider.tag == "Wall")
             {
                 TargetHitSfx.PlayOneShot(TargetHitSfxClip);
+                impactParticle.transform.position = hit.point;
+                impactParticle.transform.rotation = Quaternion.LookRotation(hit.normal);
+                impactParticle.Play();
             }
 
 
-            if (hit.collider.tag != "Head" && hit.collider.tag != "Neck" && hit.collider.tag != "Body")
-            {
-               
-            }
+           
 
             
         }      
