@@ -112,7 +112,7 @@ public class KillhouseManager : MonoBehaviour
         timeText.text = "TIME: " + finalTimeCompletion.ToString();
         headshotsText.text = "HEADSHOTS: " + finalHeadshotCount.ToString();
         targetsText.text = "TARGET COUNT: " + finalTargetsHit.ToString() + " / " + " 15";
-        accuracyText.text = "ACCURACY: " + accuracy + "%";
+        accuracyText.text = "ACCURACY: " + finalAccuracy + "%";
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

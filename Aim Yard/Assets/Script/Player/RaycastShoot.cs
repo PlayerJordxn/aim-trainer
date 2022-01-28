@@ -66,9 +66,6 @@ public class RaycastShoot : MonoBehaviour
     [SerializeField] private Text StatsMissedText;
     [SerializeField] private Text StatsHitText;
     [SerializeField] private Text StatsAccuracyText;
-    private float lifetimeMissedShots = 0;
-    private float lifetimeHitShots = 0;
-    private float lifetimeAccuracy = 0;
 
     [SerializeField] private Text trackingScoreText;
     private float trackingScore = 0;
@@ -105,17 +102,7 @@ public class RaycastShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        if (PlayerPrefs.GetFloat("Sensitivity") == 0)
-        {
-            sensitivitySlider.value = 5;
-            PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
-        }
-        else
-        {
-            CharcterCamera.instance.mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
-        }
-        */
+       
         sensitivitySlider.value = 5;
 
         if (accuracy <= 0)
@@ -131,18 +118,18 @@ public class RaycastShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //Mouse Sensitivity
         CharcterCamera.instance.mouseSensitivity = sensitivitySlider.value;
         sensitivityText.text = sensitivitySlider.value.ToString();
-        //Sensitivity
-        //PlayerPrefs.SetFloat("Sensitivity", sensitivitySlider.value);
-        //CharcterCamera.instance.mouseSensitivity = PlayerPrefs.GetFloat("Sensititvty");
+
+        //Text
         if (singleTargetTrackingIsPlaying || colorCordinationTrackingIsPlaying)
         {
             trackingScoreText.text = "Score: " + trackingScore.ToString();
             StatsAccuracyText.text = trackingScore.ToString();
         }
 
+        //Text
         if (shotsHit > 0 && missed > 0)
         {
             if (!singleTargetTrackingIsPlaying && !colorCordinationTrackingIsPlaying)
@@ -168,12 +155,12 @@ public class RaycastShoot : MonoBehaviour
             
         }
 
-
+        //Tracking Mode
         if (colorCordinationTrackingIsPlaying || singleTargetTrackingIsPlaying)
             Tracking();
 
        
-
+        //Shoot
         if (Input.GetButtonDown("Fire1") && !paused && gameStarted && !colorCordinationTrackingIsPlaying && !singleTargetTrackingIsPlaying)
         {
             
@@ -304,7 +291,6 @@ public class RaycastShoot : MonoBehaviour
 
     public void Tracking()
     {
-        Debug.Log("tracking");
         RaycastHit hit;
 
         if (Physics.Raycast(lookFrom.transform.position, lookFrom.transform.forward, out hit, shootDistance))
