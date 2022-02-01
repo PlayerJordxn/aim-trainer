@@ -1,311 +1,125 @@
 Using pre-set license
 Built from '2021.1/staging' branch; Version is '2021.1.15f1 (e767a7370072) revision 15165351'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home; OS build 19043.1466; Version 2009; 64bit' Language: 'en' Physical Memory: 32712 MB
+OS: 'Windows 10 Home; OS build 22000.434; Version 2009; 64bit' Language: 'en' Physical Memory: 16320 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
-D:\Program Files\2021.1.15f1\Editor\Unity.exe
+D:\2021.1.15f1\Editor\Unity.exe
 -adb2
 -batchMode
 -noUpm
 -name
 AssetImportWorker0
 -projectPath
-D:/FILM SCHOOL/SIDE PROJECTS/Aim Trainer/aim-trainer/Aim Yard
+C:/Users/Jorda/Documents/Unity Projects/aim-trainer/Aim Yard
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-65288
-Successfully changed project path to: D:/FILM SCHOOL/SIDE PROJECTS/Aim Trainer/aim-trainer/Aim Yard
-D:/FILM SCHOOL/SIDE PROJECTS/Aim Trainer/aim-trainer/Aim Yard
+57149
+Successfully changed project path to: C:/Users/Jorda/Documents/Unity Projects/aim-trainer/Aim Yard
+C:/Users/Jorda/Documents/Unity Projects/aim-trainer/Aim Yard
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 169.92 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 148.30 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.1.15f1 (e767a7370072)
-[Subsystems] Discovering subsystems at path D:/Program Files/2021.1.15f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path D:/FILM SCHOOL/SIDE PROJECTS/Aim Trainer/aim-trainer/Aim Yard/Assets
+[Subsystems] Discovering subsystems at path D:/2021.1.15f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Jorda/Documents/Unity Projects/aim-trainer/Aim Yard/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce RTX 3070 Ti (ID=0x2482)
+    Renderer: NVIDIA GeForce RTX 2070 SUPER (ID=0x1e84)
     Vendor:   NVIDIA
-    VRAM:     8041 MB
-    Driver:   30.0.15.1123
+    VRAM:     8012 MB
+    Driver:   30.0.14.7212
 Initialize mono
-Mono path[0] = 'D:/Program Files/2021.1.15f1/Editor/Data/Managed'
-Mono path[1] = 'D:/Program Files/2021.1.15f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
-Mono config path = 'D:/Program Files/2021.1.15f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56700
+Mono path[0] = 'D:/2021.1.15f1/Editor/Data/Managed'
+Mono path[1] = 'D:/2021.1.15f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'D:/2021.1.15f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56192
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
-Register platform support module: D:/Program Files/2021.1.15f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.003907 seconds.
+Register platform support module: D:/2021.1.15f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001156 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 184.55 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 145.35 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.561 seconds
+- Completed reload, in  1.283 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1561ms)
-		BeginReloadAssembly (73ms)
+	ReloadAssembly (1284ms)
+		BeginReloadAssembly (59ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (578ms)
-			LoadAssemblies (68ms)
+		EndReloadAssembly (481ms)
+			LoadAssemblies (58ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (172ms)
+			SetupTypeCache (147ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (31ms)
-			SetupLoadedEditorAssemblies (318ms)
+			RebuildScriptCaches (27ms)
+			SetupLoadedEditorAssemblies (267ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (7ms)
+				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (185ms)
+				RefreshPlugins (145ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (95ms)
-				ProcessInitializeOnLoadMethodAttributes (30ms)
+				ProcessInitializeOnLoadAttributes (89ms)
+				ProcessInitializeOnLoadMethodAttributes (26ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.010411 seconds.
+Registered in 0.006751 seconds.
 Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\FILM SCHOOL\SIDE PROJECTS\Aim Trainer\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\FILM SCHOOL\SIDE PROJECTS\Aim Trainer\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 159.87 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 151.50 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.850 seconds
+- Completed reload, in  1.576 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1851ms)
-		BeginReloadAssembly (183ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (6ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (23ms)
-		EndReloadAssembly (1590ms)
-			LoadAssemblies (127ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (439ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (98ms)
-			SetupLoadedEditorAssemblies (823ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
-				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (160ms)
-				BeforeProcessingInitializeOnLoad (144ms)
-				ProcessInitializeOnLoadAttributes (495ms)
-				ProcessInitializeOnLoadMethodAttributes (6ms)
-				AfterProcessingInitializeOnLoad (14ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (6ms)
-Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 2.40 ms, found 4 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5776 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 246.5 MB.
-System memory in use after: 246.6 MB.
-
-Unloading 138 unused Assets to reduce memory usage. Loaded Objects now: 6231.
-Total: 6.954400 ms (FindLiveObjects: 1.296300 ms CreateObjectMapping: 0.538900 ms MarkObjects: 4.533100 ms  DeleteObjects: 0.583700 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  path: Assets/UI/UI 1.png
-  artifactKey: Guid(f3efed80cbf01404fa706495cbeb9aa9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/UI 1.png using Guid(f3efed80cbf01404fa706495cbeb9aa9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a623f36ca3f24db65745a0661f47745') in 0.216005 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000239 seconds.
-  path: Assets/UI/Kill-headshot.png
-  artifactKey: Guid(e8a2b40afd70bfe4cba7f645e5102e44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Kill-headshot.png using Guid(e8a2b40afd70bfe4cba7f645e5102e44) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a58522ae6496112d930704e6e4820b4') in 0.074565 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000259 seconds.
-  path: Assets/UI/H3_Medal_SniperKill.png
-  artifactKey: Guid(8a3459cbab1de83428ecb8bd761c13eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/H3_Medal_SniperKill.png using Guid(8a3459cbab1de83428ecb8bd761c13eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c35228827ae1d9582ead02f95f556319') in 0.031410 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000318 seconds.
-  path: Assets/UI
-  artifactKey: Guid(6a8adce03142f3e4e95fa851863ee811) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI using Guid(6a8adce03142f3e4e95fa851863ee811) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd2c4ede8e49c234a9a3912a7ced082d') in 0.008424 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000420 seconds.
-  path: Assets/UI/images.jpg
-  artifactKey: Guid(f616d7971dd98774c8d6010d700e2b6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/images.jpg using Guid(f616d7971dd98774c8d6010d700e2b6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd33795910adc24e6b9f5e53df53547b5') in 0.035055 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 9.218069 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter
-  artifactKey: Guid(b5f0bf6bea893fd4d857ccb13e854a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter using Guid(b5f0bf6bea893fd4d857ccb13e854a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6dd30104246681dda13260de950dd0b4') in 0.008348 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 54.606736 seconds.
-  path: Assets/Shooter User Interface Starter
-  artifactKey: Guid(b48eb7317d25e174cae92b75494ad140) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shooter User Interface Starter using Guid(b48eb7317d25e174cae92b75494ad140) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2e86ee5a4633e79c4bcb43498b14a0d') in 0.009112 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 382.859836 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes
-  artifactKey: Guid(5df3ace5bed3f6f40b6458249b6ca645) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes using Guid(5df3ace5bed3f6f40b6458249b6ca645) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '272eae0457e1e8dc82977fd3dbdfc3ac') in 0.010146 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 3.631857 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art
-  artifactKey: Guid(46de11fb9acfb1a46881e03173a697b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art using Guid(46de11fb9acfb1a46881e03173a697b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90bd3ba91e81ee06056811f951ad6342') in 0.008844 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 28.755106 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs
-  artifactKey: Guid(c5af267735b5def47b16e2176367598b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs using Guid(c5af267735b5def47b16e2176367598b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a2b356fc3af1405ac4cab93dd441b4e') in 0.008757 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.034012 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_chat_area.prefab
-  artifactKey: Guid(1c88606a554a7124da2d523503009cf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_chat_area.prefab using Guid(1c88606a554a7124da2d523503009cf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cdf922d4bc62263a02c6f78e091a5e5d') in 0.153446 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000277 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_header.prefab
-  artifactKey: Guid(394cdaf48a445c740b23e9265560a2d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_header.prefab using Guid(394cdaf48a445c740b23e9265560a2d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc698fcfc3e31ed5a4491a9cefecbef6') in 0.036346 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000237 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_input_tmp.prefab
-  artifactKey: Guid(8f3bf57109fde6d46a4fed5556adc107) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_input_tmp.prefab using Guid(8f3bf57109fde6d46a4fed5556adc107) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50d997216a6210684ea2fdb389126d5a') in 0.055136 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000316 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_User_Interface.prefab
-  artifactKey: Guid(10a46f923d64783478831a57e8097e22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_User_Interface.prefab using Guid(10a46f923d64783478831a57e8097e22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55e866400dc144f16e79ca97d07070ba') in 0.016929 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000244 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_EventSystem.prefab
-  artifactKey: Guid(3f46c05592e3dfc4698eeb9e48a986d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_EventSystem.prefab using Guid(3f46c05592e3dfc4698eeb9e48a986d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3fcb7c9a8d065ae13bcd35a7521858f') in 0.015587 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000315 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_footer.prefab
-  artifactKey: Guid(1ac2f9de02c83924f9245d2cda30fb36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_footer.prefab using Guid(1ac2f9de02c83924f9245d2cda30fb36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eaf992ee5f1ebdd219dbcf665bbff696') in 0.078962 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000305 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_checkbox.prefab
-  artifactKey: Guid(541b742d051e10144ad6784cf16d2fd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_checkbox.prefab using Guid(541b742d051e10144ad6784cf16d2fd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf8eb20ebf8779220fd7b28732fc1095') in 0.040119 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000413 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_socialmenu.prefab
-  artifactKey: Guid(a8babceb263a5574b887585a0a0fc431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_socialmenu.prefab using Guid(a8babceb263a5574b887585a0a0fc431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd12fe03e227abdef0a01a6fe00704988') in 0.057719 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000300 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_titel_area.prefab
-  artifactKey: Guid(3313ee7dfe09d2a479f9d5ee48fb2ecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_titel_area.prefab using Guid(3313ee7dfe09d2a479f9d5ee48fb2ecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be9c1d25a1d0dd8fa5d35ad8336adbb8') in 0.040292 seconds 
-========================================================================
-Received Import Request.
-  Time since last request: 0.000278 seconds.
-  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_MainCamera.prefab
-  artifactKey: Guid(8a9c63e2c6e8a9e43b3f11083999e76b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_MainCamera.prefab using Guid(8a9c63e2c6e8a9e43b3f11083999e76b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c30182a87aa99010a13cb535a43da19') in 0.011639 seconds 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.010729 seconds.
-Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\FILM SCHOOL\SIDE PROJECTS\Aim Trainer\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\FILM SCHOOL\SIDE PROJECTS\Aim Trainer\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.70 ms, found 4 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Warning: Annotation not found!
-UnityEngine.StackTraceUtility:ExtractStackTrace ()
-UnityEditor.ProBuilder.EditorUtility:SetGizmoIconEnabled (System.Type,bool) (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs:575)
-UnityEditor.ProBuilder.HierarchyListener:.cctor () (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/HierarchyListener.cs:21)
-System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
-UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
-
-[Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs line 575]
-
-Mono: successfully reloaded assembly
-- Completed reload, in  1.561 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1561ms)
-		BeginReloadAssembly (178ms)
+	ReloadAssembly (1577ms)
+		BeginReloadAssembly (147ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (4ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (54ms)
-		EndReloadAssembly (1295ms)
-			LoadAssemblies (137ms)
+			CreateAndSetChildDomain (20ms)
+		EndReloadAssembly (1379ms)
+			LoadAssemblies (111ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (436ms)
-			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (81ms)
-			SetupLoadedEditorAssemblies (500ms)
+			SetupTypeCache (397ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (83ms)
+			SetupLoadedEditorAssemblies (712ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
+				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (144ms)
-				ProcessInitializeOnLoadAttributes (328ms)
+				RefreshPlugins (152ms)
+				BeforeProcessingInitializeOnLoad (107ms)
+				ProcessInitializeOnLoadAttributes (442ms)
 				ProcessInitializeOnLoadMethodAttributes (6ms)
-				AfterProcessingInitializeOnLoad (13ms)
+				AfterProcessingInitializeOnLoad (2ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (18ms)
+			AwakeInstancesAfterBackupRestoration (5ms)
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 2.64 ms, found 4 plugins.
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 1.23 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5560 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 241.7 MB.
-System memory in use after: 241.8 MB.
+Unloading 5777 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 239.9 MB.
+System memory in use after: 240.0 MB.
 
-Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 6302.
-Total: 5.824100 ms (FindLiveObjects: 0.927900 ms CreateObjectMapping: 0.379500 ms MarkObjects: 4.295300 ms  DeleteObjects: 0.220000 ms)
+Unloading 138 unused Assets to reduce memory usage. Loaded Objects now: 6217.
+Total: 3.952000 ms (FindLiveObjects: 0.480600 ms CreateObjectMapping: 0.179500 ms MarkObjects: 2.876700 ms  DeleteObjects: 0.414200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -314,24 +128,174 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 98.458270 seconds.
+  path: Assets/Scenes/TITLE SCREEN/Newilescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/Newilescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52d45614a0ae0df3c17e741e30bbc321') in 0.016019 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.006492 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTilescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTilescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd8c51068bcecfe70839ac15dac374f3') in 0.009935 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 42.480937 seconds.
+  path: Assets/Packages/SatorImaging
+  artifactKey: Guid(18e01a6702638644a8c45f4e5bd8364f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/SatorImaging using Guid(18e01a6702638644a8c45f4e5bd8364f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '255c24a39f321003e8dbbcdca2ec6366') in 0.007981 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.898972 seconds.
+  path: Assets/Packages/SatorImaging/PoseEditor
+  artifactKey: Guid(7886972698daf2b43bb3a47472de0603) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/SatorImaging/PoseEditor using Guid(7886972698daf2b43bb3a47472de0603) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aaff32ee912a5b4613164ad9f04f0f35') in 0.007720 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.164342 seconds.
+  path: Assets/Packages/SatorImaging/PoseEditor/PoseEditor.asmdef
+  artifactKey: Guid(672cac43d4a094d4d9b621facf658eb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/SatorImaging/PoseEditor/PoseEditor.asmdef using Guid(672cac43d4a094d4d9b621facf658eb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6dc3681c0f2b43f627ff60aca3db4790') in 0.020783 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Packages/SatorImaging/PoseEditor/PoseEditor_Manual.png
+  artifactKey: Guid(27a3b663edfac664fa87dfef53a462bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/SatorImaging/PoseEditor/PoseEditor_Manual.png using Guid(27a3b663edfac664fa87dfef53a462bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b6728bd4972209baec06115afeb614d') in 0.049429 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000148 seconds.
+  path: Assets/Packages/SatorImaging/PoseEditor/PoseEditor_WhatsNew_v2.1.png
+  artifactKey: Guid(d3b1471bce89dbf429b4488cac931aee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/SatorImaging/PoseEditor/PoseEditor_WhatsNew_v2.1.png using Guid(d3b1471bce89dbf429b4488cac931aee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ff7d07b619106ae8b79f9bac6112fb0') in 0.021023 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 91.255842 seconds.
+  path: Assets/UI/HealthBars
+  artifactKey: Guid(01a976e096cbbd14ebef099d96f297e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/HealthBars using Guid(01a976e096cbbd14ebef099d96f297e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8171a7c3a881717e9fc3c84d0f4bd876') in 0.007495 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.470187 seconds.
+  path: Assets/UI/Images
+  artifactKey: Guid(ee6a85d12554762428734506b4d83e5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Images using Guid(ee6a85d12554762428734506b4d83e5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95907d516b534a3dcb9b947ad36e85a8') in 0.007021 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.329868 seconds.
+  path: Assets/UI/Materials
+  artifactKey: Guid(1120cfa6ede55a04cbaf5f69970f2dbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Materials using Guid(1120cfa6ede55a04cbaf5f69970f2dbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75b90b4767aee2d63c8fea05cdff3a5c') in 0.007618 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.335437 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter
+  artifactKey: Guid(b5f0bf6bea893fd4d857ccb13e854a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter using Guid(b5f0bf6bea893fd4d857ccb13e854a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9617bc529034d4eb6938b77863f18d54') in 0.007585 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 9.321634 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter
+  artifactKey: Guid(b48eb7317d25e174cae92b75494ad140) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter using Guid(b48eb7317d25e174cae92b75494ad140) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5660c73f5caae52c32a486c5d9143f2e') in 0.007217 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.978655 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs
+  artifactKey: Guid(c5af267735b5def47b16e2176367598b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs using Guid(c5af267735b5def47b16e2176367598b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c691a3f5da730339a3c29b0156d330d9') in 0.007042 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.030611 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_chat_area.prefab
+  artifactKey: Guid(1c88606a554a7124da2d523503009cf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_chat_area.prefab using Guid(1c88606a554a7124da2d523503009cf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b869662650b4c222560377efa8054e9') in 0.093596 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_header.prefab
+  artifactKey: Guid(394cdaf48a445c740b23e9265560a2d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_header.prefab using Guid(394cdaf48a445c740b23e9265560a2d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c42edbbfcda245be8b635c94c513a1f4') in 0.022214 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_input_tmp.prefab
+  artifactKey: Guid(8f3bf57109fde6d46a4fed5556adc107) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_input_tmp.prefab using Guid(8f3bf57109fde6d46a4fed5556adc107) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3f529f90399ff6bb3171426c0d492b4') in 0.034619 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000176 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_User_Interface.prefab
+  artifactKey: Guid(10a46f923d64783478831a57e8097e22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_User_Interface.prefab using Guid(10a46f923d64783478831a57e8097e22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecf512f320a2f006b7da72239080b7a1') in 0.010415 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000254 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_EventSystem.prefab
+  artifactKey: Guid(3f46c05592e3dfc4698eeb9e48a986d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_EventSystem.prefab using Guid(3f46c05592e3dfc4698eeb9e48a986d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e511c0a556f0d4ab873cdfd8685d866') in 0.010845 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_footer.prefab
+  artifactKey: Guid(1ac2f9de02c83924f9245d2cda30fb36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_footer.prefab using Guid(1ac2f9de02c83924f9245d2cda30fb36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b8c113d319631b50ed74408d17a0ce8') in 0.046690 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000153 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_checkbox.prefab
+  artifactKey: Guid(541b742d051e10144ad6784cf16d2fd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_checkbox.prefab using Guid(541b742d051e10144ad6784cf16d2fd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5632b041c71c82cda7e1613d30736dc1') in 0.027053 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000142 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_socialmenu.prefab
+  artifactKey: Guid(a8babceb263a5574b887585a0a0fc431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_socialmenu.prefab using Guid(a8babceb263a5574b887585a0a0fc431) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e46e13ea8494b17ad2aa1b733a2a9bf') in 0.034072 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000156 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_titel_area.prefab
+  artifactKey: Guid(3313ee7dfe09d2a479f9d5ee48fb2ecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/_titel_area.prefab using Guid(3313ee7dfe09d2a479f9d5ee48fb2ecb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd80d68f2868fff8bdf4cb47f364ebb3b') in 0.030838 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000150 seconds.
   path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_MainCamera.prefab
   artifactKey: Guid(8a9c63e2c6e8a9e43b3f11083999e76b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_MainCamera.prefab using Guid(8a9c63e2c6e8a9e43b3f11083999e76b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '575c660337a98dc41f55f28c391fad42') in 0.033021 seconds 
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_prefabs/s_MainCamera.prefab using Guid(8a9c63e2c6e8a9e43b3f11083999e76b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0c9f22045c1dda0d2ff35906dd40628') in 0.010342 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1456.703729 seconds.
+  path: Assets/UI/Buttons/14-chalk-arrows-10.png
+  artifactKey: Guid(ff6db10fd0c36594d923a0799a9bc759) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Buttons/14-chalk-arrows-10.png using Guid(ff6db10fd0c36594d923a0799a9bc759) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1991c19afc10a4605bbdda890a1034a') in 0.049915 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000166 seconds.
+  path: Assets/UI/Buttons/61408-200.png
+  artifactKey: Guid(32f271a1098e0064f916dcc5e2d83ab8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Buttons/61408-200.png using Guid(32f271a1098e0064f916dcc5e2d83ab8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '116c29f25c70605b8e4d3e7d6678a068') in 0.058105 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 116.028078 seconds.
+  path: Assets/UI/Gun Images
+  artifactKey: Guid(30a99eb4de2997547b7d90c32fd4bb23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Gun Images using Guid(30a99eb4de2997547b7d90c32fd4bb23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c9bc49712d22c9a5231889e7483bdfb') in 0.007308 seconds 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.009839 seconds.
+Registered in 0.006725 seconds.
 Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image D:\FILM SCHOOL\SIDE PROJECTS\Aim Trainer\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image D:\FILM SCHOOL\SIDE PROJECTS\Aim Trainer\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 1.57 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 1.31 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Warning: Annotation not found!
 UnityEngine.StackTraceUtility:ExtractStackTrace ()
@@ -343,42 +307,42 @@ UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
 [Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs line 575]
 
 Mono: successfully reloaded assembly
-- Completed reload, in  1.401 seconds
+- Completed reload, in  1.051 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1401ms)
-		BeginReloadAssembly (195ms)
+	ReloadAssembly (1051ms)
+		BeginReloadAssembly (127ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (9ms)
+			DisableScriptedObjects (3ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (69ms)
-		EndReloadAssembly (1108ms)
-			LoadAssemblies (145ms)
+			CreateAndSetChildDomain (36ms)
+		EndReloadAssembly (878ms)
+			LoadAssemblies (89ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (407ms)
+			SetupTypeCache (331ms)
 			ReleaseScriptCaches (2ms)
-			RebuildScriptCaches (73ms)
-			SetupLoadedEditorAssemblies (388ms)
+			RebuildScriptCaches (61ms)
+			SetupLoadedEditorAssemblies (305ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (4ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (111ms)
-				ProcessInitializeOnLoadAttributes (252ms)
-				ProcessInitializeOnLoadMethodAttributes (6ms)
-				AfterProcessingInitializeOnLoad (12ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (74ms)
+				ProcessInitializeOnLoadAttributes (218ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (14ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
 Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 1.51 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 1.23 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 5556 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 241.7 MB.
-System memory in use after: 241.8 MB.
+Unloading 5560 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 231.8 MB.
+System memory in use after: 232.0 MB.
 
-Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 6305.
-Total: 5.613100 ms (FindLiveObjects: 0.565400 ms CreateObjectMapping: 0.162100 ms MarkObjects: 4.652900 ms  DeleteObjects: 0.231100 ms)
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 6290.
+Total: 3.879200 ms (FindLiveObjects: 0.543600 ms CreateObjectMapping: 0.161900 ms MarkObjects: 2.979300 ms  DeleteObjects: 0.193400 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -387,7 +351,1741 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006600 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.49 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Warning: Annotation not found!
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.ProBuilder.EditorUtility:SetGizmoIconEnabled (System.Type,bool) (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs:575)
+UnityEditor.ProBuilder.HierarchyListener:.cctor () (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/HierarchyListener.cs:21)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+[Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs line 575]
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.154 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1155ms)
+		BeginReloadAssembly (130ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (37ms)
+		EndReloadAssembly (973ms)
+			LoadAssemblies (103ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (374ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (71ms)
+			SetupLoadedEditorAssemblies (328ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (82ms)
+				ProcessInitializeOnLoadAttributes (234ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.48 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5556 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 231.8 MB.
+System memory in use after: 231.9 MB.
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 6293.
+Total: 3.737400 ms (FindLiveObjects: 0.481500 ms CreateObjectMapping: 0.177000 ms MarkObjects: 2.884400 ms  DeleteObjects: 0.193500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 226.597821 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics
+  artifactKey: Guid(3aed4fab52d585449bc4782ec4e81c8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics using Guid(3aed4fab52d585449bc4782ec4e81c8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e6b9e4eec31624a9bbd653e1cf9e652') in 0.017213 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.182401 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_blur_background_image.png
+  artifactKey: Guid(5c25b33c38088d84faa922146be49472) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_blur_background_image.png using Guid(5c25b33c38088d84faa922146be49472) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba258cc80b71f5ab2948d7c63cbbf96a') in 0.091666 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000145 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_shadow_gradient.png
+  artifactKey: Guid(88e51819a0851b848a75b4e9042ae46f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_shadow_gradient.png using Guid(88e51819a0851b848a75b4e9042ae46f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c93cb736f569ce8a0a736f960e04490f') in 0.016809 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_image_placeholder.png
+  artifactKey: Guid(8ec862beeea1a7a46b1771257cacf6d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_image_placeholder.png using Guid(8ec862beeea1a7a46b1771257cacf6d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23d09d626667e93f20428c54274980f7') in 0.042639 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_chracter_mockup.png
+  artifactKey: Guid(f0491f1e215946a4ab49e85c99a5f5b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_chracter_mockup.png using Guid(f0491f1e215946a4ab49e85c99a5f5b5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c29d1162b710cdc6d5a43a3d6a58fe1f') in 0.041326 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_shadow_gradient_horizontal.png
+  artifactKey: Guid(0041c73441112f042ae7420cb1f121ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_shadow_gradient_horizontal.png using Guid(0041c73441112f042ae7420cb1f121ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d30e035dda357d54d1148c2bc169822') in 0.037634 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000141 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_weapon_graphic(Watch License).png
+  artifactKey: Guid(e27fb3a3cf88bef43819c912e6362b3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_weapon_graphic(Watch License).png using Guid(e27fb3a3cf88bef43819c912e6362b3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '64844edabcb849432a742b2187d143db') in 0.019204 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_selection_corner.png
+  artifactKey: Guid(e44d2848a0058a54e87815b9f81efbc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_graphics/_selection_corner.png using Guid(e44d2848a0058a54e87815b9f81efbc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b5878515d6bb691aff52550a75f06b7') in 0.026081 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 37.094790 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components
+  artifactKey: Guid(3dc00e96811af914eb6062517854fa73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components using Guid(3dc00e96811af914eb6062517854fa73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2339309c7d6380ee420ec66090e0a16f') in 0.007769 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.852490 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_button
+  artifactKey: Guid(1e6c25f1221f8c1488c4890f945960c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_button using Guid(1e6c25f1221f8c1488c4890f945960c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c76533262b6faedcb147794b2ab32dda') in 0.007794 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.059097 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_button/_button_base_large.png
+  artifactKey: Guid(fe01d0c1c3d29c244bfbbaa2cbfc2ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_button/_button_base_large.png using Guid(fe01d0c1c3d29c244bfbbaa2cbfc2ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33190a71277e44c092d89fc0f0426c49') in 0.013715 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_button/_button_base_wide.png
+  artifactKey: Guid(f8577d774de90bb45bd88a310b21b025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_button/_button_base_wide.png using Guid(f8577d774de90bb45bd88a310b21b025) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c963d69b9f6a6b0958146208c9905822') in 0.014841 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_button/_button_base_small.png
+  artifactKey: Guid(3fda9a01d546bd54d84dd811f4aa22db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_button/_button_base_small.png using Guid(3fda9a01d546bd54d84dd811f4aa22db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2ab924197301971eed54d8de526f0fa') in 0.015511 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.739895 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_cards/_card_holder.png
+  artifactKey: Guid(e322409c6b04c0e4aa366832466150e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_cards/_card_holder.png using Guid(e322409c6b04c0e4aa366832466150e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4208eedd6b3c3820ff013328fa7f676') in 0.014844 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.563651 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_checkbox/checkbox_background.png
+  artifactKey: Guid(cee7cab8a0ccca3418d75e37ed3c36fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_checkbox/checkbox_background.png using Guid(cee7cab8a0ccca3418d75e37ed3c36fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acdf04c4417ed2e9458897e8660a518f') in 0.014155 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000156 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_checkbox/checkbox_cross.png
+  artifactKey: Guid(ec262ef8441f3474eaac10220cb2b305) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_checkbox/checkbox_cross.png using Guid(ec262ef8441f3474eaac10220cb2b305) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e46db0a2597709e68a1e11c6dc0b943d') in 0.014111 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.328898 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_sounds/ui_click.wav
+  artifactKey: Guid(5f6cb334bb6325f4cb8d127e76422034) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_sounds/ui_click.wav using Guid(5f6cb334bb6325f4cb8d127e76422034) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4161cbf3eb0a8268ec092faf71babe32') in 0.066003 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.325974 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_add.png
+  artifactKey: Guid(f0fe05ecb5352314cab739b085ba14a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_add.png using Guid(f0fe05ecb5352314cab739b085ba14a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '832d69060bb644cf74ae5c2f4de85991') in 0.013886 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_cog.png
+  artifactKey: Guid(691d676553ac2fb45938e8cd5697a7fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_cog.png using Guid(691d676553ac2fb45938e8cd5697a7fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '974ff0daafa1fef610c0ecd967f8fef5') in 0.013972 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_off.png
+  artifactKey: Guid(9934a4b71012f1c448d024485e4db595) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_off.png using Guid(9934a4b71012f1c448d024485e4db595) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8241c5176c99e2633370e816a9000bd') in 0.018317 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000184 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_shield.png
+  artifactKey: Guid(129ea0e612d08c944b6e5d8992513f5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_shield.png using Guid(129ea0e612d08c944b6e5d8992513f5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83c596ad938b4a3919cb4aba41be5d5f') in 0.013611 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_rank.png
+  artifactKey: Guid(fb7eb41c955288b44b85f8844b1de619) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_rank.png using Guid(fb7eb41c955288b44b85f8844b1de619) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2664d7f95ffec629c2bbbf762a2e9139') in 0.016010 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_arrow.png
+  artifactKey: Guid(ae63ea35e4c0f4643bd0d137681ba941) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_arrow.png using Guid(ae63ea35e4c0f4643bd0d137681ba941) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb40d8d624c5f82fe8ad7493c63555f6') in 0.015128 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_user_filled.png
+  artifactKey: Guid(e1475dc005cdd504c8b8a67de4e488f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_user_filled.png using Guid(e1475dc005cdd504c8b8a67de4e488f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cecbfbb652620af98a47e368d77ff62a') in 0.014698 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_cross_close.png
+  artifactKey: Guid(e69533f3e97d4144dab6589807aae454) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_cross_close.png using Guid(e69533f3e97d4144dab6589807aae454) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05564430fb024d34b0e4715fa093b188') in 0.015915 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_loading.png
+  artifactKey: Guid(3e32b2c4917aa734688a4a6e624facee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_loading.png using Guid(3e32b2c4917aa734688a4a6e624facee) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af519dcc5fc39792783e71a2a58631c0') in 0.016874 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000177 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_skull.png
+  artifactKey: Guid(69f5546f25423f84ba58824baa969658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_skull.png using Guid(69f5546f25423f84ba58824baa969658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c7942e9b82d327b0af37236105a568e') in 0.013596 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_user_add.png
+  artifactKey: Guid(7c7423aee32eab042b31280d5a9f2333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_user_add.png using Guid(7c7423aee32eab042b31280d5a9f2333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8cc9ad35525dae4913b6c529244b7ab') in 0.014878 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000200 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_point.png
+  artifactKey: Guid(27670081484d55b4aa4422173b30b515) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_point.png using Guid(27670081484d55b4aa4422173b30b515) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b9e229ad3f6e998885ac72548870075') in 0.014836 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_m19.png
+  artifactKey: Guid(b3cfba142e9e02040b416c1ca2db0499) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_m19.png using Guid(b3cfba142e9e02040b416c1ca2db0499) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28d94732d40bcac24e1a8922e7c276d6') in 0.016189 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_m4.png
+  artifactKey: Guid(1bceb4aaaa8b4704a9bb0384aee7d5f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_m4.png using Guid(1bceb4aaaa8b4704a9bb0384aee7d5f2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c2b1d99750c926a9888f9895ddc0e26') in 0.016626 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000275 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_ass.png
+  artifactKey: Guid(3f8d169414f8c8c448fa298dbb5b1fd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_ass.png using Guid(3f8d169414f8c8c448fa298dbb5b1fd4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1a66767efbee678da94fad68129e6f3') in 0.013803 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_user.png
+  artifactKey: Guid(5d83ec8e5c8cb934ea10e42adb05f974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/icon_user.png using Guid(5d83ec8e5c8cb934ea10e42adb05f974) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51be63bd363928ef46dfa4ceb702edaa') in 0.014892 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 110.998179 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_equipment_detail.unity
+  artifactKey: Guid(b1526bcff8bf5bf429bac8ca58a5df11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_equipment_detail.unity using Guid(b1526bcff8bf5bf429bac8ca58a5df11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c902fa69a82a04cf7a050e3544e6f997') in 0.008445 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.827743 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_game_lobby.unity
+  artifactKey: Guid(f7a5e538e5514b348938cb5bc06439a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_game_lobby.unity using Guid(f7a5e538e5514b348938cb5bc06439a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b77cee0b83a10e94e4a6f78c3894d23c') in 0.008884 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.649912 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_gamemode_selection.unity
+  artifactKey: Guid(a220b464a26c8424395d8694c7d20f91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_gamemode_selection.unity using Guid(a220b464a26c8424395d8694c7d20f91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5809dc6b33b112803397ae39c227f634') in 0.008075 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 14.464424 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_loadout.unity
+  artifactKey: Guid(68f086ae42c38274fb6781d5cf2cde46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_loadout.unity using Guid(68f086ae42c38274fb6781d5cf2cde46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f74ae877ed51cd7d8a66e312bc108120') in 0.008902 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.748720 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_loadout_detail.unity
+  artifactKey: Guid(e991d2f56238183498621f26917c313e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_loadout_detail.unity using Guid(e991d2f56238183498621f26917c313e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '96f8a7dfeb41f5cc0239d5a60df25f3a') in 0.008429 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.153224 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_login.unity
+  artifactKey: Guid(ff0f2663a6e8c0f4bbd9e2a90dcb21c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_login.unity using Guid(ff0f2663a6e8c0f4bbd9e2a90dcb21c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '381d1d92485bd2c976d50f895687c6a3') in 0.008438 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.610763 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_play.unity
+  artifactKey: Guid(a510ae421ba052648842ce7d20546a15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_play.unity using Guid(a510ae421ba052648842ce7d20546a15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af15e5543798ca1c1bf6558fa5030571') in 0.009920 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 38.190039 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTilescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTilescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ddcfc16ef4eb2230ac6eda9706abb6d7') in 0.008065 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.939215 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '145a5a467d52bd1cf1cf069f848d3e73') in 0.008493 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 15.172913 seconds.
+  path: Assets/Models/Bayonet/bayonet.fbx
+  artifactKey: Guid(7a158705d58adee439573de1ef21665c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Bayonet/bayonet.fbx using Guid(7a158705d58adee439573de1ef21665c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7bce5e86c6c241d020bccebcffd77509') in 0.191431 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.962803 seconds.
+  path: Assets/Models/Character Armature/Character Armature.fbx
+  artifactKey: Guid(2f5a096da75097f489a5207af8dc9c2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Character Armature/Character Armature.fbx using Guid(2f5a096da75097f489a5207af8dc9c2a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f12a213c79b3355abe22992e9e07446') in 0.039817 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.922591 seconds.
+  path: Assets/Models/KILLHOUSE/Killhouse 2.fbx
+  artifactKey: Guid(5a2de5db3da722247a4d17c39cdacc84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/KILLHOUSE/Killhouse 2.fbx using Guid(5a2de5db3da722247a4d17c39cdacc84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1dece0390d0b813e07483e2df8ceb122') in 1.460993 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/Models/KILLHOUSE/Killhouse Baked.fbx
+  artifactKey: Guid(04646aaa51691ae40a35067e89bb6ec8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/KILLHOUSE/Killhouse Baked.fbx using Guid(04646aaa51691ae40a35067e89bb6ec8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ab615f7d23f1268915ab9fb154721a0') in 1.385650 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000178 seconds.
+  path: Assets/Models/KILLHOUSE/Killhouse Targets Switched.fbx
+  artifactKey: Guid(58bc82270847213429cd6c1fc9990b09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/KILLHOUSE/Killhouse Targets Switched.fbx using Guid(58bc82270847213429cd6c1fc9990b09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62a8c8b22a38d327815bdfe142a82fe3') in 1.347763 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.150416 seconds.
+  path: Assets/Models/Tank/Barrel.mat
+  artifactKey: Guid(eb15863c35030ec40b24f39f6f108ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Barrel.mat using Guid(eb15863c35030ec40b24f39f6f108ad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3ca29a455dea7aabc448649dd70fb15') in 0.022902 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/Models/Tank/Wheel.mat
+  artifactKey: Guid(5f92fa5016690dd4fa39c718236c8cf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Wheel.mat using Guid(5f92fa5016690dd4fa39c718236c8cf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62a58932813602dd1f2d1d111a52a512') in 0.019619 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/Models/Tank/Tracks.mat
+  artifactKey: Guid(f049d66dfc53abc42a8a5414da2b2966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Tracks.mat using Guid(f049d66dfc53abc42a8a5414da2b2966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '604e2bb34c7433a27ae85436cfad04fc') in 0.019058 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/Models/Tank/Tank.mat
+  artifactKey: Guid(be0e6d1d4a1b83842a6b80fda1a1b341) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Tank.mat using Guid(be0e6d1d4a1b83842a6b80fda1a1b341) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '199e9da289f930b92754a2e359b37669') in 0.018462 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/Models/Tank/Light Fixture.mat
+  artifactKey: Guid(081b935c5838e584699fc9ba52dcaf7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Light Fixture.mat using Guid(081b935c5838e584699fc9ba52dcaf7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04db8c1a5379d2bfeed919aa7d59bd43') in 0.019090 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000161 seconds.
+  path: Assets/Models/Tank/Military_Tank.fbx
+  artifactKey: Guid(d5acfe86289cc284890d21ef24d24ccb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Military_Tank.fbx using Guid(d5acfe86289cc284890d21ef24d24ccb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b72085a13897e5c7df5f199a811c43a7') in 0.094567 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/Models/Tank/Tank.001.mat
+  artifactKey: Guid(d1986a439107c614893392ee4beb1fda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Tank.001.mat using Guid(d1986a439107c614893392ee4beb1fda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52762aaa6c811729f3e579b8737163a8') in 0.014053 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000204 seconds.
+  path: Assets/Models/Tank/Turret.mat
+  artifactKey: Guid(3d223820d58baf841b4e418a60c0c98e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Turret.mat using Guid(3d223820d58baf841b4e418a60c0c98e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8f7e69bc00c3e5e07f6f23fa2b724ef') in 0.014545 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000212 seconds.
+  path: Assets/Models/Tank/Material.004.mat
+  artifactKey: Guid(12db61e7900e44e4ca1a4b4d6a0c59dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Material.004.mat using Guid(12db61e7900e44e4ca1a4b4d6a0c59dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e732caac0b4329b1896c28a31cce3e3') in 0.013043 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000228 seconds.
+  path: Assets/Models/Tank/Light.mat
+  artifactKey: Guid(4b31f045dae57b54488a120e7f16b73d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Light.mat using Guid(4b31f045dae57b54488a120e7f16b73d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61eb41490ecc009884e53bb75977cca0') in 0.012841 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000286 seconds.
+  path: Assets/Models/Tank/Material.003.mat
+  artifactKey: Guid(271451b9c4189c542b19423d126b0351) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Material.003.mat using Guid(271451b9c4189c542b19423d126b0351) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26d17de408104d32f13023da78d8d6da') in 0.013826 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/Models/Tank/Material.001.mat
+  artifactKey: Guid(44f3b379fdf5c124caf833dea44257f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Material.001.mat using Guid(44f3b379fdf5c124caf833dea44257f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '234017783ba79ffa1c7a26ba79dafe2a') in 0.013013 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000250 seconds.
+  path: Assets/Models/Tank/Material.002.mat
+  artifactKey: Guid(6acc30909c69e284cbb3cfa96f1b9a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tank/Material.002.mat using Guid(6acc30909c69e284cbb3cfa96f1b9a2c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba092f1ae97743875d783671eb06361c') in 0.012889 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.691989 seconds.
+  path: Assets/Models/Tower/TexturesCom_Roofing_MetalPlated_1K_albedo.tif
+  artifactKey: Guid(4cdd30984319b0441afa1aed4eb93f49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower/TexturesCom_Roofing_MetalPlated_1K_albedo.tif using Guid(4cdd30984319b0441afa1aed4eb93f49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd094aaa7b427d87b95c8acce0f8364ae') in 0.027138 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/Models/Tower/TexturesCom_Roofing_MetalPlated_1K_normal.tif
+  artifactKey: Guid(94ea095c6fd6f064eb4c907e5bd2abcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower/TexturesCom_Roofing_MetalPlated_1K_normal.tif using Guid(94ea095c6fd6f064eb4c907e5bd2abcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '872eb2411f43083e4e9f1223c30135ee') in 0.043048 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000214 seconds.
+  path: Assets/Models/Tower/TexturesCom_Roofing_MetalPlated_1K_metallic.tif
+  artifactKey: Guid(4c364686460679244a8038d1dfd188bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Tower/TexturesCom_Roofing_MetalPlated_1K_metallic.tif using Guid(4c364686460679244a8038d1dfd188bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '712238e3a396f4e4665bc54dbc3d8c06') in 0.032145 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.210249 seconds.
+  path: Assets/Models/WAREHOUSE/Warehouse.fbx
+  artifactKey: Guid(9583ea50ef99f13499e2429150cd5378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/WAREHOUSE/Warehouse.fbx using Guid(9583ea50ef99f13499e2429150cd5378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22702bcc872c3b99afa5cfd100478c95') in 0.988273 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 10.681296 seconds.
+  path: Assets/Packages/Standard Assets
+  artifactKey: Guid(43677437aefa52c4e82547f79ffbc46d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets using Guid(43677437aefa52c4e82547f79ffbc46d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aea6f905de1f8dceb6d5a7e0e672abb0') in 0.007645 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 10.011595 seconds.
+  path: Assets/Packages/Standard Assets/2D/Prefabs/CharacterRobotBoy.prefab
+  artifactKey: Guid(87a2357765801c34292d6718d8b4d770) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/2D/Prefabs/CharacterRobotBoy.prefab using Guid(87a2357765801c34292d6718d8b4d770) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd1f113b35c3868ea56360c20f83b630') in 0.135767 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.815417 seconds.
+  path: Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Meshes/Terrain/U_Terrain_Data
+  artifactKey: Guid(2df1aff628eb4bc4f9c150cfb08e1c46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Meshes/Terrain/U_Terrain_Data using Guid(2df1aff628eb4bc4f9c150cfb08e1c46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f21bcdda4ac610e7fc78b5390aead9da') in 0.008346 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 38.017173 seconds.
+  path: Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/CPT_Terrain_Texture_Atlas_01.png
+  artifactKey: Guid(f7973976799eb6843bcb25e25e25522e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/CPT_Terrain_Texture_Atlas_01.png using Guid(f7973976799eb6843bcb25e25e25522e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0657cc91981d3e32aa89caf4a8a9ff00') in 0.018400 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000185 seconds.
+  path: Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/CPT_Terrain_Texture_Atlas_02.png
+  artifactKey: Guid(bcbc81d19b2810c488c783f48552d2d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/CPT_Terrain_Texture_Atlas_02.png using Guid(bcbc81d19b2810c488c783f48552d2d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '527643ca8ead76cb5d4c08e2aefd9eaf') in 0.026537 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000167 seconds.
+  path: Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/U_Terrain_Grass_01.png
+  artifactKey: Guid(ba0465cac1668624aa14430a63c348e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/U_Terrain_Grass_01.png using Guid(ba0465cac1668624aa14430a63c348e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84d3a32b8586d00c703532ae5c6ad71e') in 0.038539 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/CPT_Terrain_Texture_Atlas_03.png
+  artifactKey: Guid(86e2e2d3aee48054497461712654fc9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/CPT_Terrain_Texture_Atlas_03.png using Guid(86e2e2d3aee48054497461712654fc9f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f9ffa7d64ca48023e8318cff6fff309b') in 0.031246 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000200 seconds.
+  path: Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/U_Terrain_Rock_01.png
+  artifactKey: Guid(6495274fff15eef4e9e58f5d87270364) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/U_Terrain_Rock_01.png using Guid(6495274fff15eef4e9e58f5d87270364) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a107998261bf3c64fd116ad75883b39') in 0.038452 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000226 seconds.
+  path: Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/U_Terrain_Snow_01.png
+  artifactKey: Guid(335eae24f659113458c5d68b6bf7d291) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/U_Terrain_Snow_01.png using Guid(335eae24f659113458c5d68b6bf7d291) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28c80090d029597c0ee183eb9c708027') in 0.019706 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000235 seconds.
+  path: Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/U_Terrain_Sand_01.png
+  artifactKey: Guid(3dbd640bbde9d714d9c0e61ae8c00eda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Low Poly Modular Terrain Pack/Terrain_Assets/Textures/U_Terrain_Sand_01.png using Guid(3dbd640bbde9d714d9c0e61ae8c00eda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0575d1a1307a11ed687420457f20e5aa') in 0.018728 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 45.579405 seconds.
+  path: Assets/Prefab/Character/Shooting Modes/Character_v1.1.prefab
+  artifactKey: Guid(d45a78c084c4bab44a0dd504ba55f251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Character/Shooting Modes/Character_v1.1.prefab using Guid(d45a78c084c4bab44a0dd504ba55f251) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a46a5d190353444d2ab1bd2492d25160') in 0.378168 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 128.206871 seconds.
+  path: Assets/Models/Character/Soilder Character.fbx
+  artifactKey: Guid(53394518a20e0844b9e8691510c4c2ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Models/Character/Soilder Character.fbx using Guid(53394518a20e0844b9e8691510c4c2ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e4c5cf4b7f006d92da18f749140ae512') in 0.120507 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 585.144424 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes
+  artifactKey: Guid(5df3ace5bed3f6f40b6458249b6ca645) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes using Guid(5df3ace5bed3f6f40b6458249b6ca645) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77b941fd36ec50b9c91427450c42b711') in 0.007789 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.260857 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-Bold.ttf
+  artifactKey: Guid(31a3303162fc835458e51c2274baa890) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-Bold.ttf using Guid(31a3303162fc835458e51c2274baa890) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3764e2aba711d830469033e2bc179c5f') in 0.055126 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-SemiBold.ttf
+  artifactKey: Guid(bbfed69cb48ae8e4fa23de5b58652af6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-SemiBold.ttf using Guid(bbfed69cb48ae8e4fa23de5b58652af6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd40cf383962c528ffea133ffa9435ff0') in 0.018200 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-Light.ttf
+  artifactKey: Guid(6184be56634569b448a47ea175d72a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-Light.ttf using Guid(6184be56634569b448a47ea175d72a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c22172554497c53dacc768238e395813') in 0.047978 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000185 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-Regular.ttf
+  artifactKey: Guid(3edb62abc6c037a4a94210980bf17495) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-Regular.ttf using Guid(3edb62abc6c037a4a94210980bf17495) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '790dbb894ccad6b8f1a4ac62cddf3ae7') in 0.032176 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-Medium.ttf
+  artifactKey: Guid(362186f16e01d4d42bfe6a3a62662d0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/Rajdhani-Medium.ttf using Guid(362186f16e01d4d42bfe6a3a62662d0a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '088bc2d85debed8524d7a7c7b8c60bf8') in 0.018089 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.712329 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_essentials/_essential_64x64_white.png
+  artifactKey: Guid(8d6338c3d0965014fa5bc8c1669a99cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_essentials/_essential_64x64_white.png using Guid(8d6338c3d0965014fa5bc8c1669a99cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13206539475669950fd573f848166b2c') in 0.014603 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 8.829275 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/_group/icon_group_cog.png
+  artifactKey: Guid(1495a83105c831146bedcf0d51f38651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/_group/icon_group_cog.png using Guid(1495a83105c831146bedcf0d51f38651) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1cee694666fdf39954acdf5f49ed9b9f') in 0.015098 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/_group/icon_group_off.png
+  artifactKey: Guid(5bb8b12b2d9ddd944860b1a9210ba9ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_icons/_group/icon_group_off.png using Guid(5bb8b12b2d9ddd944860b1a9210ba9ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb343c53a32c6767b8300bc1f9fada8f') in 0.041500 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 17.977565 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro
+  artifactKey: Guid(0564030f829cd1442b5f9a2c70fcf333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro using Guid(0564030f829cd1442b5f9a2c70fcf333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b0cf2cd92d7187f78d6c291ad354982') in 0.008451 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.057526 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani - Bold SDF.asset
+  artifactKey: Guid(c256995b6b49c8347bb5777e456159e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani - Bold SDF.asset using Guid(c256995b6b49c8347bb5777e456159e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d4c6b96e47d4248210337aacc1bcb88') in 0.056180 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000151 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani-Medium SDF.asset
+  artifactKey: Guid(e1ee93bcda6e5774cb0b9b166e6b6842) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani-Medium SDF.asset using Guid(e1ee93bcda6e5774cb0b9b166e6b6842) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02c465c88849e6d2d1846b486e6f3fc6') in 0.033855 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000153 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani-Regular SDF.asset
+  artifactKey: Guid(87f0f32368acb6c48afc731f6132d39f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani-Regular SDF.asset using Guid(87f0f32368acb6c48afc731f6132d39f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '209b73af2c07783140c433024d2bab82') in 0.041250 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000152 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani-SemiBold SDF.asset
+  artifactKey: Guid(c0c7c0ade6b37374cb348e3317916c67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani-SemiBold SDF.asset using Guid(c0c7c0ade6b37374cb348e3317916c67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0feafae635ba696e1485f0332e9619a') in 0.044874 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani-Light SDF.asset
+  artifactKey: Guid(d0a4e85b61c16874e942a6b76c89e4ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_fonts/_textmeshpro/Rajdhani-Light SDF.asset using Guid(d0a4e85b61c16874e942a6b76c89e4ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '633f81b50c74ea8537f9c9da2114a031') in 0.038387 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.720388 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_cards
+  artifactKey: Guid(2f9e3e77c2779d54fae8b8c81e1c29fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_art/_ui_elements/_components/_cards using Guid(2f9e3e77c2779d54fae8b8c81e1c29fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5053490b37007770ac255ff1c158dead') in 0.008013 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 13.761746 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_play.unity
+  artifactKey: Guid(a510ae421ba052648842ce7d20546a15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_play.unity using Guid(a510ae421ba052648842ce7d20546a15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38c85029407ad874385eb28f7f6c05d4') in 0.004344 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 44.879006 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b9a4cd4f09d4b7636459f5a4147047e') in 0.004199 seconds 
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 5.56 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 20 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 147.4 MB.
+System memory in use after: 147.5 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 6501.
+Total: 4.565400 ms (FindLiveObjects: 0.563700 ms CreateObjectMapping: 0.154200 ms MarkObjects: 3.638000 ms  DeleteObjects: 0.208800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 629.420720 seconds.
+  path: Assets/UI/Gun Images/3.png
+  artifactKey: Guid(16ee57e137f0e384f830fcf9ede298df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Gun Images/3.png using Guid(16ee57e137f0e384f830fcf9ede298df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b066fb9e4ba2a44d4427c90cafde232') in 0.048681 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.164756 seconds.
+  path: Assets/UI/HealthBars/10855199.jpg
+  artifactKey: Guid(01103463cdf83bd408587d0de444acf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/HealthBars/10855199.jpg using Guid(01103463cdf83bd408587d0de444acf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d28ff6d8b0967c57dc4b8ee21006311') in 0.030668 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000194 seconds.
+  path: Assets/UI/HealthBars/index.png
+  artifactKey: Guid(70017756ab491ac43984a14f0fd77507) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/HealthBars/index.png using Guid(70017756ab491ac43984a14f0fd77507) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8e0b498b0d988c673b3302f09359dc9') in 0.048792 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000283 seconds.
+  path: Assets/UI/HealthBars/ffde34.png
+  artifactKey: Guid(d9148a5af44b8b845b459068f1a6907d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/HealthBars/ffde34.png using Guid(d9148a5af44b8b845b459068f1a6907d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd29676f422d5a355936723125677d46') in 0.040631 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000156 seconds.
+  path: Assets/UI/HealthBars/main-qimg-d315b8fa44874612e5cbc2736b5ff079.png
+  artifactKey: Guid(a027a91bf7751d543986fa1f90c3bb98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/HealthBars/main-qimg-d315b8fa44874612e5cbc2736b5ff079.png using Guid(a027a91bf7751d543986fa1f90c3bb98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c4b2ca5a628f8a2316b80c1ada8fcdb') in 0.038271 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 405.208008 seconds.
+  path: Assets/UI/Images/746-7462805_transparent-blur-png.png
+  artifactKey: Guid(6cd5ffa070cb6fa42a46e1a1e576b8a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Images/746-7462805_transparent-blur-png.png using Guid(6cd5ffa070cb6fa42a46e1a1e576b8a4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd5dfc3275043d2600fc880ec86c4e95d') in 0.029434 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 2.685133 seconds.
+  path: Assets/UI/Images/Tracking Place Holder Image.png
+  artifactKey: Guid(a9f7f8bcd6fa00a41a6eac0e77d82548) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Images/Tracking Place Holder Image.png using Guid(a9f7f8bcd6fa00a41a6eac0e77d82548) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67f433c5f732374210fe4be8b85c831b') in 0.015918 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 11.089211 seconds.
+  path: Assets/UI/Images/Tracking Place Holder Image.png
+  artifactKey: Guid(a9f7f8bcd6fa00a41a6eac0e77d82548) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Images/Tracking Place Holder Image.png using Guid(a9f7f8bcd6fa00a41a6eac0e77d82548) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '718b8e1221624437ef268ea241f77ee7') in 0.017681 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 113.214479 seconds.
+  path: Assets/UI/Images/Shooting Place Holder.png
+  artifactKey: Guid(c788bdd29cd25404f99fe1e9936b303e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Images/Shooting Place Holder.png using Guid(c788bdd29cd25404f99fe1e9936b303e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea7be69c102a162e4eb647f48a911063') in 0.016051 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.878604 seconds.
+  path: Assets/UI/Images/Shooting Place Holder.png
+  artifactKey: Guid(c788bdd29cd25404f99fe1e9936b303e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Images/Shooting Place Holder.png using Guid(c788bdd29cd25404f99fe1e9936b303e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc5247f07f6c6be92785c0ebe3df90b7') in 0.016111 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 374.421393 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_social.unity
+  artifactKey: Guid(9364bcc102814a5448cd1686e7c00424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_social.unity using Guid(9364bcc102814a5448cd1686e7c00424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48b10058ca1d68238b0cdfd4280f4f8c') in 0.008292 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 81.268802 seconds.
+  path: Assets/Prefab/Card
+  artifactKey: Guid(67aba1ab6333cca48baa606e95fcc79e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Card using Guid(67aba1ab6333cca48baa606e95fcc79e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea1be582cdbc861c3ed90ac0a9c8226e') in 0.008641 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 3.294351 seconds.
+  path: Assets/Prefab/Card/_card_default.prefab
+  artifactKey: Guid(99672b6d67adbf54dad1850d1b71fcdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Card/_card_default.prefab using Guid(99672b6d67adbf54dad1850d1b71fcdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '632467b77dfad8df6d5e22fe15212722') in 0.047899 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4.238556 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd43a638776b66803a4724b5dcbc2c3d1') in 0.004247 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006203 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.22 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Warning: Annotation not found!
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.ProBuilder.EditorUtility:SetGizmoIconEnabled (System.Type,bool) (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs:575)
+UnityEditor.ProBuilder.HierarchyListener:.cctor () (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/HierarchyListener.cs:21)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+[Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs line 575]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.303 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1303ms)
+		BeginReloadAssembly (179ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (66ms)
+		EndReloadAssembly (1076ms)
+			LoadAssemblies (105ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (361ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (60ms)
+			SetupLoadedEditorAssemblies (306ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (75ms)
+				ProcessInitializeOnLoadAttributes (220ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (30ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.36 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5616 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 306.2 MB.
+System memory in use after: 306.4 MB.
+
+Unloading 26 unused Assets to reduce memory usage. Loaded Objects now: 7363.
+Total: 4.389000 ms (FindLiveObjects: 0.584500 ms CreateObjectMapping: 0.183500 ms MarkObjects: 3.409100 ms  DeleteObjects: 0.210800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1080.057926 seconds.
+  path: Assets/Prefab/Card/_cards_modes_template.prefab
+  artifactKey: Guid(6ef64ef50346c3040b550f80332a7b3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Card/_cards_modes_template.prefab using Guid(6ef64ef50346c3040b550f80332a7b3e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22581e21b272670e929afc93ed3c05c6') in 0.105800 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 10.846366 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a23ab29cf2568c5583936833ceea597a') in 0.003849 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 134.752419 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_settings_video.unity
+  artifactKey: Guid(c8715f08d63504e4a8c972439f2ed787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_settings_video.unity using Guid(c8715f08d63504e4a8c972439f2ed787) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b74716a3681145d2f8c811a2acb98eaf') in 0.008600 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 75.866068 seconds.
+  path: Assets/UI/Dark UI/Free/BTN_Line_4PX_Large.png
+  artifactKey: Guid(c5c79f69909c16942b803f137f3ca0eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Dark UI/Free/BTN_Line_4PX_Large.png using Guid(c5c79f69909c16942b803f137f3ca0eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: 'db3059f7164a4d4d224bb35569c6575b') in 0.046741 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/UI/Dark UI/Free/BTN_Line_4PX_Medium.png
+  artifactKey: Guid(b631b747eaea1bb40a188fdced546dd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Dark UI/Free/BTN_Line_4PX_Medium.png using Guid(b631b747eaea1bb40a188fdced546dd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '29d7e244bedaea6282944934325adde4') in 0.035533 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/UI/Dark UI/Free/BTN_Line_4PX_Small.png
+  artifactKey: Guid(a2d6a7e9df0789d4eaf8dbbac47eb1f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Dark UI/Free/BTN_Line_4PX_Small.png using Guid(a2d6a7e9df0789d4eaf8dbbac47eb1f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: 'c30ba8f9d4f0b7e01e0eb7e9d1c67817') in 0.022513 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 313.789262 seconds.
+  path: Assets/Packages/SampleScenes/Menu/Prefabs/EventSystem.prefab
+  artifactKey: Guid(af6c1d82d375aa54c81180d14d62761e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/SampleScenes/Menu/Prefabs/EventSystem.prefab using Guid(af6c1d82d375aa54c81180d14d62761e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97e6f0df23fa80d248fcd58cab93e77b') in 0.011727 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/UI/Beautiful Interface/Demo/Images/Skies/level7.png
+  artifactKey: Guid(13968a0904f9f094097045e0d2554977) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Beautiful Interface/Demo/Images/Skies/level7.png using Guid(13968a0904f9f094097045e0d2554977) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '803a582af1d95b578d6c8a414330968f') in 0.056580 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000155 seconds.
+  path: Assets/UI/Beautiful Interface/Demo/Images/Skies/level1.png
+  artifactKey: Guid(59f1619122cbbe74da863dd8fe67ce40) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Beautiful Interface/Demo/Images/Skies/level1.png using Guid(59f1619122cbbe74da863dd8fe67ce40) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '865268e858e14253740869bfb3dc9dac') in 0.041447 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/UI/Beautiful Interface/Demo/Images/Skies/level3.png
+  artifactKey: Guid(6592a4b31cddfae49b54a83b0a92aada) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Beautiful Interface/Demo/Images/Skies/level3.png using Guid(6592a4b31cddfae49b54a83b0a92aada) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '622ebf9f006d7d66cfa6d9ce4d5b6b86') in 0.042460 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000160 seconds.
+  path: Assets/Packages/Standard Assets/ParticleSystems/Materials/ParticleSmokeVertlit.mat
+  artifactKey: Guid(225843b6084e75440a6ea970a17c93aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/ParticleSystems/Materials/ParticleSmokeVertlit.mat using Guid(225843b6084e75440a6ea970a17c93aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.MaterialEditor:GetPreviewRendererUtility ()
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '6a819594f6ac3d9b1946899dcd07af39') in 0.130576 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000152 seconds.
+  path: Assets/UI/Beautiful Interface/Demo/Images/Skies/level2.png
+  artifactKey: Guid(5d50e5f00f185f843a0f957aace4309f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Beautiful Interface/Demo/Images/Skies/level2.png using Guid(5d50e5f00f185f843a0f957aace4309f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: 'd4da10aa8ff88a32e02f77ffd34f70d4') in 0.049045 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006712 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.53 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Warning: Annotation not found!
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.ProBuilder.EditorUtility:SetGizmoIconEnabled (System.Type,bool) (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs:575)
+UnityEditor.ProBuilder.HierarchyListener:.cctor () (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/HierarchyListener.cs:21)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+[Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs line 575]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.210 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1210ms)
+		BeginReloadAssembly (150ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (10ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (47ms)
+		EndReloadAssembly (1009ms)
+			LoadAssemblies (100ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (383ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (64ms)
+			SetupLoadedEditorAssemblies (309ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (4ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (76ms)
+				ProcessInitializeOnLoadAttributes (221ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (31ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.46 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5563 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 318.9 MB.
+System memory in use after: 319.0 MB.
+
+Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 7515.
+Total: 4.638200 ms (FindLiveObjects: 0.619600 ms CreateObjectMapping: 0.184400 ms MarkObjects: 3.610900 ms  DeleteObjects: 0.222300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 187.790577 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3b602aac2a760eeac4185d72339c324') in 0.034695 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1784.661356 seconds.
+  path: Assets/Packages/Standard Assets/Vehicles/Aircraft/Textures/AircraftPropellerBlur01WhiteAlbedo.png
+  artifactKey: Guid(a01d24876a1472b408ba8e5f0bf3a23f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/Vehicles/Aircraft/Textures/AircraftPropellerBlur01WhiteAlbedo.png using Guid(a01d24876a1472b408ba8e5f0bf3a23f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '7982e48141a969595f275785682ad6e0') in 0.044668 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000203 seconds.
+  path: Assets/Packages/Standard Assets/Vehicles/Aircraft/Textures/AircraftPropellerBlur02WhiteAlbedo.png
+  artifactKey: Guid(5d71e30febe908949a93dafb077b4ec9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/Vehicles/Aircraft/Textures/AircraftPropellerBlur02WhiteAlbedo.png using Guid(5d71e30febe908949a93dafb077b4ec9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '26f16e611d082997e38b8c9ff9eb246e') in 0.021085 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000160 seconds.
+  path: Assets/Packages/Standard Assets/Vehicles/Aircraft/Textures/AircraftPropellerBlur03WhiteAlbedo.png
+  artifactKey: Guid(0d0e2aad9fc8ad04ba15c42753f8b797) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/Vehicles/Aircraft/Textures/AircraftPropellerBlur03WhiteAlbedo.png using Guid(0d0e2aad9fc8ad04ba15c42753f8b797) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '3add3f75ea62c7059acbf546b0d9dcf5') in 0.020675 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000211 seconds.
+  path: Assets/Packages/Standard Assets/Vehicles/Aircraft/Materials/AircraftWingsPropellerBlurWhite.mat
+  artifactKey: Guid(f5a209142cf260f4a96ca747e0e4dadf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/Vehicles/Aircraft/Materials/AircraftWingsPropellerBlurWhite.mat using Guid(f5a209142cf260f4a96ca747e0e4dadf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.MaterialEditor:GetPreviewRendererUtility ()
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: 'f8b4cb044a7605345b5b5cbffacec996') in 0.197724 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 65.690787 seconds.
+  path: Assets/UI/Images/Materials/746-7462805_transparent-blur-png.mat
+  artifactKey: Guid(b79fe99f575e3ea40baa8c4c4ee2dfcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Images/Materials/746-7462805_transparent-blur-png.mat using Guid(b79fe99f575e3ea40baa8c4c4ee2dfcc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.MaterialEditor:GetPreviewRendererUtility ()
+UnityEditor.MaterialEditor:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: 'f0e880b913c184422146a287a9773c94') in 0.029430 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 649.412668 seconds.
+  path: Assets/Packages/Standard Assets/2D/Prefabs/CollisionSlider.prefab
+  artifactKey: Guid(2a71c12ae885e4f80b5144a4652bbeb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/2D/Prefabs/CollisionSlider.prefab using Guid(2a71c12ae885e4f80b5144a4652bbeb4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4698bb5b98e8ac00e50ba10513bd4b71') in 0.015143 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 190.586925 seconds.
+  path: Assets/Packages/Standard Assets/Environment/TerrainAssets/SurfaceTextures/MudRockyAlbedoSpecular.bmp
+  artifactKey: Guid(ef5c51cfa2ce46043a41a376b560c525) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/Environment/TerrainAssets/SurfaceTextures/MudRockyAlbedoSpecular.bmp using Guid(ef5c51cfa2ce46043a41a376b560c525) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '0af5d6332af9394c7e4cbba972c4e018') in 0.032195 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000152 seconds.
+  path: Assets/Packages/Standard Assets/Environment/TerrainAssets/SurfaceTextures/MudRockyNormals.bmp
+  artifactKey: Guid(58a059b07b093a745b47c2191525ddce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Packages/Standard Assets/Environment/TerrainAssets/SurfaceTextures/MudRockyNormals.bmp using Guid(58a059b07b093a745b47c2191525ddce) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+UnityEngine.ScriptableObject:CreateInstance (System.Type)
+UnityEngine.ScriptableObject:CreateInstance<UnityEditor.Texture3DPreview> ()
+UnityEditor.TextureInspector:OnEnable ()
+UnityEditor.Editor:CreateEditorWithContext (UnityEngine.Object[],UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object,System.Type)
+UnityEditor.Editor:CreateEditor (UnityEngine.Object)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+ -> (artifact id: '348902b16ef1a0175476010ecd0db9da') in 0.046319 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1019.438587 seconds.
+  path: Assets/Prefab/Card/Settings.prefab
+  artifactKey: Guid(6ac939d3c7211b84d8c721184831cc1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefab/Card/Settings.prefab using Guid(6ac939d3c7211b84d8c721184831cc1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '793e62778caeb6e96dc862eda68ebe5c') in 0.174715 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 6.074155 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4efb35b282588d2897ef3bef5dd8ed60') in 0.008730 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.095195 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\Jorda\Documents\Unity Projects\aim-trainer\Aim Yard\Library\PackageCache\com.unity.visualscripting@1.6.1\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.34 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Warning: Annotation not found!
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.ProBuilder.EditorUtility:SetGizmoIconEnabled (System.Type,bool) (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs:575)
+UnityEditor.ProBuilder.HierarchyListener:.cctor () (at Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/HierarchyListener.cs:21)
+System.Runtime.CompilerServices.RuntimeHelpers:RunClassConstructor (System.RuntimeTypeHandle)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadAttributes (System.Type[])
+
+[Library/PackageCache/com.unity.probuilder@5.0.3/Editor/EditorCore/EditorUtility.cs line 575]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Unable to allocate new scene culling mask
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene (bool)
+UnityEditor.SceneManagement.EditorSceneManager:NewPreviewScene ()
+UnityEditor.PreviewScene:.ctor (string)
+UnityEditor.PreviewRenderUtility:.ctor ()
+UnityEditor.Texture3DPreview:InitPreviewUtility ()
+UnityEditor.Texture3DPreview:OnEnable ()
+
+[C:\buildslave\unity\build\Editor/Src/SceneManager/EditorSceneManager.cpp line 672]
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.461 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1461ms)
+		BeginReloadAssembly (250ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (36ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (118ms)
+		EndReloadAssembly (1155ms)
+			LoadAssemblies (107ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (371ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (60ms)
+			SetupLoadedEditorAssemblies (428ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (71ms)
+				ProcessInitializeOnLoadAttributes (344ms)
+				ProcessInitializeOnLoadMethodAttributes (5ms)
+				AfterProcessingInitializeOnLoad (2ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (45ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.32 ms, found 4 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5561 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 323.7 MB.
+System memory in use after: 323.9 MB.
+
+Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 7629.
+Total: 4.175900 ms (FindLiveObjects: 0.641400 ms CreateObjectMapping: 0.158100 ms MarkObjects: 3.115100 ms  DeleteObjects: 0.259700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 167.598098 seconds.
+  path: Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_social.unity
+  artifactKey: Guid(9364bcc102814a5448cd1686e7c00424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/UI/Shooter Game User Interface Starter/Shooter User Interface Starter/_scnenes/_social.unity using Guid(9364bcc102814a5448cd1686e7c00424) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8cff76ba19486fcebb0f6efb406f9a2') in 0.150533 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 55.165205 seconds.
+  path: Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity
+  artifactKey: Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/TITLE SCREEN/NewTitlescreen.unity using Guid(06d05588de592614498d80a0b3487efd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a20a87302a5dc137c75ba5723da5716') in 0.008083 seconds 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file
