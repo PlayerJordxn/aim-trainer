@@ -4,6 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
+[System.Serializable]
+public class SettingsData
+{
+        public int[] resolution;
+        public int gameResolution;
+        public int displayMode;
+    public SettingsData (int[] _resolution, int _gameResolution, int _displayMode)
+    {
+        resolution = _resolution;
+        gameResolution = _gameResolution;
+        displayMode = _displayMode;
+    }
+}
+
 public class SettingsManager : MonoBehaviour
 {
 
@@ -29,6 +44,7 @@ public class SettingsManager : MonoBehaviour
         GetDisplayMode();
         GetGameRes();
         saveSettingsButton.onClick.AddListener(SaveSettings);
+        LoadSettings();
         //saveSettings.onClick.AddListener(delegate { SaveSettings(); });
     }
 
@@ -46,18 +62,33 @@ public class SettingsManager : MonoBehaviour
 
         if (convertedResolution[0] == -1 || convertedResolution[1] == -1)
         {
-            Debug.Log("Error converting resolution");
+            Debug.LogError("Error converting resolution");
             return;
         }
         var isFullscreen = Screen.fullScreen;
-        Debug.Log(convertedResolution[0] + " " + convertedResolution[1]);
+        int[] resolutionAndIdx = new int[3] { convertedResolution[0], convertedResolution[1], selectedResolutionIdx };
 
-        QualitySettings.SetQualityLevel(gameResolutionDropDown.value);
-        Screen.SetResolution(convertedResolution[0], convertedResolution[1], isFullscreen);
-        
+        SettingsData data = new SettingsData(resolutionAndIdx, gameResolutionDropDown.value, displayModeDropDown.value);
+        SaveSystem.SaveSettings(data);
 
-        Debug.Log("Game res is now " + QualitySettings.GetQualityLevel() + " res is " + Screen.currentResolution.ToString());
+    }
 
+    public void LoadSettings()
+    {
+        SettingsData data = SaveSystem.LoadSettings();
+        if (data == null)
+        {
+            Debug.LogError("Setting data failed to load or file doesn't exist");
+            return;
+        }
+
+        QualitySettings.SetQualityLevel(data.gameResolution);
+        Screen.SetResolution(data.resolution[0], data.resolution[1], true);
+        Screen.fullScreenMode = (FullScreenMode)data.displayMode;
+
+        gameResolutionDropDown.value = data.gameResolution;
+        resolutionDropDown.value = data.resolution[2];
+        displayModeDropDown.value = data.displayMode;
     }
 
     private int[] ConvertResolution(string resolution)
