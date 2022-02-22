@@ -5,9 +5,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
     public CharacterController cc;
-    public Camera cam;
     public GameObject spine001;
-    [SerializeField] private GameObject[] targets;
 
     //Movement
     [Header("Movement Settings")]
@@ -22,21 +20,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDirection = Vector2.zero;
     private Vector2 mouseDirectionVelocity = Vector2.zero;
     private float rotationX = 0f;
-    public float acceleration = 0f;
-    public float maxJumpTime = 0.3f;
-    public float maxAirAcceleration = 4f;
-    public float minRunSpeed = 7f;
-    public float maxRunSpeed = 9f;
-
-    public bool isRunning = false;
-    public bool isPlaying = false;
-
-    [Header("Audio")]
-    [SerializeField] private AudioClip BeginSfxClip;
-    [SerializeField] private AudioSource BeginSfx;
-
-    [SerializeField] private AudioClip CompleteSfxClip;
-    [SerializeField] private AudioSource CompleteSfx;
     
 
     void Awake()
@@ -55,56 +38,18 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        targets = GameObject.FindGameObjectsWithTag("KillhouseTarget");
         Cursor.lockState = CursorLockMode.Locked;
 
         if (!cc)
             cc = GetComponent<CharacterController>();
 
-        if (!cam)
-            cam = GetComponentInChildren<Camera>();
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            isRunning = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            isRunning = false;
-        }
-
-        if(isRunning && cc.isGrounded)
-        {
-            if(speed < maxRunSpeed)
-            {
-                speed += Time.deltaTime * 50;
-            }
-            else
-            {
-                speed = maxRunSpeed;
-            }
-        }
-        else if (!isRunning)
-        {
-            if (speed > minRunSpeed)
-            {
-                speed -= Time.deltaTime * 50;
-            }
-            
-        }
-
-        if (speed > maxRunSpeed)
-            speed = maxRunSpeed;
-
-        if (speed < minRunSpeed)
-            speed = minRunSpeed;
 
         //>> CAMERA MOVEMENT <<//
         //Input
@@ -146,40 +91,4 @@ public class PlayerController : MonoBehaviour
             verticalMovement = jumpForce;
 
     }
-    
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Start")
-        {
-            for (int i = 0; i < targets.Length; i++)
-            {
-                if (!targets[i].activeSelf)
-                    targets[i].gameObject.SetActive(true);
-            }
-            BeginSfx.PlayOneShot(BeginSfxClip);
-            isPlaying = true;
-            KillhouseManager.instance.timer = 60;
-            KillhouseManager.instance.targetsHit = 0;
-        }
-
-        if (other.gameObject.tag == "End")
-        {
-            CompleteSfx.PlayOneShot(CompleteSfxClip);
-            isPlaying = false;
-            KillhouseManager.instance.finalTimeCompletion = 60f - KillhouseManager.instance.timer;
-
-            for(int i = 0; i < targets.Length; i++)
-            {
-                if(!targets[i].activeSelf)
-                targets[i].gameObject.SetActive(true);
-            }
-            KillhouseManager.instance.finalHeadshotCount = KillhouseManager.instance.headshotHits;
-            KillhouseManager.instance.finalTargetsHit = KillhouseManager.instance.targetsHit;
-            KillhouseManager.instance.targetsHit = 0;
-            KillhouseManager.instance.headshotHits = 0;
-            KillhouseManager.instance.finalAccuracy = KillhouseManager.instance.accuracy;
-        }
-    }
-
 }
