@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gridshot : MonoBehaviour
+public class ObjectPool : MonoBehaviour
 {
-    public static Gridshot instance;
+    public static ObjectPool instance;
 
     //Target Prefab
     [SerializeField] GameObject targetPrefab;
@@ -13,7 +13,7 @@ public class Gridshot : MonoBehaviour
     GameObject[] transformAsGameobjects;
 
     //Transform array
-    public Transform[] spawnLocations = new Transform[25];
+    public Transform[] spawnLocations;
 
     //Queue
     public Queue<GameObject> pool = new Queue<GameObject>();
@@ -37,21 +37,22 @@ public class Gridshot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        spawnLocations = new Transform[20];
+
         //Gathers all spawn locations
         transformAsGameobjects = GameObject.FindGameObjectsWithTag("SpawnLocation");
 
-        for(int t = 0; t < spawnLocations.Length; t++)
+        for (int t = 0; t < spawnLocations.Length; t++)
         {
             //Converts spawn locations from gameobject to transform
             spawnLocations[t] = transformAsGameobjects[t].transform;
         }
 
-        for(int e = 0; e < spawnLocations.Length; e++)
+        for (int e = 0; e < spawnLocations.Length; e++)
         {
             int random = Random.Range(0, spawnLocations.Length);
 
-            if(!storage.Contains(random))
+            if (!storage.Contains(random))
             {
                 //Spawn Gameobject
                 GameObject targetTemp = Instantiate(targetPrefab, spawnLocations[random]);
@@ -66,14 +67,15 @@ public class Gridshot : MonoBehaviour
                 targetTemp.SetActive(false);
             }
             else
+            {
                 e--;
-            
-        }        
+            }
+        }
     }
 
     public GameObject GetTarget()
     {
-        if(pool.Count > 0)
+        if (pool.Count > 0)
         {
             //Random
             int random = Random.Range(0, spawnLocations.Length);
