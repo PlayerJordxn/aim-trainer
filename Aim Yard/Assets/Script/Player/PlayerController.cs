@@ -20,7 +20,17 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDirection = Vector2.zero;
     private Vector2 mouseDirectionVelocity = Vector2.zero;
     private float rotationX = 0f;
-    
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource sandAudioSource;
+    [SerializeField] private AudioClip sandAudioClip;
+
+    [SerializeField] private AudioSource woodAudioSource;
+    [SerializeField] private AudioClip woodAudioClip;
+
+    private bool onSand = false;
+    private bool onWood = false;
+
 
     void Awake()
     {
@@ -47,7 +57,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        WalkingAudio();
         //>> CAMERA MOVEMENT <<//
         //Input
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -87,5 +97,70 @@ public class PlayerController : MonoBehaviour
         if (cc.isGrounded && Input.GetKeyDown(KeyCode.Space))
             verticalMovement = jumpForce;
 
+    }
+
+    void WalkingAudio()
+    {
+        if (cc.velocity.x > 0.1f || cc.velocity.y > 0.1f)
+        {
+            if (onSand && !onWood)
+            {
+                woodAudioSource.PlayOneShot(woodAudioClip);
+            }
+
+            if (onWood && !onSand)
+            {
+                sandAudioSource.PlayOneShot(sandAudioClip);
+
+            }
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Sand"))
+        {
+
+            print("COLLSION SAND");
+            onSand = true;
+            onWood = false;
+        }
+
+        if (collision.collider.CompareTag("Wood"))
+        {
+            print("COLLSION WOOD");
+            onWood = true;
+            onSand = false;
+        }
+    }
+    void OnCollisionStay(Collision collisionInfo)
+    {
+        if (collisionInfo.collider.CompareTag("Sand"))
+        {
+
+            print("COLLSION SAND");
+            onSand = true;
+            onWood = false;
+        }
+
+        if (collisionInfo.collider.CompareTag("Wood"))
+        {
+            print("COLLSION WOOD");
+            onWood = true;
+            onSand = false;
+        }
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        if (other.collider.CompareTag("Sand"))
+        {
+            onSand = false;
+        }
+
+        if (other.collider.CompareTag("Wood"))
+        {
+            onWood = false;
+        }
     }
 }
