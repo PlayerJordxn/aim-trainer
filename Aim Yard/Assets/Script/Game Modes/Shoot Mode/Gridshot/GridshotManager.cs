@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 
@@ -15,24 +16,29 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private GameObject[] playerCharacters = new GameObject[3]; //0 = M4A1; 1 = M16; 2 = Glock;
 
     [Header("Game Settings")]
-    [SerializeField] private int targetCount;
+    private int targetCount;
     private float timer = 0f;
-    private bool isShooting = false;
+    private float Timer
+    {
+        get { return timer; }
+        set { timer = Mathf.Clamp(value, 0f, 60f); }
+    }
     private bool isPlaying = false;
-    private bool glockActive, m16Active, m4a1Active;
 
     [Header("Score")]
     private float currentScore = 0f;
     private float previousScore = 0f;
-    private float scoreMultiplier = 0;
-    private float ScoreMultiplier
-    {
-        get { return scoreMultiplier; }
-        set { scoreMultiplier = Mathf.Clamp(value, 0, 500); }
+    private float scoreBonus = 0;
+    private float ScoreBonus
+    { 
+        get { return scoreBonus; }
+        set { scoreBonus = Mathf.Clamp(value, 0, 500); }
     }
     private float targetScoreValue = 250; 
    
     [Header("Audio")]
+    //Wind
+    [SerializeField] private AudioSource windAudioSource;
     //Current Gun
     [SerializeField] private AudioSource currentGunAudioSource;
     [SerializeField] private AudioClip currentGunAudioClip;
@@ -53,9 +59,8 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private Button playButton;
     [SerializeField] private GameObject canvas;
 
-
-
-    
+    [SerializeField] private TextMeshProUGUI primaryWeaponLoadoutText;
+    [SerializeField] private TextMeshProUGUI secondaryWeaponLoadoutText;
 
     void Awake()
     {
@@ -65,14 +70,7 @@ public class GridshotManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isPlaying = false;
-        
-        for(int i = 0; i < cams.Length; i++)
-        {
-            
-            GameObject.FindGameObjectWithTag("Cam" + i.ToString());
-        }
-       
+        //User Interface 
         if(playButton)
         {
             playButton.onClick.AddListener(delegate { StartGame(); });
@@ -82,13 +80,13 @@ public class GridshotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        print("Playing: " + timer);
         ShootInput();
 
         if (IsPlaying())
         {
-            //Disable Canvas
+            //UnPause wind audio
+            windAudioSource.UnPause();
+            //Disable start screen canvas
             canvas.SetActive(false);
 
             //Timer
@@ -105,45 +103,24 @@ public class GridshotManager : MonoBehaviour
         }
         else
         {
+            //Pause wind audio
+            windAudioSource.Pause();
+            //Enable start screen canvas
             canvas.SetActive(true);
+
         }
 
-        if (timer <= 0)
-            timer = 0f;
-        else if (timer > 60)
-            timer = 60f;
+        
     }
 
     private void ShootInput()
     {
         //Input
         var tapInput = Input.GetKeyDown(KeyCode.Mouse0);
-        var sprayInput = Input.GetButton("Fire1");
         
-        
-
         if (tapInput && IsPlaying())
         {
-            if(glockActive)
-            {
-                Shoot();
-            }
-        }
-
-        if (sprayInput)
-        {
-            isShooting = true;
-            if (IsPlaying())
-            {
-                if (m4a1Active || m16Active)
-                {
-                    Shoot();
-                }
-            }
-        }
-        else
-        {
-            isShooting = false;
+            Shoot();
         }
     }   
     private void Shoot()
@@ -155,28 +132,20 @@ public class GridshotManager : MonoBehaviour
             //Gun Audio Source
             if (currentGunAudioSource != null && currentGunAudioClip != null)
             {
-                if(glockActive)
-                    currentGunAudioSource.PlayOneShot(currentGunAudioClip);
-
-                if (m16Active)
-                    currentGunAudioSource.Play();
-
-                if (m4a1Active)
-                    currentGunAudioSource.Play();
+                currentGunAudioSource.PlayOneShot(currentGunAudioClip);               
             }
 
             //Target Hit
             if (hit.collider.CompareTag("Target"))
             {
                 //Score tracker
-                currentScore = targetScoreValue + scoreMultiplier;
-                scoreMultiplier += 50f;
+                currentScore = targetScoreValue + scoreBonus;
+                //Increase multiplier
+                scoreBonus += 50f;
                 //Return target
                 ObjectPool.instance.ReturnTarget(hit.collider.gameObject);
-                //Reduce target tount
+                //Reduce target count
                 targetCount--;
-                //Increase multiplier
-                scoreMultiplier++;
                 //Audio 
                 targetHitAudioSource.PlayOneShot(targetHitAudioClip);
             }
@@ -184,14 +153,13 @@ public class GridshotManager : MonoBehaviour
             if (!hit.collider.CompareTag("Target"))
             {
                 //Reset multiplier
-                scoreMultiplier = 1;
+                scoreBonus = 0;
             }
         }
     }
 
     public bool IsPlaying()
     {
-        
         if (timer > 0)
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -218,7 +186,8 @@ public class GridshotManager : MonoBehaviour
             mainCamera = cams[_data];
             currentGunAudioSource = m4a1AudioSource;
             currentGunAudioClip = m4a1AudioClip;
-            m4a1Active = true;
+            primaryWeaponLoadoutText.text = "M4A1";
+            secondaryWeaponLoadoutText.text = "EMPTY";
         }
         else if (_data == 1)
         {
@@ -227,21 +196,39 @@ public class GridshotManager : MonoBehaviour
             mainCamera = cams[_data];
             currentGunAudioSource = m16AudioSource;
             currentGunAudioClip = m16AudioClip;
-            m16Active = true;
+            primaryWeaponLoadoutText.text = "M16";
+            secondaryWeaponLoadoutText.text = "EMPTY";
         }
         else
         {
-
             //Load Glock Data
             playerCharacters[_data].SetActive(true);
             mainCamera = cams[_data];
             currentGunAudioSource = glockAudioSource;
             currentGunAudioClip = glockAudioClip;
-            glockActive = true;
+            primaryWeaponLoadoutText.text = "EMPTY";
+            secondaryWeaponLoadoutText.text = "GLOCK";
         }
     }
 
-   
+    private void RoundResult()
+    {
+
+    }
+
+    private void PreviousRoundResult()
+    {
+
+    }
+
+    private void SaveRoundReslut()
+    {
+
+    }
+
+
+
+
 
 
 }
