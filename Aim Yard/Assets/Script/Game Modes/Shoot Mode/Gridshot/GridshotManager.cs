@@ -17,24 +17,20 @@ public class GridshotManager : MonoBehaviour
 
     [Header("Game Settings")]
     private int targetCount;
-    private float timer = 0f;
-    private float Timer
-    {
-        get { return timer; }
-        set { timer = Mathf.Clamp(value, 0f, 60f); }
-    }
+    private float accuracy = 0f;
+    private int currentScore = 0;
+    private int timer = 0;
     private bool isPlaying = false;
 
     [Header("Score")]
-    private float currentScore = 0f;
     private float previousScore = 0f;
-    private float scoreBonus = 0;
-    private float ScoreBonus
-    { 
-        get { return scoreBonus; }
-        set { scoreBonus = Mathf.Clamp(value, 0, 500); }
-    }
-    private float targetScoreValue = 250; 
+    private int scoreBonus = 0;
+    private int targetScoreValue = 100;
+    private bool decrementing = false;
+    private int totalTargetsHit = 0;
+    private int totalShotsFired = 0;
+
+   
    
     [Header("Audio")]
     //Wind
@@ -56,11 +52,20 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private AudioClip targetHitAudioClip;
 
     [Header("User Interface")]
+    [SerializeField] private GameObject crosshair;
+    [SerializeField] private GameObject scoreUI;
+
     [SerializeField] private Button playButton;
     [SerializeField] private GameObject canvas;
 
     [SerializeField] private TextMeshProUGUI primaryWeaponLoadoutText;
     [SerializeField] private TextMeshProUGUI secondaryWeaponLoadoutText;
+
+    [SerializeField] private TextMeshProUGUI accuracyText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI timerText;
+
+
 
     void Awake()
     {
@@ -80,18 +85,26 @@ public class GridshotManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Scoreboard(timer, accuracy, currentScore);
         ShootInput();
 
         if (IsPlaying())
         {
+            //Enable in game score UI
+            scoreUI.SetActive(true);
             //UnPause wind audio
             windAudioSource.UnPause();
             //Disable start screen canvas
             canvas.SetActive(false);
+            //Enable crosshair
+            crosshair.SetActive(true);
 
             //Timer
-            timer -= Time.deltaTime;
-
+            if(!decrementing)
+            {
+                StartCoroutine(GameTimer(1));
+            }
+           
             if (targetCount < 5)
             {
                 //Spawn target
@@ -102,12 +115,15 @@ public class GridshotManager : MonoBehaviour
             }
         }
         else
-        {
+        { 
+            //Disable in game score UI
+            scoreUI.SetActive(false);
             //Pause wind audio
             windAudioSource.Pause();
             //Enable start screen canvas
             canvas.SetActive(true);
-
+            //Disable crosshair
+            crosshair.SetActive(true);
         }
 
         
@@ -129,6 +145,7 @@ public class GridshotManager : MonoBehaviour
 
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out hit, 100f))
         {
+            totalShotsFired++;
             //Gun Audio Source
             if (currentGunAudioSource != null && currentGunAudioClip != null)
             {
@@ -139,15 +156,21 @@ public class GridshotManager : MonoBehaviour
             if (hit.collider.CompareTag("Target"))
             {
                 //Score tracker
-                currentScore = targetScoreValue + scoreBonus;
+                currentScore += targetScoreValue + scoreBonus;
                 //Increase multiplier
-                scoreBonus += 50f;
+                if(scoreBonus < 250)
+                {
+                    scoreBonus += 50;
+                }
+                
                 //Return target
                 ObjectPool.instance.ReturnTarget(hit.collider.gameObject);
                 //Reduce target count
                 targetCount--;
                 //Audio 
                 targetHitAudioSource.PlayOneShot(targetHitAudioClip);
+                //Shots Hit
+                totalTargetsHit++;
             }
 
             if (!hit.collider.CompareTag("Target"))
@@ -174,7 +197,7 @@ public class GridshotManager : MonoBehaviour
 
     private float StartGame()
     {
-        return timer = 60f;
+        return timer = 60;
     }
 
     private void LoadCharacter(int _data)
@@ -209,6 +232,50 @@ public class GridshotManager : MonoBehaviour
             primaryWeaponLoadoutText.text = "EMPTY";
             secondaryWeaponLoadoutText.text = "GLOCK";
         }
+    }
+
+    private void Scoreboard(int _timer, float _accuracy, int _score)
+    {
+        if(timer > 0)
+        {
+            timerText.text = _timer.ToString();
+        }
+        else
+        {
+            timerText.text = "0";
+        }
+
+        if(totalTargetsHit > 0 && totalShotsFired > 0)
+        {
+            _accuracy = (float)totalTargetsHit * 100 / (float)totalShotsFired;
+            var roundAccuracy = Mathf.Round(_accuracy);
+            accuracyText.text = roundAccuracy.ToString();
+
+        }
+        else
+        {
+            accuracyText.text = "0";
+        }
+
+        if(currentScore > 0)
+        {
+            scoreText.text = _score.ToString();
+        }
+        else
+        {
+            scoreText.text = "0";
+
+        }
+
+    }
+
+    private IEnumerator GameTimer(int _wait)
+    {
+        print("CALLED");
+        decrementing = true;
+        yield return new WaitForSecondsRealtime(_wait);
+        timer--;
+        decrementing = false;
     }
 
     private void RoundResult()
