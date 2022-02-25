@@ -53,17 +53,26 @@ public class GridshotManager : MonoBehaviour
 
     [Header("User Interface")]
     [SerializeField] private GameObject crosshair;
-    [SerializeField] private GameObject scoreUI;
-
-    [SerializeField] private Button playButton;
+    //Start canvas
     [SerializeField] private GameObject canvas;
-
+    //Loadout text
     [SerializeField] private TextMeshProUGUI primaryWeaponLoadoutText;
     [SerializeField] private TextMeshProUGUI secondaryWeaponLoadoutText;
-
+    //Score UI
+    [SerializeField] private GameObject scoreUI;
     [SerializeField] private TextMeshProUGUI accuracyText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timerText;
+    //Start screen buttns
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button statisticsButton;
+    [SerializeField] private Button loadoutButton;
+
+    [SerializeField] private GameObject statisticMenu;
+    [SerializeField] private GameObject loadoutMenu;
+    [SerializeField] private GameObject settingsMenu;
+
 
 
 
@@ -79,6 +88,21 @@ public class GridshotManager : MonoBehaviour
         if(playButton)
         {
             playButton.onClick.AddListener(delegate { StartGame(); });
+        }
+
+        if (statisticsButton)
+        {
+            statisticsButton.onClick.AddListener(delegate { StatisticsMenu(statisticMenu, settingsMenu, loadoutMenu); });
+        }
+
+        if (settingsButton)
+        {
+            settingsButton.onClick.AddListener(delegate { SettingssMenu(statisticMenu, settingsMenu, loadoutMenu); });
+        }
+
+        if (loadoutButton)
+        {
+            loadoutButton.onClick.AddListener(delegate { LoadoutMenu(statisticMenu, settingsMenu, loadoutMenu); });
         }
     }
 
@@ -181,6 +205,60 @@ public class GridshotManager : MonoBehaviour
         }
     }
 
+    private void StatisticsMenu(GameObject _statisticsMenu, GameObject _settingsMenu, GameObject _loadoutMenu)
+    {
+        if(!_statisticsMenu.activeSelf)
+        {
+            _statisticsMenu.SetActive(true);
+        }
+
+        if(_loadoutMenu.activeSelf)
+        {
+            _loadoutMenu.SetActive(false);
+        }
+
+        if(_settingsMenu.activeSelf)
+        {
+            _settingsMenu.SetActive(false);
+        }
+    }
+
+    private void SettingssMenu(GameObject _statisticsMenu, GameObject _settingsMenu, GameObject _loadoutMenu)
+    {
+        if (_statisticsMenu.activeSelf)
+        {
+            _statisticsMenu.SetActive(false);
+        }
+
+        if (_loadoutMenu.activeSelf)
+        {
+            _loadoutMenu.SetActive(false);
+        }
+
+        if (!_settingsMenu.activeSelf)
+        {
+            _settingsMenu.SetActive(true);
+        }
+    }
+
+    private void LoadoutMenu(GameObject _statisticsMenu, GameObject _settingsMenu, GameObject _loadoutMenu)
+    {
+        if (_statisticsMenu.activeSelf)
+        {
+            _statisticsMenu.SetActive(false);
+        }
+
+        if (!_loadoutMenu.activeSelf)
+        {
+            _loadoutMenu.SetActive(true);
+        }
+
+        if (_settingsMenu.activeSelf)
+        {
+            _settingsMenu.SetActive(false);
+        }
+    }
+
     public bool IsPlaying()
     {
         if (timer > 0)
@@ -271,7 +349,6 @@ public class GridshotManager : MonoBehaviour
 
     private IEnumerator GameTimer(int _wait)
     {
-        print("CALLED");
         decrementing = true;
         yield return new WaitForSecondsRealtime(_wait);
         timer--;

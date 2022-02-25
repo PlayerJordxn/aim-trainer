@@ -1,11 +1,15 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
-    public CharacterController cc;
-    public GameObject spine001;
+    private CharacterController cc;
+    [SerializeField] private GameObject spine001;
+    [SerializeField] private Transform groundCheck;
+
 
     //Movement
     [Header("Movement Settings")]
@@ -28,8 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource woodAudioSource;
     [SerializeField] private AudioClip woodAudioClip;
 
-    private bool onSand = false;
-    private bool onWood = false;
+    
 
 
     void Awake()
@@ -52,12 +55,15 @@ public class PlayerController : MonoBehaviour
 
         if (!cc)
             cc = GetComponent<CharacterController>();
+
+        if (!groundCheck)
+            groundCheck = GetComponentInChildren<Transform>().Find("GroundCheck");
     }
 
     // Update is called once per frame
     void Update()
     {
-        WalkingAudio();
+        
         //>> CAMERA MOVEMENT <<//
         //Input
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -97,70 +103,55 @@ public class PlayerController : MonoBehaviour
         if (cc.isGrounded && Input.GetKeyDown(KeyCode.Space))
             verticalMovement = jumpForce;
 
+        if (IsWalking())
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(groundCheck.transform.position, groundCheck.transform.TransformDirection(-Vector3.up), out hit, 1f))
+            {
+                if(hit.collider.tag == "Sand")
+                {
+                    /*
+                    bool playingAudio = false;
+                    if (!playingAudio)
+                        StartCoroutine(WalkingAudio(.2f, sandAudioSource, sandAudioClip, playingAudio));
+                    */
+                }
+
+                if (hit.collider.tag == "Wood")
+                {
+                    /*
+                    bool playingAudio = false;
+                    if (!playingAudio)
+                        StartCoroutine(WalkingAudio(.2f, woodAudioSource, woodAudioClip, playingAudio));
+                    */
+                }
+            }
+        }
+
     }
 
-    void WalkingAudio()
+    IEnumerator WalkingAudio(float _wait, AudioSource _source, AudioClip _clip, bool _playingAudio)
+    {
+         _playingAudio = true;
+         yield return new WaitForSecondsRealtime(_wait);
+        _source.Play();
+        _playingAudio = false;
+
+
+    }
+
+    private bool IsWalking()
     {
         if (cc.velocity.x > 0.1f || cc.velocity.y > 0.1f)
         {
-            if (onSand && !onWood)
-            {
-                woodAudioSource.PlayOneShot(woodAudioClip);
-            }
-
-            if (onWood && !onSand)
-            {
-                sandAudioSource.PlayOneShot(sandAudioClip);
-
-            }
+            return true;
         }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Sand"))
+        else
         {
-
-            print("COLLSION SAND");
-            onSand = true;
-            onWood = false;
+            return false;
         }
 
-        if (collision.collider.CompareTag("Wood"))
-        {
-            print("COLLSION WOOD");
-            onWood = true;
-            onSand = false;
-        }
-    }
-    void OnCollisionStay(Collision collisionInfo)
-    {
-        if (collisionInfo.collider.CompareTag("Sand"))
-        {
-
-            print("COLLSION SAND");
-            onSand = true;
-            onWood = false;
-        }
-
-        if (collisionInfo.collider.CompareTag("Wood"))
-        {
-            print("COLLSION WOOD");
-            onWood = true;
-            onSand = false;
-        }
-    }
-
-    void OnCollisionExit(Collision other)
-    {
-        if (other.collider.CompareTag("Sand"))
-        {
-            onSand = false;
-        }
-
-        if (other.collider.CompareTag("Wood"))
-        {
-            onWood = false;
-        }
+        
     }
 }
