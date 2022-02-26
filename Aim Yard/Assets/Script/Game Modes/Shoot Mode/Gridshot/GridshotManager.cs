@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.VFX;
 
 
 
@@ -72,6 +73,13 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private GameObject statisticMenu;
     [SerializeField] private GameObject loadoutMenu;
     [SerializeField] private GameObject settingsMenu;
+
+    [Header("VFX")]
+    [SerializeField] private VisualEffect[] muzzleFlashes = new VisualEffect[3]; //0 = M4A1; 1 = M16; 2 = Glock;
+    [SerializeField] private VisualEffect currentMuzzleFlash;
+    [SerializeField] private VisualEffect impactParticle;
+
+
 
 
 
@@ -165,6 +173,8 @@ public class GridshotManager : MonoBehaviour
     }   
     private void Shoot()
     {
+        currentMuzzleFlash.Play();
+
         RaycastHit hit;
 
         if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.TransformDirection(Vector3.forward), out hit, 100f))
@@ -174,6 +184,13 @@ public class GridshotManager : MonoBehaviour
             if (currentGunAudioSource != null && currentGunAudioClip != null)
             {
                 currentGunAudioSource.PlayOneShot(currentGunAudioClip);               
+            }
+
+            if(hit.collider.tag != null)
+            {
+                impactParticle.transform.position = hit.collider.transform.position;
+                impactParticle.transform.rotation = Quaternion.LookRotation(hit.normal);
+                impactParticle.Play();
             }
 
             //Target Hit
@@ -299,6 +316,7 @@ public class GridshotManager : MonoBehaviour
             currentGunAudioClip = m16AudioClip;
             primaryWeaponLoadoutText.text = "M16";
             secondaryWeaponLoadoutText.text = "EMPTY";
+            currentMuzzleFlash = muzzleFlashes[_data];
         }
         else
         {

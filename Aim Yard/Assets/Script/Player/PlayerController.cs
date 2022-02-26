@@ -5,9 +5,8 @@ using System.Collections.Generic;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance;
     private CharacterController cc;
-    [SerializeField] private GameObject spine001;
+    [SerializeField] private Transform spine001;
     [SerializeField] private Transform groundCheck;
 
 
@@ -32,22 +31,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource woodAudioSource;
     [SerializeField] private AudioClip woodAudioClip;
 
-    
-
-
-    void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if(instance != null)
-        {
-            Destroy(this);
-        }
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +41,8 @@ public class PlayerController : MonoBehaviour
 
         if (!groundCheck)
             groundCheck = GetComponentInChildren<Transform>().Find("GroundCheck");
+
+ 
     }
 
     // Update is called once per frame
