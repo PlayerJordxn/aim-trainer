@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.VFX;
+using UnityEngine.Events;
+
 
 
 
@@ -15,6 +18,7 @@ public class GridshotManager : MonoBehaviour
 
     [Header("Characters")]
     [SerializeField] private GameObject[] playerCharacters = new GameObject[3]; //0 = M4A1; 1 = M16; 2 = Glock;
+    public PlayerController playerController;
 
     [Header("Game Settings")]
     private int targetCount;
@@ -31,9 +35,13 @@ public class GridshotManager : MonoBehaviour
     private int totalTargetsHit = 0;
     private int totalShotsFired = 0;
 
-   
+    [Header("Unity Action")]
+    public Action onCountdownBegin;
+
    
     [Header("Audio")]
+    //Countdown 
+    [SerializeField] private AudioSource BeepSoundSource;
     //Wind
     [SerializeField] private AudioSource windAudioSource;
     //Current Gun
@@ -54,108 +62,82 @@ public class GridshotManager : MonoBehaviour
 
     [Header("User Interface")]
     [SerializeField] private GameObject crosshair;
-    //Start canvas
-    [SerializeField] private GameObject canvas;
-    //Loadout text
-    [SerializeField] private TextMeshProUGUI primaryWeaponLoadoutText;
-    [SerializeField] private TextMeshProUGUI secondaryWeaponLoadoutText;
     //Score UI
     [SerializeField] private GameObject scoreUI;
     [SerializeField] private TextMeshProUGUI accuracyText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timerText;
-    //Start screen buttns
-    [SerializeField] private Button playButton;
-    [SerializeField] private Button settingsButton;
-    [SerializeField] private Button statisticsButton;
-    [SerializeField] private Button loadoutButton;
-
-    [SerializeField] private GameObject statisticMenu;
-    [SerializeField] private GameObject loadoutMenu;
-    [SerializeField] private GameObject settingsMenu;
 
     [Header("VFX")]
     [SerializeField] private VisualEffect[] muzzleFlashes = new VisualEffect[3]; //0 = M4A1; 1 = M16; 2 = Glock;
     [SerializeField] private VisualEffect currentMuzzleFlash;
     [SerializeField] private VisualEffect impactParticle;
 
+    [Header("Countdown Variables")]
+    [SerializeField] private RectTransform[] countdownCircles = new RectTransform[3];
+    [SerializeField] private TextMeshProUGUI shootToStartText;
+    [SerializeField] private TextMeshProUGUI countdownText;
+    private int countdown = 5;
+    private bool countdownStartInitiated = false;
+    [SerializeField] private GameObject countdownParent;
 
-
-
-
-
-    void Awake()
+    private void Awake()
     {
         //PlayerPrefs.GetInt("Character")
         LoadCharacter(1);
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        //User Interface 
-        if(playButton)
-        {
-            playButton.onClick.AddListener(delegate { StartGame(); });
-        }
-
-        if (statisticsButton)
-        {
-            statisticsButton.onClick.AddListener(delegate { StatisticsMenu(statisticMenu, settingsMenu, loadoutMenu); });
-        }
-
-        if (settingsButton)
-        {
-            settingsButton.onClick.AddListener(delegate { SettingssMenu(statisticMenu, settingsMenu, loadoutMenu); });
-        }
-
-        if (loadoutButton)
-        {
-            loadoutButton.onClick.AddListener(delegate { LoadoutMenu(statisticMenu, settingsMenu, loadoutMenu); });
-        }
+        playerController = FindObjectOfType<PlayerController>();
     }
+    // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
     {
-        Scoreboard(timer, accuracy, currentScore);
-        ShootInput();
+        ScoreboardText(timer, accuracy, currentScore);      //Scorboard text
+        ShootInput();                                       //Shoot
+
+        //Update countdown text
+        countdownText.text = countdownStartInitiated ? countdownText.text = countdown.ToString() : countdownText.text = "5";
+
+        if (onCountdownBegin != null)                       //Check for listener
+        { 
+            onCountdownBegin.Invoke();
+        }
 
         if (IsPlaying())
         {
-            //Enable in game score UI
-            scoreUI.SetActive(true);
-            //UnPause wind audio
-            windAudioSource.UnPause();
-            //Disable start screen canvas
-            canvas.SetActive(false);
-            //Enable crosshair
-            crosshair.SetActive(true);
-
-            //Timer
-            if(!decrementing)
+            playerController.enabled = true;                //Enable player movement + look
+            shootToStartText.gameObject.SetActive(false);   //Enable shoot to start text
+            scoreUI.SetActive(true);                        //Enable score UI
+            windAudioSource.UnPause();                      //Play wind audio
+            crosshair.SetActive(true);                      //Enable crosshair
+            countdownStartInitiated = false;                //Determins if countdown start
+            if (!decrementing)
             {
-                StartCoroutine(GameTimer(1));
+                StartCoroutine(GameTimer(1));//Game timer
             }
            
             if (targetCount < 5)
             {
-                //Spawn target
-                ObjectPool.instance.GetTarget();
-
-                //Add to count
-                targetCount++;
+                ObjectPool.instance.GetTarget();    //Get target
+                targetCount++;                      //Increment target count
             }
         }
         else
-        { 
-            //Disable in game score UI
-            scoreUI.SetActive(false);
-            //Pause wind audio
-            windAudioSource.Pause();
-            //Enable start screen canvas
-            canvas.SetActive(true);
-            //Disable crosshair
-            crosshair.SetActive(true);
+        {
+            if(!countdownStartInitiated)
+                countdown = 5;                              //Reset countdown
+            playerController.enabled = false;               //Disable player movement + look
+            countdownText.text = countdown.ToString();      //Update countdown text
+            shootToStartText.gameObject.SetActive(true);    //Enable text
+            scoreUI.SetActive(false);                       //Disable in game score UI
+            windAudioSource.Pause();                        //Pause wind audio
+            crosshair.SetActive(false);                     //Disable crosshair
+            EnableCountdown();
+            
         }
 
         
@@ -164,13 +146,66 @@ public class GridshotManager : MonoBehaviour
     private void ShootInput()
     {
         //Input
-        var tapInput = Input.GetKeyDown(KeyCode.Mouse0);
-        
+        bool tapInput = Input.GetKeyDown(KeyCode.Mouse0);
         if (tapInput && IsPlaying())
         {
             Shoot();
         }
     }   
+
+    private void EnableCountdown()
+    {
+        //Input
+        bool enableGameInput = Input.GetKeyDown(KeyCode.Mouse0);
+        if (enableGameInput && !countdownStartInitiated)
+        {
+            countdownStartInitiated = true;
+            countdownParent.SetActive(true);
+            countdownText.gameObject.SetActive(true);
+            onCountdownBegin += RotateCircles;
+            StartCoroutine(StartCountdown(1f));
+        }
+    }
+
+    IEnumerator StartCountdown(float _wait)
+    {
+        onCountdownBegin += RotateCircles;
+        BeepSoundSource.Play();
+        yield return new WaitForSecondsRealtime(_wait);
+        countdown--;
+        BeepSoundSource.Play();
+        yield return new WaitForSecondsRealtime(_wait);
+        countdown--;
+        BeepSoundSource.Play();
+        yield return new WaitForSecondsRealtime(_wait);
+        countdown--;
+        BeepSoundSource.Play();
+        yield return new WaitForSecondsRealtime(_wait);
+        countdown--;
+        BeepSoundSource.Play();
+        yield return new WaitForSecondsRealtime(_wait);
+        countdown--;
+        BeepSoundSource.Play();
+
+        //Disable countdown
+        countdownParent.SetActive(false);
+        //Enable score UI
+        scoreUI.gameObject.SetActive(true);
+        //Start game
+        timer = 60;
+        //Remove listener
+        onCountdownBegin -= RotateCircles;
+        
+    }
+
+    private void RotateCircles()
+    {
+        float speed = 10f;
+        countdownCircles[0].transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
+        countdownCircles[1].transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
+        countdownCircles[2].transform.Rotate(new Vector3(0, 0, speed * Time.deltaTime));
+
+    }
     private void Shoot()
     {
         currentMuzzleFlash.Play();
@@ -185,36 +220,19 @@ public class GridshotManager : MonoBehaviour
             {
                 currentGunAudioSource.PlayOneShot(currentGunAudioClip);               
             }
-
-            if(hit.collider.tag != null)
+            //Impact Particle
+            if(hit.collider != null)
             {
-                impactParticle.transform.position = hit.collider.transform.position;
+                impactParticle.transform.position = hit.point;
                 impactParticle.transform.rotation = Quaternion.LookRotation(hit.normal);
                 impactParticle.Play();
             }
 
-            //Target Hit
             if (hit.collider.CompareTag("Target"))
             {
-                //Score tracker
-                currentScore += targetScoreValue + scoreBonus;
-                //Increase multiplier
-                if(scoreBonus < 250)
-                {
-                    scoreBonus += 50;
-                }
-                
-                //Return target
-                ObjectPool.instance.ReturnTarget(hit.collider.gameObject);
-                //Reduce target count
-                targetCount--;
-                //Audio 
-                targetHitAudioSource.PlayOneShot(targetHitAudioClip);
-                //Shots Hit
-                totalTargetsHit++;
+                TargetHit(hit);
             }
-
-            if (!hit.collider.CompareTag("Target"))
+            else
             {
                 //Reset multiplier
                 scoreBonus = 0;
@@ -222,61 +240,23 @@ public class GridshotManager : MonoBehaviour
         }
     }
 
-    private void StatisticsMenu(GameObject _statisticsMenu, GameObject _settingsMenu, GameObject _loadoutMenu)
+    public void TargetHit(RaycastHit _hit)
     {
-        if(!_statisticsMenu.activeSelf)
-        {
-            _statisticsMenu.SetActive(true);
-        }
-
-        if(_loadoutMenu.activeSelf)
-        {
-            _loadoutMenu.SetActive(false);
-        }
-
-        if(_settingsMenu.activeSelf)
-        {
-            _settingsMenu.SetActive(false);
-        }
+        //Score tracker
+        currentScore += targetScoreValue + scoreBonus;
+        //Increase multiplier
+        scoreBonus = scoreBonus < 250 ? scoreBonus += 50 : scoreBonus = 0;
+        //Return target
+        ObjectPool.instance.ReturnTarget(_hit.collider.gameObject);
+        //Reduce target count
+        targetCount--;
+        //Audio 
+        targetHitAudioSource.PlayOneShot(targetHitAudioClip);
+        //Shots Hit
+        totalTargetsHit++;
     }
 
-    private void SettingssMenu(GameObject _statisticsMenu, GameObject _settingsMenu, GameObject _loadoutMenu)
-    {
-        if (_statisticsMenu.activeSelf)
-        {
-            _statisticsMenu.SetActive(false);
-        }
-
-        if (_loadoutMenu.activeSelf)
-        {
-            _loadoutMenu.SetActive(false);
-        }
-
-        if (!_settingsMenu.activeSelf)
-        {
-            _settingsMenu.SetActive(true);
-        }
-    }
-
-    private void LoadoutMenu(GameObject _statisticsMenu, GameObject _settingsMenu, GameObject _loadoutMenu)
-    {
-        if (_statisticsMenu.activeSelf)
-        {
-            _statisticsMenu.SetActive(false);
-        }
-
-        if (!_loadoutMenu.activeSelf)
-        {
-            _loadoutMenu.SetActive(true);
-        }
-
-        if (_settingsMenu.activeSelf)
-        {
-            _settingsMenu.SetActive(false);
-        }
-    }
-
-    public bool IsPlaying()
+    private bool IsPlaying()
     {
         if (timer > 0)
         {
@@ -304,8 +284,8 @@ public class GridshotManager : MonoBehaviour
             mainCamera = cams[_data];
             currentGunAudioSource = m4a1AudioSource;
             currentGunAudioClip = m4a1AudioClip;
-            primaryWeaponLoadoutText.text = "M4A1";
-            secondaryWeaponLoadoutText.text = "EMPTY";
+            currentMuzzleFlash = muzzleFlashes[_data];
+
         }
         else if (_data == 1)
         {
@@ -314,8 +294,6 @@ public class GridshotManager : MonoBehaviour
             mainCamera = cams[_data];
             currentGunAudioSource = m16AudioSource;
             currentGunAudioClip = m16AudioClip;
-            primaryWeaponLoadoutText.text = "M16";
-            secondaryWeaponLoadoutText.text = "EMPTY";
             currentMuzzleFlash = muzzleFlashes[_data];
         }
         else
@@ -325,44 +303,22 @@ public class GridshotManager : MonoBehaviour
             mainCamera = cams[_data];
             currentGunAudioSource = glockAudioSource;
             currentGunAudioClip = glockAudioClip;
-            primaryWeaponLoadoutText.text = "EMPTY";
-            secondaryWeaponLoadoutText.text = "GLOCK";
+            currentMuzzleFlash = muzzleFlashes[_data];
         }
     }
 
-    private void Scoreboard(int _timer, float _accuracy, int _score)
+    private void ScoreboardText(int _timer, float _accuracy, int _score)
     {
-        if(timer > 0)
-        {
-            timerText.text = _timer.ToString();
-        }
-        else
-        {
-            timerText.text = "0";
-        }
-
-        if(totalTargetsHit > 0 && totalShotsFired > 0)
-        {
-            _accuracy = (float)totalTargetsHit * 100 / (float)totalShotsFired;
-            var roundAccuracy = Mathf.Round(_accuracy);
-            accuracyText.text = roundAccuracy.ToString();
-
-        }
-        else
-        {
-            accuracyText.text = "0";
-        }
-
-        if(currentScore > 0)
-        {
-            scoreText.text = _score.ToString();
-        }
-        else
-        {
-            scoreText.text = "0";
-
-        }
-
+        //Accuracy calculation + round
+        _accuracy = (float)totalTargetsHit * 100 / (float)totalShotsFired;
+        var roundAccuracy = Mathf.Round(_accuracy);
+        
+        //Set accuracy text
+        accuracyText.text = totalTargetsHit > 0 && totalShotsFired > 0 ? accuracyText.text = roundAccuracy.ToString() : accuracyText.text = "0";
+        //Set timer text
+        timerText.text = _timer > 0 ? timerText.text = _timer.ToString() : timerText.text = "0";
+        //Set Score Text
+        scoreText.text = _score > 0 ? scoreText.text = _score.ToString() : scoreText.text = "0";
     }
 
     private IEnumerator GameTimer(int _wait)
@@ -387,12 +343,6 @@ public class GridshotManager : MonoBehaviour
     {
 
     }
-
-
-
-
-
-
 }
    
 
