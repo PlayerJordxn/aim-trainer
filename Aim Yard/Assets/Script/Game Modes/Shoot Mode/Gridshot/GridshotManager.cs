@@ -26,6 +26,7 @@ public class GridshotManager : MonoBehaviour
     private int currentScore = 0;
     private int timer = 0;
     private bool isPlaying = false;
+    private bool roundEnd;
 
     [Header("Score")]
     private float previousScore = 0f;
@@ -36,9 +37,9 @@ public class GridshotManager : MonoBehaviour
     private int totalShotsFired = 0;
 
     [Header("Unity Action")]
-    public Action onCountdownBegin;
+    private Action onCountdownBegin;
+    private Action onRoundEnd;
 
-   
     [Header("Audio")]
     //Countdown 
     [SerializeField] private AudioSource BeepSoundSource;
@@ -63,7 +64,12 @@ public class GridshotManager : MonoBehaviour
     [Header("User Interface")]
     [SerializeField] private GameObject crosshair;
     //Score UI
+    [SerializeField] private GameObject roundResultsParent;
+    [SerializeField] private Button exitRoundResultsButton;
+
+
     [SerializeField] private GameObject scoreUI;
+
     [SerializeField] private TextMeshProUGUI accuracyText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timerText;
@@ -87,25 +93,29 @@ public class GridshotManager : MonoBehaviour
         LoadCharacter(1);
     }
 
+    // Start is called before the first frame update
     private void Start()
     {
+        if(exitRoundResultsButton)
+        {
+            exitRoundResultsButton.onClick.AddListener(delegate { DisableRoundResults(); });
+        }
+
         playerController = FindObjectOfType<PlayerController>();
+        roundEnd = false;
     }
-    // Start is called before the first frame update
+    
 
     // Update is called once per frame
     void Update()
     {
         ScoreboardText(timer, accuracy, currentScore);      //Scorboard text
         ShootInput();                                       //Shoot
-
+        EventListeners();
         //Update countdown text
         countdownText.text = countdownStartInitiated ? countdownText.text = countdown.ToString() : countdownText.text = "5";
 
-        if (onCountdownBegin != null)                       //Check for listener
-        { 
-            onCountdownBegin.Invoke();
-        }
+        
 
         if (IsPlaying())
         {
@@ -128,8 +138,16 @@ public class GridshotManager : MonoBehaviour
         }
         else
         {
-            if(!countdownStartInitiated)
+            if(roundEnd)
+            {
+                onRoundEnd += DisplayRoundResults;
+                onRoundEnd = DisplayRoundResults;
+                roundEnd = false;
+            }
+            if (!countdownStartInitiated)
+            {
                 countdown = 5;                              //Reset countdown
+            }
             playerController.enabled = false;               //Disable player movement + look
             countdownText.text = countdown.ToString();      //Update countdown text
             shootToStartText.gameObject.SetActive(true);    //Enable text
@@ -137,10 +155,29 @@ public class GridshotManager : MonoBehaviour
             windAudioSource.Pause();                        //Pause wind audio
             crosshair.SetActive(false);                     //Disable crosshair
             EnableCountdown();
-            
+        }
+    }
+
+    public void EventListeners()
+    {
+        if (onCountdownBegin != null)                       //Check for listener
+        {
+            onCountdownBegin.Invoke();
         }
 
-        
+        if (onRoundEnd != null)
+        {
+            onRoundEnd.Invoke();
+        }
+    }
+
+    public void DisableRoundResults()
+    {
+        print("Button Pressed");
+        roundEnd = false;
+        onRoundEnd -= DisplayRoundResults;
+        roundResultsParent.SetActive(false);
+
     }
 
     private void ShootInput()
@@ -157,7 +194,7 @@ public class GridshotManager : MonoBehaviour
     {
         //Input
         bool enableGameInput = Input.GetKeyDown(KeyCode.Mouse0);
-        if (enableGameInput && !countdownStartInitiated)
+        if (enableGameInput && !countdownStartInitiated && !roundResultsParent.activeSelf)
         {
             countdownStartInitiated = true;
             countdownParent.SetActive(true);
@@ -187,15 +224,11 @@ public class GridshotManager : MonoBehaviour
         countdown--;
         BeepSoundSource.Play();
 
-        //Disable countdown
-        countdownParent.SetActive(false);
-        //Enable score UI
-        scoreUI.gameObject.SetActive(true);
-        //Start game
-        timer = 60;
-        //Remove listener
-        onCountdownBegin -= RotateCircles;
-        
+        countdownParent.SetActive(false);               //Disable countdown
+        scoreUI.gameObject.SetActive(true);             //Enable score UI
+        timer = 60;                                     //Start game
+        onCountdownBegin -= RotateCircles;              //Remove listener
+
     }
 
     private void RotateCircles()
@@ -240,12 +273,20 @@ public class GridshotManager : MonoBehaviour
         }
     }
 
+    public void DisplayRoundResults()
+    {
+        roundResultsParent.SetActive(true);
+    }
+
     public void TargetHit(RaycastHit _hit)
     {
         //Score tracker
         currentScore += targetScoreValue + scoreBonus;
         //Increase multiplier
-        scoreBonus = scoreBonus < 250 ? scoreBonus += 50 : scoreBonus = 0;
+        if(scoreBonus < 250)
+        {
+            scoreBonus += 50;
+        }
         //Return target
         ObjectPool.instance.ReturnTarget(_hit.collider.gameObject);
         //Reduce target count
@@ -326,17 +367,11 @@ public class GridshotManager : MonoBehaviour
         decrementing = true;
         yield return new WaitForSecondsRealtime(_wait);
         timer--;
+        if(timer == 1)
+        {
+            roundEnd = true;
+        }
         decrementing = false;
-    }
-
-    private void RoundResult()
-    {
-
-    }
-
-    private void PreviousRoundResult()
-    {
-
     }
 
     private void SaveRoundReslut()
