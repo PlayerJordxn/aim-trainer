@@ -9,12 +9,12 @@ using TMPro;
 public class SettingsData
 {
         public int[] resolution;
-        public int gameResolution;
+        public int qualityLevel;
         public int displayMode;
-    public SettingsData (int[] _resolution, int _gameResolution, int _displayMode)
+    public SettingsData (int[] _resolution, int _qualityLevel, int _displayMode)
     {
         resolution = _resolution;
-        gameResolution = _gameResolution;
+        qualityLevel = _qualityLevel;
         displayMode = _displayMode;
     }
 }
@@ -22,33 +22,26 @@ public class SettingsData
 public class SettingsManager : MonoBehaviour
 {
 
-    //[SerializeField] private Camera gameCamera;
     [SerializeField] private Button saveSettingsButton;
+    [SerializeField] private Button loadSettingsButton;
 
-    [SerializeField] private TMP_Dropdown gameResolutionDropDown;
-    [SerializeField] private TMP_Dropdown aspectRatioDropDown;
+    [SerializeField] private TMP_Dropdown qualityLevelDropDown;
     [SerializeField] private TMP_Dropdown displayModeDropDown;
     [SerializeField] private TMP_Dropdown resolutionDropDown;
 
     Resolution[] resolutions;
-    List<string> gameResolutions;
-    bool displayMode;
+    List<string> qualityLevels;
 
-
-    //[SerializeField] private Button saveSettings;
-
-    // Start is called before the first frame update
     void Start()
     {
         GetResolutions();
         GetDisplayMode();
-        GetGameRes();
+        GetQualityLevel();
         saveSettingsButton.onClick.AddListener(SaveSettings);
+        loadSettingsButton.onClick.AddListener(LoadSettings);
         LoadSettings();
-        //saveSettings.onClick.AddListener(delegate { SaveSettings(); });
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -68,7 +61,7 @@ public class SettingsManager : MonoBehaviour
         var isFullscreen = Screen.fullScreen;
         int[] resolutionAndIdx = new int[3] { convertedResolution[0], convertedResolution[1], selectedResolutionIdx };
 
-        SettingsData data = new SettingsData(resolutionAndIdx, gameResolutionDropDown.value, displayModeDropDown.value);
+        SettingsData data = new SettingsData(resolutionAndIdx, qualityLevelDropDown.value, displayModeDropDown.value);
         SaveSystem.SaveSettings(data);
 
     }
@@ -82,11 +75,11 @@ public class SettingsManager : MonoBehaviour
             return;
         }
 
-        QualitySettings.SetQualityLevel(data.gameResolution);
+        QualitySettings.SetQualityLevel(data.qualityLevel);
         Screen.SetResolution(data.resolution[0], data.resolution[1], true);
         Screen.fullScreenMode = (FullScreenMode)data.displayMode;
 
-        gameResolutionDropDown.value = data.gameResolution;
+        qualityLevelDropDown.value = data.qualityLevel;
         resolutionDropDown.value = data.resolution[2];
         displayModeDropDown.value = data.displayMode;
     }
@@ -111,31 +104,21 @@ public class SettingsManager : MonoBehaviour
         return results;
     }
 
-    //putting a pin in this one
-    /*
-    private void GetAspectRatios()
-    {
-        var ar = gameCamera.aspect;
-        Debug.Log(ar + " aspect ratio");
-    }
-    */
-
     private void GetDisplayMode()
     {
-        displayMode = Screen.fullScreen;
         displayModeDropDown.ClearOptions();
 
         var displayModeOptions = new List<string> { "Fullscreen", "Borderless Fullscreen", "Borderless Window", "Window" };
         displayModeDropDown.AddOptions(displayModeOptions);
     }
 
-    private void GetGameRes()
+    private void GetQualityLevel()
     {
-        gameResolutions = new List<string>(QualitySettings.names);
-        var currentGameRes = QualitySettings.GetQualityLevel();
-        gameResolutionDropDown.ClearOptions();
-        gameResolutionDropDown.AddOptions(gameResolutions);
-        gameResolutionDropDown.value = currentGameRes;
+        qualityLevels = new List<string>(QualitySettings.names);
+        var currentQuality = QualitySettings.GetQualityLevel();
+        qualityLevelDropDown.ClearOptions();
+        qualityLevelDropDown.AddOptions(qualityLevels);
+        qualityLevelDropDown.value = currentQuality;
     }
 
     private void GetResolutions()

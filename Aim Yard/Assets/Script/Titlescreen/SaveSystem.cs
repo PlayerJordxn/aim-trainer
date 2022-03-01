@@ -9,7 +9,10 @@ static public class SaveSystem
     public static void SaveSettings (SettingsData settings)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/settings.bin";
+        string path = Application.persistentDataPath + "/data/settings.bin";
+
+        if (!Directory.Exists(path)) Directory.CreateDirectory(Application.persistentDataPath + "/data");
+
         FileStream stream = new FileStream(path, FileMode.Create);
 
         formatter.Serialize(stream, settings);
@@ -18,7 +21,7 @@ static public class SaveSystem
 
     public static SettingsData LoadSettings()
     {
-        string path = Application.persistentDataPath + "/settings.bin";
+        string path = Application.persistentDataPath + "/data/settings.bin";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();
