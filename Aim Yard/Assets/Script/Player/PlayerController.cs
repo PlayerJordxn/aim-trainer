@@ -1,13 +1,14 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance;
-    public CharacterController cc;
-    public Camera cam;
-    public GameObject spine001;
-    [SerializeField] private GameObject[] targets;
+    private CharacterController cc;
+    [SerializeField] private Transform spine001;
+    [SerializeField] private Transform groundCheck;
+
 
     //Movement
     [Header("Movement Settings")]
@@ -22,90 +23,32 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDirection = Vector2.zero;
     private Vector2 mouseDirectionVelocity = Vector2.zero;
     private float rotationX = 0f;
-    public float acceleration = 0f;
-    public float maxJumpTime = 0.3f;
-    public float maxAirAcceleration = 4f;
-    public float minRunSpeed = 7f;
-    public float maxRunSpeed = 9f;
-
-    public bool isRunning = false;
-    public bool isPlaying = false;
 
     [Header("Audio")]
-    [SerializeField] private AudioClip BeginSfxClip;
-    [SerializeField] private AudioSource BeginSfx;
+    [SerializeField] private AudioSource sandAudioSource;
+    [SerializeField] private AudioClip sandAudioClip;
 
-    [SerializeField] private AudioClip CompleteSfxClip;
-    [SerializeField] private AudioSource CompleteSfx;
-    
-
-    void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if(instance != null)
-        {
-            Destroy(this);
-        }
-    }
+    [SerializeField] private AudioSource woodAudioSource;
+    [SerializeField] private AudioClip woodAudioClip;
 
     // Start is called before the first frame update
     void Start()
     {
-        targets = GameObject.FindGameObjectsWithTag("KillhouseTarget");
         Cursor.lockState = CursorLockMode.Locked;
 
         if (!cc)
             cc = GetComponent<CharacterController>();
 
-        if (!cam)
-            cam = GetComponentInChildren<Camera>();
+        if (!groundCheck)
+            groundCheck = GetComponentInChildren<Transform>().Find("GroundCheck");
 
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
         
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            isRunning = true;
-        }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            isRunning = false;
-        }
-
-        if(isRunning && cc.isGrounded)
-        {
-            if(speed < maxRunSpeed)
-            {
-                speed += Time.deltaTime * 50;
-            }
-            else
-            {
-                speed = maxRunSpeed;
-            }
-        }
-        else if (!isRunning)
-        {
-            if (speed > minRunSpeed)
-            {
-                speed -= Time.deltaTime * 50;
-            }
-            
-        }
-
-        if (speed > maxRunSpeed)
-            speed = maxRunSpeed;
-
-        if (speed < minRunSpeed)
-            speed = minRunSpeed;
-
         //>> CAMERA MOVEMENT <<//
         //Input
         Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
@@ -145,41 +88,55 @@ public class PlayerController : MonoBehaviour
         if (cc.isGrounded && Input.GetKeyDown(KeyCode.Space))
             verticalMovement = jumpForce;
 
-    }
-    
+        if (IsWalking())
+        {
+            RaycastHit hit;
 
-    private void OnTriggerEnter(Collider other)
+            if (Physics.Raycast(groundCheck.transform.position, groundCheck.transform.TransformDirection(-Vector3.up), out hit, 1f))
+            {
+                if(hit.collider.tag == "Sand")
+                {
+                    /*
+                    bool playingAudio = false;
+                    if (!playingAudio)
+                        StartCoroutine(WalkingAudio(.2f, sandAudioSource, sandAudioClip, playingAudio));
+                    */
+                }
+
+                if (hit.collider.tag == "Wood")
+                {
+                    /*
+                    bool playingAudio = false;
+                    if (!playingAudio)
+                        StartCoroutine(WalkingAudio(.2f, woodAudioSource, woodAudioClip, playingAudio));
+                    */
+                }
+            }
+        }
+
+    }
+
+    IEnumerator WalkingAudio(float _wait, AudioSource _source, AudioClip _clip, bool _playingAudio)
     {
-        if (other.gameObject.tag == "Start")
-        {
-            for (int i = 0; i < targets.Length; i++)
-            {
-                if (!targets[i].activeSelf)
-                    targets[i].gameObject.SetActive(true);
-            }
-            BeginSfx.PlayOneShot(BeginSfxClip);
-            isPlaying = true;
-            KillhouseManager.instance.timer = 60;
-            KillhouseManager.instance.targetsHit = 0;
-        }
+         _playingAudio = true;
+         yield return new WaitForSecondsRealtime(_wait);
+        _source.Play();
+        _playingAudio = false;
 
-        if (other.gameObject.tag == "End")
-        {
-            CompleteSfx.PlayOneShot(CompleteSfxClip);
-            isPlaying = false;
-            KillhouseManager.instance.finalTimeCompletion = 60f - KillhouseManager.instance.timer;
 
-            for(int i = 0; i < targets.Length; i++)
-            {
-                if(!targets[i].activeSelf)
-                targets[i].gameObject.SetActive(true);
-            }
-            KillhouseManager.instance.finalHeadshotCount = KillhouseManager.instance.headshotHits;
-            KillhouseManager.instance.finalTargetsHit = KillhouseManager.instance.targetsHit;
-            KillhouseManager.instance.targetsHit = 0;
-            KillhouseManager.instance.headshotHits = 0;
-            KillhouseManager.instance.finalAccuracy = KillhouseManager.instance.accuracy;
-        }
     }
 
+    private bool IsWalking()
+    {
+        if (cc.velocity.x > 0.1f || cc.velocity.y > 0.1f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+        
+    }
 }
