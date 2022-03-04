@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.VFX;
 using UnityEngine.Events;
+using UnityEditor;
 
 
 
@@ -314,6 +315,22 @@ public class GridshotManager : MonoBehaviour
     private float StartGame()
     {
         return timer = 60;
+    }
+
+    private void LoadCharacterV2()
+    {
+        var currentGun = SaveSystem.LoadGunData();
+        if (currentGun == null)
+        {
+            return; //default to a base gun and values
+        }
+
+        currentGunAudioSource = (AudioSource) GameObject.Find("---AUDIO---/" + currentGun.gunName).GetComponent("AudioSource");
+        currentGunAudioClip = (AudioClip) AssetDatabase.LoadAssetAtPath(currentGun.gunClipAudioFilePath, typeof(AudioClip));
+        currentMuzzleFlash = (VisualEffect) AssetDatabase.LoadAssetAtPath(currentGun.gunMuzzleFlashFilePath, typeof(VisualEffect));
+
+        var armatureToActivate = GameObject.Find("Player/Character Armature (" + currentGun.gunName + ")");
+        armatureToActivate.SetActive(true);
     }
 
     private void LoadCharacter(int _data)

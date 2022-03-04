@@ -4,21 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-[System.Serializable]
-public class SettingsData
-{
-        public int[] resolution;
-        public int qualityLevel;
-        public int displayMode;
-    public SettingsData (int[] _resolution, int _qualityLevel, int _displayMode)
-    {
-        resolution = _resolution;
-        qualityLevel = _qualityLevel;
-        displayMode = _displayMode;
-    }
-}
-
 public class SettingsManager : MonoBehaviour
 {
 
@@ -58,11 +43,10 @@ public class SettingsManager : MonoBehaviour
             Debug.LogError("Error converting resolution");
             return;
         }
-        var isFullscreen = Screen.fullScreen;
         int[] resolutionAndIdx = new int[3] { convertedResolution[0], convertedResolution[1], selectedResolutionIdx };
 
         SettingsData data = new SettingsData(resolutionAndIdx, qualityLevelDropDown.value, displayModeDropDown.value);
-        SaveSystem.SaveSettings(data);
+        SaveSystem.SaveData(data);
 
     }
 
