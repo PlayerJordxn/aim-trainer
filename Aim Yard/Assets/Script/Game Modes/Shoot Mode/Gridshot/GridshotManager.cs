@@ -264,6 +264,8 @@ public class GridshotManager : MonoBehaviour
             if (hit.collider.CompareTag("Target"))
             {
                 TargetHit(hit);
+                GameObject poolItem = EXP_Pool.instance.GetPoolItem();
+                StartCoroutine(ReturnPoolItemDelay(3f, poolItem));
             }
             else
             {
@@ -271,6 +273,16 @@ public class GridshotManager : MonoBehaviour
                 scoreBonus = 0;
             }
         }
+    }
+
+    IEnumerator ReturnPoolItemDelay(float _wait, GameObject _item)
+    {
+        
+        yield return new WaitForSecondsRealtime(_wait);
+
+        TextMeshProUGUI expText = GetComponent<TextMeshProUGUI>();
+
+        //EXP_Pool.instance.ReturnPoolItem(_item)
     }
 
     public void DisplayRoundResults()
