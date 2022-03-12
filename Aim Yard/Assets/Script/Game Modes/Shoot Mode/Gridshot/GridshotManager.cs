@@ -75,7 +75,7 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
 
     [Header("VFX")]
-    [SerializeField] private VisualEffect[] muzzleFlashes = new VisualEffect[3]; //0 = M4A1; 1 = M16; 2 = Glock;
+    [SerializeField] private VisualEffect[] muzzleFlashes = new VisualEffect[2]; //0 = M4A1; 1 = M16; 2 = Glock;
     [SerializeField] private VisualEffect currentMuzzleFlash;
     [SerializeField] private VisualEffect impactParticle;
 
@@ -90,19 +90,20 @@ public class GridshotManager : MonoBehaviour
     private void Awake()
     {
         //PlayerPrefs.GetInt("Character")
-        LoadCharacter(1);
+        LoadCharacter(2);
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        if(exitRoundResultsButton)
+        Cursor.lockState = CursorLockMode.Locked;
+        playerController = FindObjectOfType<PlayerController>();
+        roundEnd = false;
+
+        if (exitRoundResultsButton)
         {
             exitRoundResultsButton.onClick.AddListener(delegate { DisableRoundResults(); });
         }
-
-        playerController = FindObjectOfType<PlayerController>();
-        roundEnd = false;
     }
     
 
@@ -115,11 +116,9 @@ public class GridshotManager : MonoBehaviour
         //Update countdown text
         countdownText.text = countdownStartInitiated ? countdownText.text = countdown.ToString() : countdownText.text = "5";
 
-        
-
         if (IsPlaying())
         {
-            playerController.enabled = true;                //Enable player movement + look
+            
             shootToStartText.gameObject.SetActive(false);   //Enable shoot to start text
             scoreUI.SetActive(true);                        //Enable score UI
             windAudioSource.UnPause();                      //Play wind audio
@@ -141,14 +140,12 @@ public class GridshotManager : MonoBehaviour
             if(roundEnd)
             {
                 onRoundEnd += DisplayRoundResults;
-                onRoundEnd = DisplayRoundResults;
                 roundEnd = false;
             }
             if (!countdownStartInitiated)
             {
                 countdown = 5;                              //Reset countdown
             }
-            playerController.enabled = false;               //Disable player movement + look
             countdownText.text = countdown.ToString();      //Update countdown text
             shootToStartText.gameObject.SetActive(true);    //Enable text
             scoreUI.SetActive(false);                       //Disable in game score UI
@@ -228,6 +225,7 @@ public class GridshotManager : MonoBehaviour
         scoreUI.gameObject.SetActive(true);             //Enable score UI
         timer = 60;                                     //Start game
         onCountdownBegin -= RotateCircles;              //Remove listener
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 
@@ -265,7 +263,7 @@ public class GridshotManager : MonoBehaviour
             {
                 TargetHit(hit);
                 GameObject poolItem = EXP_Pool.instance.GetPoolItem();
-                StartCoroutine(ReturnPoolItemDelay(3f, poolItem));
+                StartCoroutine(MoveAndFadeAplha(1f, poolItem));
             }
             else
             {
@@ -275,19 +273,29 @@ public class GridshotManager : MonoBehaviour
         }
     }
 
-    IEnumerator ReturnPoolItemDelay(float _wait, GameObject _item)
+    IEnumerator MoveAndFadeAplha(float _wait, GameObject _expObj)
     {
-        
-        yield return new WaitForSecondsRealtime(_wait);
+        float fadeSpeed = 2f;
+        Vector3 moveTo = new Vector3(_expObj.transform.position.x, _expObj.transform.position.y + 50, _expObj.transform.position.z);
 
-        TextMeshProUGUI expText = GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI _expColor = _expObj.GetComponent<TextMeshProUGUI>();
 
-        //EXP_Pool.instance.ReturnPoolItem(_item)
+        _expColor.CrossFadeAlpha(0, fadeSpeed, true);
+        int id = LeanTween.move(_expObj, moveTo, _wait).id;
+        while(LeanTween.isTweening(id))
+        {
+            yield return null;
+        }
+
+        EXP_Pool.instance.ReturnPoolItem(_expObj);
+
+
     }
 
     public void DisplayRoundResults()
     {
         roundResultsParent.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void TargetHit(RaycastHit _hit)
@@ -313,12 +321,10 @@ public class GridshotManager : MonoBehaviour
     {
         if (timer > 0)
         {
-            Cursor.lockState = CursorLockMode.Locked;
             return isPlaying = true;
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Confined;
             return isPlaying = false;
         }
     }
@@ -356,7 +362,6 @@ public class GridshotManager : MonoBehaviour
             mainCamera = cams[_data];
             currentGunAudioSource = glockAudioSource;
             currentGunAudioClip = glockAudioClip;
-            currentMuzzleFlash = muzzleFlashes[_data];
         }
     }
 

@@ -17,6 +17,9 @@ public class EXP_Pool : MonoBehaviour
     //Queue
     public Queue<GameObject> pool = new Queue<GameObject>();
 
+    //Exp text parent
+    public Canvas scoreCanvas;
+
     private void Awake()
     {
         if (instance == null)
@@ -33,13 +36,19 @@ public class EXP_Pool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < 10; i++)
+        
+        for(int i = 0; i < 15; i++)
         {
             //Spawn Gameobject
             GameObject expTextTemp = Instantiate(expTextPrefab, spawnLocations);
-
+            //Set parent to canvas
+            expTextTemp.transform.parent = scoreCanvas.gameObject.transform;
+            //Set start pos
+            expTextTemp.GetComponent<RectTransform>().localPosition = spawnLocations.transform.localPosition;
             //Add gameobject to the qeueu
             pool.Enqueue(expTextTemp);
+            //Disable
+            expTextTemp.SetActive(false);
         }
         
 
@@ -56,11 +65,6 @@ public class EXP_Pool : MonoBehaviour
             //Set gameobject active
             expObject.SetActive(true);
 
-            expObject.gameObject.transform.localPosition += Vector3.up;
-
-            TextMeshProUGUI expText = GetComponent<TextMeshProUGUI>();
-
-            expText.color = new Color(-Time.deltaTime, -Time.deltaTime, -Time.deltaTime);
             //Return
             return expObject;
         }
@@ -70,7 +74,11 @@ public class EXP_Pool : MonoBehaviour
 
     public void ReturnPoolItem(GameObject _target)
     {
+        //Add to queue
         pool.Enqueue(_target);
+        //Reset to start pos
+        _target.transform.localPosition = spawnLocations.transform.localPosition;
+        //Disable
         _target.SetActive(false);
     }
 }
