@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.VFX;
 using UnityEngine.Events;
-
+using Random = UnityEngine.Random;
 
 
 
@@ -35,6 +35,7 @@ public class GridshotManager : MonoBehaviour
     private bool decrementing = false;
     private int totalTargetsHit = 0;
     private int totalShotsFired = 0;
+    private float currentAccuracy;
 
     [Header("Unity Action")]
     private Action onCountdownBegin;
@@ -74,6 +75,10 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    [SerializeField] private TextMeshProUGUI finalAccuracy;
+    [SerializeField] private TextMeshProUGUI finalScore;
+
+
     [Header("VFX")]
     [SerializeField] private VisualEffect[] muzzleFlashes = new VisualEffect[2]; //0 = M4A1; 1 = M16; 2 = Glock;
     [SerializeField] private VisualEffect currentMuzzleFlash;
@@ -90,7 +95,8 @@ public class GridshotManager : MonoBehaviour
     private void Awake()
     {
         //PlayerPrefs.GetInt("Character")
-        LoadCharacter(2);
+        int rand = Random.Range(0,2);
+        LoadCharacter(rand);
     }
 
     // Start is called before the first frame update
@@ -139,7 +145,7 @@ public class GridshotManager : MonoBehaviour
         {
             if(roundEnd)
             {
-                onRoundEnd += DisplayRoundResults;
+                onRoundEnd += RoundEnd;
                 roundEnd = false;
             }
             if (!countdownStartInitiated)
@@ -170,10 +176,13 @@ public class GridshotManager : MonoBehaviour
 
     public void DisableRoundResults()
     {
-        print("Button Pressed");
+        finalScore.text = "Final Score: " + currentScore.ToString();
+        finalAccuracy.text = "Final Accuracy: " + accuracy.ToString() + "%";
         roundEnd = false;
-        onRoundEnd -= DisplayRoundResults;
+        onRoundEnd -= RoundEnd;
         roundResultsParent.SetActive(false);
+        currentScore = 0;
+        accuracy = 0;
 
     }
 
@@ -261,9 +270,7 @@ public class GridshotManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Target"))
             {
-                TargetHit(hit);
-                GameObject poolItem = EXP_Pool.instance.GetPoolItem();
-                StartCoroutine(MoveAndFadeAplha(1f, poolItem));
+                AddScore(hit);
             }
             else
             {
@@ -273,32 +280,25 @@ public class GridshotManager : MonoBehaviour
         }
     }
 
-    IEnumerator MoveAndFadeAplha(float _wait, GameObject _expObj)
-    {
-        float fadeSpeed = 2f;
-        Vector3 moveTo = new Vector3(_expObj.transform.position.x, _expObj.transform.position.y + 50, _expObj.transform.position.z);
-
-        TextMeshProUGUI _expColor = _expObj.GetComponent<TextMeshProUGUI>();
-
-        _expColor.CrossFadeAlpha(0, fadeSpeed, true);
-        int id = LeanTween.move(_expObj, moveTo, _wait).id;
-        while(LeanTween.isTweening(id))
-        {
-            yield return null;
-        }
-
-        EXP_Pool.instance.ReturnPoolItem(_expObj);
-
-
-    }
-
-    public void DisplayRoundResults()
+    public void RoundEnd()
     {
         roundResultsParent.SetActive(true);
+        finalAccuracy.text = "Final Accuracy: " + currentAccuracy.ToString() + "%";
+        finalScore.text = "Final Score: " + currentScore.ToString();
+
+        GameObject[] activeTargets;
+        activeTargets = GameObject.FindGameObjectsWithTag("Target");
+
+        for(int i = 0; i < activeTargets.Length; i++)
+        {
+            activeTargets[i].SetActive(false);
+            ObjectPool.instance.ReturnTarget(activeTargets[i]);
+            targetCount--;
+        }
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void TargetHit(RaycastHit _hit)
+    public void AddScore(RaycastHit _hit)
     {
         //Score tracker
         currentScore += targetScoreValue + scoreBonus;
@@ -369,10 +369,10 @@ public class GridshotManager : MonoBehaviour
     {
         //Accuracy calculation + round
         _accuracy = (float)totalTargetsHit * 100 / (float)totalShotsFired;
-        var roundAccuracy = Mathf.Round(_accuracy);
-        
+        float roundAccuracy = Mathf.Round(_accuracy);
+        currentAccuracy = roundAccuracy;
         //Set accuracy text
-        accuracyText.text = totalTargetsHit > 0 && totalShotsFired > 0 ? accuracyText.text = roundAccuracy.ToString() : accuracyText.text = "0";
+        accuracyText.text = totalTargetsHit > 0 && totalShotsFired > 0 ? accuracyText.text = roundAccuracy.ToString() + "%" : accuracyText.text = "0%";
         //Set timer text
         timerText.text = _timer > 0 ? timerText.text = _timer.ToString() : timerText.text = "0";
         //Set Score Text
