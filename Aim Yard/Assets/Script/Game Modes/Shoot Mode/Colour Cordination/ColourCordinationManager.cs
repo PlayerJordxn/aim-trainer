@@ -9,8 +9,7 @@ using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 
-
-public class GridshotManager : MonoBehaviour
+public class ColourCordinationManager : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private Camera[] cams;//0 = M4A1; 1 = M16; 2 = Glock;
@@ -95,8 +94,7 @@ public class GridshotManager : MonoBehaviour
     private void Awake()
     {
         //PlayerPrefs.GetInt("Character")
-        int rand = Random.Range(0,2);
-        LoadCharacter(rand);
+        LoadCharacter(2);
     }
 
     // Start is called before the first frame update
@@ -111,7 +109,7 @@ public class GridshotManager : MonoBehaviour
             exitRoundResultsButton.onClick.AddListener(delegate { DisableRoundResults(); });
         }
     }
-    
+
 
     // Update is called once per frame
     void Update()
@@ -124,7 +122,7 @@ public class GridshotManager : MonoBehaviour
 
         if (IsPlaying())
         {
-            
+
             shootToStartText.gameObject.SetActive(false);   //Enable shoot to start text
             scoreUI.SetActive(true);                        //Enable score UI
             windAudioSource.UnPause();                      //Play wind audio
@@ -134,7 +132,7 @@ public class GridshotManager : MonoBehaviour
             {
                 StartCoroutine(GameTimer(1));//Game timer
             }
-           
+
             if (targetCount < 5)
             {
                 ColorCordinationPool.instance.GetTarget();    //Get target
@@ -143,7 +141,7 @@ public class GridshotManager : MonoBehaviour
         }
         else
         {
-            if(roundEnd)
+            if (roundEnd)
             {
                 onRoundEnd += RoundEnd;
                 roundEnd = false;
@@ -194,7 +192,7 @@ public class GridshotManager : MonoBehaviour
         {
             Shoot();
         }
-    }   
+    }
 
     private void EnableCountdown()
     {
@@ -261,10 +259,10 @@ public class GridshotManager : MonoBehaviour
             //Gun Audio Source
             if (currentGunAudioSource != null && currentGunAudioClip != null)
             {
-                currentGunAudioSource.PlayOneShot(currentGunAudioClip);               
+                currentGunAudioSource.PlayOneShot(currentGunAudioClip);
             }
             //Impact Particle
-            if(hit.collider != null)
+            if (hit.collider != null)
             {
                 impactParticle.transform.position = hit.point;
                 impactParticle.transform.rotation = Quaternion.LookRotation(hit.normal);
@@ -292,7 +290,7 @@ public class GridshotManager : MonoBehaviour
         GameObject[] activeTargets;
         activeTargets = GameObject.FindGameObjectsWithTag("Target");
 
-        for(int i = 0; i < activeTargets.Length; i++)
+        for (int i = 0; i < activeTargets.Length; i++)
         {
             activeTargets[i].SetActive(false);
             ColorCordinationPool.instance.ReturnTarget(activeTargets[i]);
@@ -306,7 +304,7 @@ public class GridshotManager : MonoBehaviour
         //Score tracker
         currentScore += targetScoreValue + scoreBonus;
         //Increase multiplier
-        if(scoreBonus < 250)
+        if (scoreBonus < 250)
         {
             scoreBonus += 50;
         }
@@ -387,7 +385,7 @@ public class GridshotManager : MonoBehaviour
         decrementing = true;
         yield return new WaitForSecondsRealtime(_wait);
         timer--;
-        if(timer == 1)
+        if (timer == 1)
         {
             roundEnd = true;
         }
@@ -399,5 +397,3 @@ public class GridshotManager : MonoBehaviour
 
     }
 }
-   
-
