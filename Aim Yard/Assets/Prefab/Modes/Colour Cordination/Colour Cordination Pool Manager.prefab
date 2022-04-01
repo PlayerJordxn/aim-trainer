@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7161683713377416601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7161683713377416600}
+  - component: {fileID: 7161683713377416603}
+  m_Layer: 0
+  m_Name: Colour Cordination Pool Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7161683713377416600
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7161683713377416601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7161683713377416603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7161683713377416601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997f83250ccc3b14a9df930488e8721f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPrefab: {fileID: 8193956073046809993, guid: 18877bba1f9f52647befe6dfe461cc00, type: 3}
+  materials:
+  - {fileID: 2100000, guid: fba7f8b51a43bc54db2ae6ffe4782a6e, type: 2}
+  - {fileID: 2100000, guid: 2c9ae4aa5aac768478ade31663cff9be, type: 2}
+  - {fileID: 2100000, guid: a842ce9ff016c854c920f24011be11af, type: 2}
+  - {fileID: 2100000, guid: d29850f68aa4edf4095c8d0ea5abd919, type: 2}
+  - {fileID: 2100000, guid: 038fb302017c57d4eb653bb2731d74cd, type: 2}
+  - {fileID: 2100000, guid: e465569db2b4d7248b27452d92358e1f, type: 2}
+  - {fileID: 2100000, guid: a540a5c742b090f40a95a5b464df51be, type: 2}
+  - {fileID: 2100000, guid: 5866d8c236866074d82ef2719bb5a547, type: 2}
+  spawnLocations: []
