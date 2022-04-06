@@ -135,7 +135,7 @@ public class HeadshotModeManager : MonoBehaviour
 
             if (targetCount < 1)
             {
-                HeadshotModePoolManager.instance.GetTarget();    //Get target
+                MovingTargetPoolManager.instance.GetTarget();    //Get target
                 targetCount++;                      //Increment target count
             }
         }
@@ -294,7 +294,7 @@ public class HeadshotModeManager : MonoBehaviour
         for (int i = 0; i < activeTargets.Length; i++)
         {
             activeTargets[i].SetActive(false);
-            HeadshotModePoolManager.instance.ReturnTarget(activeTargets[i]);
+            MovingTargetPoolManager.instance.ReturnTarget(activeTargets[i]);
             targetCount--;
         }
         Cursor.lockState = CursorLockMode.Confined;
@@ -310,7 +310,7 @@ public class HeadshotModeManager : MonoBehaviour
             scoreBonus += 50;
         }
         //Return target
-        HeadshotModePoolManager.instance.ReturnTarget(_hit.collider.gameObject);
+        MovingTargetPoolManager.instance.ReturnTarget(_hit.collider.gameObject);
         //Reduce target count
         targetCount--;
         //Audio 
