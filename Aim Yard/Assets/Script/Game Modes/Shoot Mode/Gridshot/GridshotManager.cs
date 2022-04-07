@@ -36,6 +36,7 @@ public class GridshotManager : MonoBehaviour
     private bool decrementing = false;
     private int totalTargetsHit = 0;
     private int totalShotsFired = 0;
+    private float currentAccuracy;
 
     [Header("Unity Action")]
     private Action onCountdownBegin;
@@ -75,8 +76,12 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    [SerializeField] private TextMeshProUGUI finalAccuracy;
+    [SerializeField] private TextMeshProUGUI finalScore;
+
+
     [Header("VFX")]
-    [SerializeField] private VisualEffect[] muzzleFlashes = new VisualEffect[3]; //0 = M4A1; 1 = M16; 2 = Glock;
+    [SerializeField] private VisualEffect[] muzzleFlashes = new VisualEffect[2]; //0 = M4A1; 1 = M16; 2 = Glock;
     [SerializeField] private VisualEffect currentMuzzleFlash;
     [SerializeField] private VisualEffect impactParticle;
 
@@ -91,19 +96,21 @@ public class GridshotManager : MonoBehaviour
     private void Awake()
     {
         //PlayerPrefs.GetInt("Character")
-        LoadCharacter(1);
+        int rand = Random.Range(0,2);
+        LoadCharacter(rand);
     }
 
     // Start is called before the first frame update
     private void Start()
     {
-        if(exitRoundResultsButton)
+        Cursor.lockState = CursorLockMode.Locked;
+        playerController = FindObjectOfType<PlayerController>();
+        roundEnd = false;
+
+        if (exitRoundResultsButton)
         {
             exitRoundResultsButton.onClick.AddListener(delegate { DisableRoundResults(); });
         }
-
-        playerController = FindObjectOfType<PlayerController>();
-        roundEnd = false;
     }
     
 
@@ -116,11 +123,9 @@ public class GridshotManager : MonoBehaviour
         //Update countdown text
         countdownText.text = countdownStartInitiated ? countdownText.text = countdown.ToString() : countdownText.text = "5";
 
-        
-
         if (IsPlaying())
         {
-            playerController.enabled = true;                //Enable player movement + look
+            
             shootToStartText.gameObject.SetActive(false);   //Enable shoot to start text
             scoreUI.SetActive(true);                        //Enable score UI
             windAudioSource.UnPause();                      //Play wind audio
@@ -141,15 +146,13 @@ public class GridshotManager : MonoBehaviour
         {
             if(roundEnd)
             {
-                onRoundEnd += DisplayRoundResults;
-                onRoundEnd = DisplayRoundResults;
+                onRoundEnd += RoundEnd;
                 roundEnd = false;
             }
             if (!countdownStartInitiated)
             {
                 countdown = 5;                              //Reset countdown
             }
-            playerController.enabled = false;               //Disable player movement + look
             countdownText.text = countdown.ToString();      //Update countdown text
             shootToStartText.gameObject.SetActive(true);    //Enable text
             scoreUI.SetActive(false);                       //Disable in game score UI
@@ -174,10 +177,13 @@ public class GridshotManager : MonoBehaviour
 
     public void DisableRoundResults()
     {
-        print("Button Pressed");
+        finalScore.text = "Final Score: " + currentScore.ToString();
+        finalAccuracy.text = "Final Accuracy: " + accuracy.ToString() + "%";
         roundEnd = false;
-        onRoundEnd -= DisplayRoundResults;
+        onRoundEnd -= RoundEnd;
         roundResultsParent.SetActive(false);
+        currentScore = 0;
+        accuracy = 0;
 
     }
 
@@ -229,6 +235,7 @@ public class GridshotManager : MonoBehaviour
         scoreUI.gameObject.SetActive(true);             //Enable score UI
         timer = 60;                                     //Start game
         onCountdownBegin -= RotateCircles;              //Remove listener
+        Cursor.lockState = CursorLockMode.Locked;
 
     }
 
@@ -242,7 +249,10 @@ public class GridshotManager : MonoBehaviour
     }
     private void Shoot()
     {
-        currentMuzzleFlash.Play();
+        if(currentMuzzleFlash != null)
+        {
+            currentMuzzleFlash.Play();
+        }
 
         RaycastHit hit;
 
@@ -264,7 +274,7 @@ public class GridshotManager : MonoBehaviour
 
             if (hit.collider.CompareTag("Target"))
             {
-                TargetHit(hit);
+                AddScore(hit);
             }
             else
             {
@@ -274,12 +284,25 @@ public class GridshotManager : MonoBehaviour
         }
     }
 
-    public void DisplayRoundResults()
+    public void RoundEnd()
     {
         roundResultsParent.SetActive(true);
+        finalAccuracy.text = "Final Accuracy: " + currentAccuracy.ToString() + "%";
+        finalScore.text = "Final Score: " + currentScore.ToString();
+
+        GameObject[] activeTargets;
+        activeTargets = GameObject.FindGameObjectsWithTag("Target");
+
+        for(int i = 0; i < activeTargets.Length; i++)
+        {
+            activeTargets[i].SetActive(false);
+            ObjectPool.instance.ReturnTarget(activeTargets[i]);
+            targetCount--;
+        }
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void TargetHit(RaycastHit _hit)
+    public void AddScore(RaycastHit _hit)
     {
         //Score tracker
         currentScore += targetScoreValue + scoreBonus;
@@ -302,12 +325,10 @@ public class GridshotManager : MonoBehaviour
     {
         if (timer > 0)
         {
-            Cursor.lockState = CursorLockMode.Locked;
             return isPlaying = true;
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Confined;
             return isPlaying = false;
         }
     }
@@ -361,7 +382,6 @@ public class GridshotManager : MonoBehaviour
             mainCamera = cams[_data];
             currentGunAudioSource = glockAudioSource;
             currentGunAudioClip = glockAudioClip;
-            currentMuzzleFlash = muzzleFlashes[_data];
         }
     }
 
@@ -369,10 +389,10 @@ public class GridshotManager : MonoBehaviour
     {
         //Accuracy calculation + round
         _accuracy = (float)totalTargetsHit * 100 / (float)totalShotsFired;
-        var roundAccuracy = Mathf.Round(_accuracy);
-        
+        float roundAccuracy = Mathf.Round(_accuracy);
+        currentAccuracy = roundAccuracy;
         //Set accuracy text
-        accuracyText.text = totalTargetsHit > 0 && totalShotsFired > 0 ? accuracyText.text = roundAccuracy.ToString() : accuracyText.text = "0";
+        accuracyText.text = totalTargetsHit > 0 && totalShotsFired > 0 ? accuracyText.text = roundAccuracy.ToString() + "%" : accuracyText.text = "0%";
         //Set timer text
         timerText.text = _timer > 0 ? timerText.text = _timer.ToString() : timerText.text = "0";
         //Set Score Text

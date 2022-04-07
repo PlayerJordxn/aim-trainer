@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5787162847913119216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5787162847913119217}
+  - component: {fileID: 5787162847913119219}
+  m_Layer: 0
+  m_Name: Colour Cordination Level Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5787162847913119217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787162847913119216}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 143.82648, y: 64.13179, z: -102.438965}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5787162847913119219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787162847913119216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d870c3d8851624a9d1b8a82efe7937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cams:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  mainCamera: {fileID: 0}
+  playerCharacters:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerController: {fileID: 0}
+  BeepSoundSource: {fileID: 0}
+  windAudioSource: {fileID: 0}
+  currentGunAudioSource: {fileID: 0}
+  currentGunAudioClip: {fileID: 0}
+  m4a1AudioSource: {fileID: 0}
+  m4a1AudioClip: {fileID: 8300000, guid: 0b03644aa526ac0408c7e191f5f2b073, type: 3}
+  m16AudioSource: {fileID: 0}
+  m16AudioClip: {fileID: 8300000, guid: 7b55bea84388ca747baf276b8df37a42, type: 3}
+  glockAudioSource: {fileID: 0}
+  glockAudioClip: {fileID: 8300000, guid: 0d435b659986d5943b833ea4a67fa8ee, type: 3}
+  targetHitAudioSource: {fileID: 0}
+  targetHitAudioClip: {fileID: 8300000, guid: 42fcaf9add9d11640a5d5377ff39f50b, type: 3}
+  crosshair: {fileID: 0}
+  roundResultsParent: {fileID: 0}
+  exitRoundResultsButton: {fileID: 0}
+  scoreUI: {fileID: 0}
+  accuracyText: {fileID: 0}
+  scoreText: {fileID: 0}
+  timerText: {fileID: 0}
+  finalAccuracy: {fileID: 0}
+  finalScore: {fileID: 0}
+  muzzleFlashes:
+  - {fileID: 0}
+  - {fileID: 0}
+  currentMuzzleFlash: {fileID: 0}
+  impactParticle: {fileID: 0}
+  countdownCircles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  shootToStartText: {fileID: 0}
+  countdownText: {fileID: 0}
+  countdownParent: {fileID: 0}
