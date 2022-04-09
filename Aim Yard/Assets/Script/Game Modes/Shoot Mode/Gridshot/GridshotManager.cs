@@ -21,6 +21,9 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private GameObject[] playerCharacters = new GameObject[3]; //0 = M4A1; 1 = M16; 2 = Glock;
     public PlayerController playerController;
 
+    [Header("Armatures")]
+    [SerializeField] private GameObject firstArmature;
+
     [Header("Game Settings")]
     private int targetCount;
     private float accuracy = 0f;
@@ -96,15 +99,17 @@ public class GridshotManager : MonoBehaviour
     private void Awake()
     {
         //PlayerPrefs.GetInt("Character")
-        int rand = Random.Range(0,2);
-        LoadCharacter(rand);
+        int rand = UnityEngine.Random.Range(0,2);
+        //LoadCharacter(rand);
+        playerController = FindObjectOfType<PlayerController>();
+        LoadCharacterV2();
     }
 
     // Start is called before the first frame update
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        playerController = FindObjectOfType<PlayerController>();
+        //playerController = FindObjectOfType<PlayerController>();
         roundEnd = false;
 
         if (exitRoundResultsButton)
@@ -340,18 +345,30 @@ public class GridshotManager : MonoBehaviour
 
     private void LoadCharacterV2()
     {
-        var currentGun = SaveSystem.LoadGunData();
+        /*var currentGun = SaveSystem.LoadGunData();
         if (currentGun == null)
         {
             return; //default to a base gun and values
-        }
+        }*/
 
-        currentGunAudioSource = (AudioSource) GameObject.Find("---AUDIO---/" + currentGun.gunName).GetComponent("AudioSource");
-        currentGunAudioClip = (AudioClip) AssetDatabase.LoadAssetAtPath(currentGun.gunClipAudioFilePath, typeof(AudioClip));
-        currentMuzzleFlash = (VisualEffect) AssetDatabase.LoadAssetAtPath(currentGun.gunMuzzleFlashFilePath, typeof(VisualEffect));
+        
+        var armatureObject = GameObject.Find("Player/Armature").transform;
+        GameObject prefabArmature = Instantiate(firstArmature, armatureObject);
+        prefabArmature.name = "Loaded_Armature";
 
-        var armatureToActivate = GameObject.Find("Player/Character Armature (" + currentGun.gunName + ")");
-        armatureToActivate.SetActive(true);
+        var groundCheck = armatureObject.Find("GroundCheck");
+        var armatureSpine = prefabArmature.transform.Find("metarig/spine/spine.001");
+        var armatureCam = armatureSpine.Find("Camera").gameObject;
+
+        playerController.spine001 = armatureSpine;
+        playerController.groundCheck = groundCheck;
+
+        mainCamera = armatureCam.GetComponent("Camera") as Camera;
+
+        currentGunAudioSource = m16AudioSource;
+        currentGunAudioClip = m16AudioClip;
+        currentMuzzleFlash = muzzleFlashes[1];
+
     }
 
     private void LoadCharacter(int _data)

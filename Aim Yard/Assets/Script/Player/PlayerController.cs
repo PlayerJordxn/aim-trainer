@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController cc;
-    [SerializeField] private Transform spine001;
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] public Transform spine001;
+    [SerializeField] public Transform groundCheck;
 
 
     //Movement
