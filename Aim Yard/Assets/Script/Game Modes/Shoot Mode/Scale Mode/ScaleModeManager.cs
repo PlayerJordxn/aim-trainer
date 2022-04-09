@@ -7,10 +7,9 @@ using TMPro;
 using UnityEngine.VFX;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
-
-
-public class ColourCordinationManager : MonoBehaviour
+public class ScaleModeManager : MonoBehaviour
 {
+    public static ScaleModeManager instance;
     [Header("Components")]
     [SerializeField] private Camera[] cams;//0 = M4A1; 1 = M16; 2 = Glock;
     [SerializeField] private Camera mainCamera;
@@ -20,7 +19,7 @@ public class ColourCordinationManager : MonoBehaviour
     public PlayerController playerController;
 
     [Header("Game Settings")]
-    private int targetCount;
+    public int targetCount;
     private float accuracy = 0f;
     private int currentScore = 0;
     private int timer = 0;
@@ -94,7 +93,18 @@ public class ColourCordinationManager : MonoBehaviour
     private void Awake()
     {
         //PlayerPrefs.GetInt("Character")
-        LoadCharacter(2);
+        int rand = Random.Range(0, 2);
+        LoadCharacter(rand);
+
+        if (instance != null)
+        {
+            Destroy(this);
+        }
+        else if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
     // Start is called before the first frame update
@@ -133,9 +143,9 @@ public class ColourCordinationManager : MonoBehaviour
                 StartCoroutine(GameTimer(1));//Game timer
             }
 
-            if (targetCount < 5)
+            if (targetCount < 1)
             {
-                ColorCordinationPool.instance.GetTarget();    //Get target
+                ScaleModePool.instance.GetTarget();    //Get target
                 targetCount++;                      //Increment target count
             }
         }
@@ -245,7 +255,7 @@ public class ColourCordinationManager : MonoBehaviour
     }
     private void Shoot()
     {
-        if(currentMuzzleFlash != null)
+        if (currentMuzzleFlash != null)
         {
             currentMuzzleFlash.Play();
         }
@@ -292,7 +302,7 @@ public class ColourCordinationManager : MonoBehaviour
         for (int i = 0; i < activeTargets.Length; i++)
         {
             activeTargets[i].SetActive(false);
-            ColorCordinationPool.instance.ReturnTarget(activeTargets[i]);
+            ScaleModePool.instance.ReturnTarget(activeTargets[i]);
             targetCount--;
         }
         Cursor.lockState = CursorLockMode.Confined;
@@ -308,7 +318,7 @@ public class ColourCordinationManager : MonoBehaviour
             scoreBonus += 50;
         }
         //Return target
-        ColorCordinationPool.instance.ReturnTarget(_hit.collider.gameObject);
+        ScaleModePool.instance.ReturnTarget(_hit.collider.gameObject);
         //Reduce target count
         targetCount--;
         //Audio 
