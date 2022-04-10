@@ -24,13 +24,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDirectionVelocity = Vector2.zero;
     private float rotationX = 0f;
 
-    [Header("Audio")]
-    [SerializeField] private AudioSource sandAudioSource;
-    [SerializeField] private AudioClip sandAudioClip;
-
-    [SerializeField] private AudioSource woodAudioSource;
-    [SerializeField] private AudioClip woodAudioClip;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -88,55 +81,7 @@ public class PlayerController : MonoBehaviour
         if (cc.isGrounded && Input.GetKeyDown(KeyCode.Space))
             verticalMovement = jumpForce;
 
-        if (IsWalking())
-        {
-            RaycastHit hit;
+  
 
-            if (Physics.Raycast(groundCheck.transform.position, groundCheck.transform.TransformDirection(-Vector3.up), out hit, 1f))
-            {
-                if(hit.collider.tag == "Sand")
-                {
-                    /*
-                    bool playingAudio = false;
-                    if (!playingAudio)
-                        StartCoroutine(WalkingAudio(.2f, sandAudioSource, sandAudioClip, playingAudio));
-                    */
-                }
-
-                if (hit.collider.tag == "Wood")
-                {
-                    /*
-                    bool playingAudio = false;
-                    if (!playingAudio)
-                        StartCoroutine(WalkingAudio(.2f, woodAudioSource, woodAudioClip, playingAudio));
-                    */
-                }
-            }
-        }
-
-    }
-
-    IEnumerator WalkingAudio(float _wait, AudioSource _source, AudioClip _clip, bool _playingAudio)
-    {
-         _playingAudio = true;
-         yield return new WaitForSecondsRealtime(_wait);
-        _source.Play();
-        _playingAudio = false;
-
-
-    }
-
-    private bool IsWalking()
-    {
-        if (cc.velocity.x > 0.1f || cc.velocity.y > 0.1f)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-
-        
     }
 }
