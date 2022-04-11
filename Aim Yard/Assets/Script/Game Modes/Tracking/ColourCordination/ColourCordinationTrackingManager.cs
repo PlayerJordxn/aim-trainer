@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.VFX;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
+
 public class ColourCordinationTrackingManager : MonoBehaviour
 {
     [Header("Components")]
@@ -23,15 +24,13 @@ public class ColourCordinationTrackingManager : MonoBehaviour
     private int timer = 0;
     private bool isPlaying = false;
     private bool roundEnd;
+    private float shootTimeElapsed = 0f;
 
     [Header("Score")]
-    private float previousScore = 0f;
     private int scoreBonus = 0;
-    private int targetScoreValue = 100;
+    private int targetScoreValue = 10;
     private bool decrementing = false;
-    private int totalTargetsHit = 0;
-    private int totalShotsFired = 0;
-    private float currentAccuracy;
+    private float currentTargetCount = 0;
 
     [Header("Unity Action")]
     private Action onCountdownBegin;
@@ -42,18 +41,6 @@ public class ColourCordinationTrackingManager : MonoBehaviour
     [SerializeField] private AudioSource BeepSoundSource;
     //Wind
     [SerializeField] private AudioSource windAudioSource;
-    //Current Gun
-    [SerializeField] private AudioSource currentGunAudioSource;
-    [SerializeField] private AudioClip currentGunAudioClip;
-    //M4A1
-    [SerializeField] private AudioSource m4a1AudioSource;
-    [SerializeField] private AudioClip m4a1AudioClip;
-    //M16
-    [SerializeField] private AudioSource m16AudioSource;
-    [SerializeField] private AudioClip m16AudioClip;
-    //GLOCK
-    [SerializeField] private AudioSource glockAudioSource;
-    [SerializeField] private AudioClip glockAudioClip;
     //Target Hit
     [SerializeField] private AudioSource targetHitAudioSource;
     [SerializeField] private AudioClip targetHitAudioClip;
@@ -64,21 +51,15 @@ public class ColourCordinationTrackingManager : MonoBehaviour
     [SerializeField] private GameObject roundResultsParent;
     [SerializeField] private Button exitRoundResultsButton;
 
-
     [SerializeField] private GameObject scoreUI;
 
-    [SerializeField] private TextMeshProUGUI accuracyText;
+    [SerializeField] private TextMeshProUGUI totalTargetCountText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI timerText;
 
-    [SerializeField] private TextMeshProUGUI finalAccuracy;
+    [SerializeField] private TextMeshProUGUI finalTargetCount;
     [SerializeField] private TextMeshProUGUI finalScore;
 
-
-    [Header("VFX")]
-    [SerializeField] private VisualEffect[] muzzleFlashes = new VisualEffect[2]; //0 = M4A1; 1 = M16; 2 = Glock;
-    [SerializeField] private VisualEffect currentMuzzleFlash;
-    [SerializeField] private VisualEffect impactParticle;
 
     [Header("Countdown Variables")]
     [SerializeField] private RectTransform[] countdownCircles = new RectTransform[3];
@@ -88,10 +69,13 @@ public class ColourCordinationTrackingManager : MonoBehaviour
     private bool countdownStartInitiated = false;
     [SerializeField] private GameObject countdownParent;
 
+   
+
     private void Awake()
     {
         //PlayerPrefs.GetInt("Character")
         LoadCharacter(2);
+
     }
 
     // Start is called before the first frame update
@@ -107,7 +91,6 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         }
     }
 
-
     // Update is called once per frame
     void Update()
     {
@@ -121,17 +104,17 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         {
             shootToStartText.gameObject.SetActive(false);   //Enable shoot to start text
             scoreUI.SetActive(true);                        //Enable score UI
-            windAudioSource.UnPause();                      //Play wind audio
             crosshair.SetActive(true);                      //Enable crosshair
+            windAudioSource.UnPause();                      //Play wind audio
             countdownStartInitiated = false;                //Determins if countdown start
             if (!decrementing)
             {
                 StartCoroutine(GameTimer(1));//Game timer
             }
 
-            if (targetCount < 5)
+            if (targetCount < 1)
             {
-                ColorCordinationPool.instance.GetTarget();    //Get target
+                ColourCordinationTrackingPool.instance.GetTarget();    //Get target
                 targetCount++;                      //Increment target count
             }
         }
@@ -142,6 +125,7 @@ public class ColourCordinationTrackingManager : MonoBehaviour
                 onRoundEnd += RoundEnd;
                 roundEnd = false;
             }
+
             if (!countdownStartInitiated)
             {
                 countdown = 5;                              //Reset countdown
@@ -181,7 +165,16 @@ public class ColourCordinationTrackingManager : MonoBehaviour
     {
         if (IsPlaying())
         {
-            Shoot();
+            float shootDelay = 0.045f;
+            if(shootTimeElapsed > shootDelay)
+            {
+                shootTimeElapsed = 0f;
+                Shoot();
+            }
+            else
+            {
+                shootTimeElapsed += Time.deltaTime;
+            }
         }
     }
 
@@ -191,6 +184,7 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         bool enableGameInput = Input.GetKeyDown(KeyCode.Mouse0);
         if (enableGameInput && !countdownStartInitiated && !roundResultsParent.activeSelf)
         {
+            Cursor.lockState = CursorLockMode.Locked;
             countdownStartInitiated = true;
             countdownParent.SetActive(true);
             countdownText.gameObject.SetActive(true);
@@ -221,7 +215,7 @@ public class ColourCordinationTrackingManager : MonoBehaviour
 
         countdownParent.SetActive(false);               //Disable countdown
         scoreUI.gameObject.SetActive(true);             //Enable score UI
-        timer = 60;                                     //Start game
+        timer = 60;                                     //Set timer at start
         onCountdownBegin -= RotateCircles;              //Remove listener
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -244,7 +238,30 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         {
             if (hit.collider.CompareTag("TrackingTarget"))
             {
-                AddScore(hit);
+
+
+                targetHitAudioSource.PlayOneShot(targetHitAudioClip);
+
+                TargetHealth targetScript = hit.collider.GetComponent<TargetHealth>();
+
+                AddScore();
+
+                if (targetScript.currentHealth > 0)
+                {
+                    //Reduce health
+                    float healthReduction = 10f;
+                    targetScript.currentHealth -= healthReduction;
+                    
+                }
+                else
+                {
+                    //Return to pool
+                    ColourCordinationTrackingPool.instance.ReturnTarget(hit.collider.gameObject);
+                    targetCount--;
+                    //Target destroyed 
+                    currentTargetCount++;
+                }
+
             }
             else
             {
@@ -254,42 +271,36 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         }
     }
 
+    public void AddScore()
+    {
+        //Score tracker
+        currentScore += targetScoreValue + scoreBonus;
+        //Increase multiplier
+        if (scoreBonus < 100)
+        {
+            scoreBonus += 10;
+        }
+    }
+
     public void RoundEnd()
     {
         roundResultsParent.SetActive(true);
-        finalAccuracy.text = "Final Accuracy: " + currentAccuracy.ToString() + "%";
+        finalTargetCount.text = "Final Target Count: " + currentTargetCount.ToString();
         finalScore.text = "Final Score: " + currentScore.ToString();
 
         GameObject[] activeTargets;
-        activeTargets = GameObject.FindGameObjectsWithTag("Target");
+        activeTargets = GameObject.FindGameObjectsWithTag("TrackingTarget");
 
         for (int i = 0; i < activeTargets.Length; i++)
         {
             activeTargets[i].SetActive(false);
-            ColorCordinationPool.instance.ReturnTarget(activeTargets[i]);
+            ColourCordinationTrackingPool.instance.ReturnTarget(activeTargets[i]);
             targetCount--;
         }
         Cursor.lockState = CursorLockMode.Confined;
     }
 
-    public void AddScore(RaycastHit _hit)
-    {
-        //Score tracker
-        currentScore += targetScoreValue + scoreBonus;
-        //Increase multiplier
-        if (scoreBonus < 250)
-        {
-            scoreBonus += 50;
-        }
-        //Return target
-        ColorCordinationPool.instance.ReturnTarget(_hit.collider.gameObject);
-        //Reduce target count
-        targetCount--;
-        //Audio 
-        targetHitAudioSource.PlayOneShot(targetHitAudioClip);
-        //Shots Hit
-        totalTargetsHit++;
-    }
+   
 
     private bool IsPlaying()
     {
@@ -303,11 +314,6 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         }
     }
 
-    private float StartGame()
-    {
-        return timer = 60;
-    }
-
     private void LoadCharacter(int _data)
     {
         if (_data == 0)
@@ -315,27 +321,18 @@ public class ColourCordinationTrackingManager : MonoBehaviour
             //Load M4A1 Data
             playerCharacters[_data].SetActive(true);
             mainCamera = cams[_data];
-            currentGunAudioSource = m4a1AudioSource;
-            currentGunAudioClip = m4a1AudioClip;
-            currentMuzzleFlash = muzzleFlashes[_data];
-
         }
         else if (_data == 1)
         {
             //Load M16 Data
             playerCharacters[_data].SetActive(true);
             mainCamera = cams[_data];
-            currentGunAudioSource = m16AudioSource;
-            currentGunAudioClip = m16AudioClip;
-            currentMuzzleFlash = muzzleFlashes[_data];
         }
         else
         {
             //Load Glock Data
             playerCharacters[_data].SetActive(true);
             mainCamera = cams[_data];
-            currentGunAudioSource = glockAudioSource;
-            currentGunAudioClip = glockAudioClip;
         }
     }
 
@@ -345,6 +342,8 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         timerText.text = _timer > 0 ? timerText.text = _timer.ToString() : timerText.text = "0";
         //Set Score Text
         scoreText.text = _score > 0 ? scoreText.text = _score.ToString() : scoreText.text = "0";
+
+        totalTargetCountText.text = _score > 0 ? totalTargetCountText.text = currentTargetCount.ToString() : totalTargetCountText.text = "0";
     }
 
     private IEnumerator GameTimer(int _wait)
