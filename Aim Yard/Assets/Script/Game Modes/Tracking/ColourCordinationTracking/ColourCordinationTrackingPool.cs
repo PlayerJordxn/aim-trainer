@@ -7,8 +7,9 @@ public class ColourCordinationTrackingPool : MonoBehaviour
     public static ColourCordinationTrackingPool instance;
 
     //Target Prefab
-    [SerializeField] GameObject[] targetPrefab;
-    private int targetIndex;
+    [SerializeField] GameObject targetPrefab;
+
+    [SerializeField] Material[] materials;
 
     //Gameobject Array
     GameObject[] transformAsGameobjects;
@@ -55,18 +56,8 @@ public class ColourCordinationTrackingPool : MonoBehaviour
 
             if (!storage.Contains(random))
             {
-                float maxIndex = 7;
-                //Spawn target. length resets if it's at the last index
-                if(targetIndex == maxIndex)
-                {
-                    targetIndex = 0;
-                }
-                else
-                {
-                    targetIndex++;
-                }
                 //Spawn Gameobject
-                GameObject targetTemp = Instantiate(targetPrefab[targetIndex], spawnLocations[random]);
+                GameObject targetTemp = Instantiate(targetPrefab, spawnLocations[random]);
 
                 //Add to storage
                 storage.Add(random);
@@ -90,11 +81,14 @@ public class ColourCordinationTrackingPool : MonoBehaviour
         {
             //Random
             int randomTransform = Random.Range(0, spawnLocations.Length);
+            int randomMaterial = Random.Range(0, materials.Length);
             //Removes from queue
             GameObject target = pool.Dequeue();
 
             if (!storage.Contains(randomTransform))
                 target.transform.position = spawnLocations[randomTransform].transform.position;
+            //Random material
+            target.GetComponent<MeshRenderer>().material = materials[randomMaterial];
 
             //Set gameobject active
             target.SetActive(true);
