@@ -21,8 +21,7 @@ public class GridshotManager : MonoBehaviour
     [SerializeField] private GameObject[] playerCharacters = new GameObject[3]; //0 = M4A1; 1 = M16; 2 = Glock;
     public PlayerController playerController;
 
-    [Header("Armatures")]
-    [SerializeField] private GameObject firstArmature;
+    private GameObject activeArmature;
 
     [Header("Game Settings")]
     private int targetCount;
@@ -350,25 +349,63 @@ public class GridshotManager : MonoBehaviour
         {
             return; //default to a base gun and values
         }*/
-
-        
+        var armatureName = "GLOCK_Armature";
+        var prefab = Resources.Load("Test_Armatures/" + armatureName) as GameObject;
         var armatureObject = GameObject.Find("Player/Armature").transform;
-        GameObject prefabArmature = Instantiate(firstArmature, armatureObject);
-        prefabArmature.name = "Loaded_Armature";
-
+        
+        if (prefab != null)
+        {
+            activeArmature = Instantiate(prefab, armatureObject);
+            activeArmature.name = "Loaded_Armature";
+        }
+        
         var groundCheck = armatureObject.Find("GroundCheck");
-        var armatureSpine = prefabArmature.transform.Find("metarig/spine/spine.001");
+        var armatureSpine = activeArmature.transform.Find("metarig/spine/spine.001");
         var armatureCam = armatureSpine.Find("Camera").gameObject;
+        var prefabAudioSource = activeArmature.transform.Find("Audio").GetComponent<AudioSource>();
+        var activeWeapon = FindDeepChildByTag(activeArmature.transform, "Weapon", true);
+        var muzzleFlash = activeWeapon.Find("MuzzleFlashTransform/Muzzle Flash");
 
         playerController.spine001 = armatureSpine;
         playerController.groundCheck = groundCheck;
 
         mainCamera = armatureCam.GetComponent("Camera") as Camera;
 
-        currentGunAudioSource = m16AudioSource;
-        currentGunAudioClip = m16AudioClip;
-        currentMuzzleFlash = muzzleFlashes[1];
+        currentGunAudioSource = prefabAudioSource;
+        currentGunAudioClip = prefabAudioSource.clip;
+        if (muzzleFlash)
+        {
+            currentMuzzleFlash = muzzleFlash.GetComponent<VisualEffect>();
+        }
 
+    }
+
+    //to be put into static class later since it's useful for more than just this problem
+    public Transform FindDeepChildByTag(Transform parent, string tag, bool mustBeActive, bool breadthFirst = false)
+    {
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            if ((parent.GetChild(i).CompareTag(tag)) && (!mustBeActive || (parent.GetChild(i).gameObject.activeSelf)))
+            {
+                return parent.GetChild(i);
+            }
+            if (!breadthFirst)
+            {
+                Transform grandchild = FindDeepChildByTag(parent.GetChild(i), tag, breadthFirst);
+                if ((grandchild != null) && (!mustBeActive || (grandchild.gameObject.activeSelf)))
+                    return grandchild;
+            }
+        }
+        if (breadthFirst)
+        {
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                Transform grandchild = FindDeepChildByTag(parent.GetChild(i), tag, breadthFirst);
+                if ((grandchild != null) && (!mustBeActive || (grandchild.gameObject.activeSelf)))
+                    return grandchild;
+            }
+        }
+        return null;
     }
 
     private void LoadCharacter(int _data)
