@@ -26168,7 +26168,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 632968478}
-  - component: {fileID: 632968479}
   - component: {fileID: 632968480}
   m_Layer: 0
   m_Name: Scale Mode Manager
@@ -26191,48 +26190,6 @@ Transform:
   m_Father: {fileID: 590156005}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &632968479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632968477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da96651ca423144e89db443e5b55780, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cams:
-  - {fileID: 1723576176}
-  - {fileID: 691072089}
-  - {fileID: 1859554974}
-  mainCamera: {fileID: 0}
-  playerCharacters:
-  - {fileID: 1587142628}
-  - {fileID: 1078237}
-  - {fileID: 1790068068}
-  playerController: {fileID: 0}
-  BeepSoundSource: {fileID: 1775048576}
-  windAudioSource: {fileID: 1953290460}
-  targetHitAudioSource: {fileID: 1846611657}
-  targetHitAudioClip: {fileID: 8300000, guid: 46225fbe1304dad49b009edf321bd026, type: 3}
-  crosshair: {fileID: 699534649}
-  roundResultsParent: {fileID: 2008839325}
-  exitRoundResultsButton: {fileID: 925074472}
-  scoreUI: {fileID: 1022180716}
-  totalTargetCountText: {fileID: 1112366306}
-  scoreText: {fileID: 1466757873}
-  timerText: {fileID: 2023538697}
-  finalTargetCount: {fileID: 3484676}
-  finalScore: {fileID: 1800256722}
-  countdownCircles:
-  - {fileID: 1073585048}
-  - {fileID: 1833273175}
-  - {fileID: 497948567}
-  shootToStartText: {fileID: 743407376}
-  countdownText: {fileID: 597416121}
-  countdownParent: {fileID: 1532804763}
 --- !u!114 &632968480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26255,6 +26212,8 @@ MonoBehaviour:
   - {fileID: 1078237}
   - {fileID: 1790068068}
   playerController: {fileID: 0}
+  targetCount: 0
+  currentTargetCount: 0
   BeepSoundSource: {fileID: 1775048576}
   windAudioSource: {fileID: 1953290460}
   targetHitAudioSource: {fileID: 1846611657}
@@ -26269,9 +26228,9 @@ MonoBehaviour:
   finalTargetCount: {fileID: 3484676}
   finalScore: {fileID: 1800256722}
   countdownCircles:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1073585048}
+  - {fileID: 1833273175}
+  - {fileID: 497948567}
   shootToStartText: {fileID: 743407376}
   countdownText: {fileID: 597416121}
   countdownParent: {fileID: 1532804763}
@@ -35528,7 +35487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdf25829eba18104f8435547c9450280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 1632263526105783494, guid: e4615e12365d7184a9a0457e25d8a9ae, type: 3}
+  targetPrefab: {fileID: 2895700849902016088, guid: 70a2b11f1c9a9e842aa97db707830cec, type: 3}
   spawnLocations: []
 --- !u!1001 &905848815
 PrefabInstance:
@@ -78926,6 +78885,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5793897414955421901, guid: 0404a308eed4bc44c8578546264a950c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5793897414955421901, guid: 0404a308eed4bc44c8578546264a950c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -78969,6 +78932,10 @@ PrefabInstance:
       propertyPath: woodAudioSource
       value: 
       objectReference: {fileID: 1181907413}
+    - target: {fileID: 5793897415403991366, guid: 0404a308eed4bc44c8578546264a950c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6676980972686253629, guid: 0404a308eed4bc44c8578546264a950c, type: 3}
       propertyPath: m_Name
       value: Character Armature GLOCK

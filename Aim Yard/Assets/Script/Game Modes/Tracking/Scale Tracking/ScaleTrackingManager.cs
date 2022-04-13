@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 
 public class ScaleTrackingManager : MonoBehaviour
 {
+    public static ScaleTrackingManager instance;
     [Header("Components")]
     [SerializeField] private Camera[] cams;//0 = M4A1; 1 = M16; 2 = Glock;
     [SerializeField] private Camera mainCamera;
@@ -19,18 +20,19 @@ public class ScaleTrackingManager : MonoBehaviour
     public PlayerController playerController;
 
     [Header("Game Settings")]
-    private int targetCount;
+    public int targetCount;
     private int currentScore = 0;
     private int timer = 0;
     private bool isPlaying = false;
     private bool roundEnd;
     private float shootTimeElapsed = 0f;
 
+
     [Header("Score")]
     private int scoreBonus = 0;
     private int targetScoreValue = 10;
     private bool decrementing = false;
-    private float currentTargetCount = 0;
+    public int currentTargetCount = 0;
 
     [Header("Unity Action")]
     private Action onCountdownBegin;
@@ -75,7 +77,15 @@ public class ScaleTrackingManager : MonoBehaviour
     {
         //PlayerPrefs.GetInt("Character")
         LoadCharacter(2);
-
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
     }
 
     // Start is called before the first frame update
@@ -114,7 +124,7 @@ public class ScaleTrackingManager : MonoBehaviour
 
             if (targetCount < 1)
             {
-                ColourCordinationTrackingPool.instance.GetTarget();    //Get target
+                ScalePool.instance.GetTarget();    //Get target
                 targetCount++;                      //Increment target count
             }
         }
@@ -158,6 +168,7 @@ public class ScaleTrackingManager : MonoBehaviour
         onRoundEnd -= RoundEnd;
         roundResultsParent.SetActive(false);
         currentScore = 0;
+        currentTargetCount = 0;
         shootToStartText.gameObject.SetActive(true);    //Enable text
     }
 
@@ -238,30 +249,14 @@ public class ScaleTrackingManager : MonoBehaviour
         {
             if (hit.collider.CompareTag("TrackingTarget"))
             {
+                //Reduce scale   on hit
+                float scaleAmount = -0.1f;
+                Vector3 scaleChange = new Vector3(scaleAmount, scaleAmount, scaleAmount);
+                hit.collider.gameObject.transform.localScale += scaleChange;
 
-
+                //Audui + Score
                 targetHitAudioSource.PlayOneShot(targetHitAudioClip);
-
-                TargetHealth targetScript = hit.collider.GetComponent<TargetHealth>();
-
                 AddScore();
-
-                if (targetScript.currentHealth > 0)
-                {
-                    //Reduce health
-                    float healthReduction = 10f;
-                    targetScript.currentHealth -= healthReduction;
-
-                }
-                else
-                {
-                    //Return to pool
-                    ColourCordinationTrackingPool.instance.ReturnTarget(hit.collider.gameObject);
-                    targetCount--;
-                    //Target destroyed 
-                    currentTargetCount++;
-                }
-
             }
             else
             {
@@ -294,7 +289,7 @@ public class ScaleTrackingManager : MonoBehaviour
         for (int i = 0; i < activeTargets.Length; i++)
         {
             activeTargets[i].SetActive(false);
-            ColourCordinationTrackingPool.instance.ReturnTarget(activeTargets[i]);
+            ScalePool.instance.ReturnTarget(activeTargets[i]);
             targetCount--;
         }
         Cursor.lockState = CursorLockMode.Confined;
