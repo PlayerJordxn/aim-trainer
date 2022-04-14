@@ -31,21 +31,14 @@ public class SettingsData : Data
     }
 }
 
-public class GunData : Data
+public class WeaponData : Data
 {
-    public string gunName;
-    public string gunSourceAudioFilePath;
-    public string gunClipAudioFilePath;
-    public string gunMuzzleFlashFilePath;
+    public string prefabName;
     public string filepath = folderpath + "/curgun.bin";
 
-    public GunData(string _gunName, string _gunAudioSourceFP, string _gunClipAudioFP, string _gunMuzzleFP)
+    public WeaponData(string _prefabName)
     {
-        gunName = _gunName;
-        gunSourceAudioFilePath = _gunAudioSourceFP;
-        gunClipAudioFilePath = _gunClipAudioFP;
-        gunMuzzleFlashFilePath = _gunMuzzleFP;
-        Debug.Log(gunSourceAudioFilePath);
+        prefabName = _prefabName;
         ValidateDirectory();
     }
 

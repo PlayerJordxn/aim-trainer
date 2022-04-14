@@ -15,7 +15,7 @@ static public class SaveSystem
         stream.Close();
     }
 
-    public static void SaveData(GunData data)
+    public static void SaveData (WeaponData data)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(data.filepath, FileMode.Create);
@@ -42,7 +42,7 @@ static public class SaveSystem
         }
     }
 
-    public static GunData LoadGunData()
+    public static WeaponData LoadGunData()
     {
         string path = Application.persistentDataPath + "/data/curgun.bin";
         if (File.Exists(path))
@@ -50,7 +50,7 @@ static public class SaveSystem
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            GunData data = formatter.Deserialize(stream) as GunData;
+            WeaponData data = formatter.Deserialize(stream) as WeaponData;
             stream.Close();
 
             return data;

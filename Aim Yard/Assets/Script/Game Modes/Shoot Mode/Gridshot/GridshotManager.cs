@@ -349,8 +349,12 @@ public class GridshotManager : MonoBehaviour
         {
             return; //default to a base gun and values
         }*/
-        var armatureName = "GLOCK_Armature";
-        var prefab = Resources.Load("Test_Armatures/" + armatureName) as GameObject;
+        //DEMO - displays how weapons will be loaded
+        var selections = Resources.LoadAll("Test_Armatures", typeof(GameObject));
+        var prefab = selections[UnityEngine.Random.Range(0, selections.Length)] as GameObject;
+        //DEMO/ 
+        //var armatureName = "GLOCK_Armature";
+        //var prefab = Resources.Load("Test_Armatures/" + armatureName) as GameObject;
         var armatureObject = GameObject.Find("Player/Armature").transform;
         
         if (prefab != null)
