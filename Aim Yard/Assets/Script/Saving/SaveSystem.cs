@@ -44,7 +44,7 @@ static public class SaveSystem
 
     public static WeaponData LoadGunData()
     {
-        string path = Application.persistentDataPath + "/data/curgun.bin";
+        string path = Application.persistentDataPath + "/data/curweapon.bin";
         if (File.Exists(path))
         {
             BinaryFormatter formatter = new BinaryFormatter();

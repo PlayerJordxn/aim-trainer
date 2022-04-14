@@ -34,7 +34,7 @@ public class SettingsData : Data
 public class WeaponData : Data
 {
     public string prefabName;
-    public string filepath = folderpath + "/curgun.bin";
+    public string filepath = folderpath + "/curweapon.bin";
 
     public WeaponData(string _prefabName)
     {
