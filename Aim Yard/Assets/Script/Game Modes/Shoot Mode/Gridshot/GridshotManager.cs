@@ -158,7 +158,6 @@ public class GridshotManager : MonoBehaviour
                 countdown = 5;                              //Reset countdown
             }
             countdownText.text = countdown.ToString();      //Update countdown text
-            shootToStartText.gameObject.SetActive(true);    //Enable text
             scoreUI.SetActive(false);                       //Disable in game score UI
             windAudioSource.Pause();                        //Pause wind audio
             crosshair.SetActive(false);                     //Disable crosshair
@@ -188,7 +187,7 @@ public class GridshotManager : MonoBehaviour
         roundResultsParent.SetActive(false);
         currentScore = 0;
         accuracy = 0;
-
+        shootToStartText.gameObject.SetActive(true);    //Enable text
     }
 
     private void ShootInput()

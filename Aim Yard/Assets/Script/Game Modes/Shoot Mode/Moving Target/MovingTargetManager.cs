@@ -19,7 +19,7 @@ public class MovingTargetManager : MonoBehaviour
     public PlayerController playerController;
 
     [Header("Game Settings")]
-    private int targetCount;
+    private  int targetCount;
     private float accuracy = 0f;
     private int currentScore = 0;
     private int timer = 0;
@@ -181,8 +181,6 @@ public class MovingTargetManager : MonoBehaviour
         currentScore = 0;
         accuracy = 0;
         shootToStartText.gameObject.SetActive(true);    //Enable text
-
-
     }
 
     private void ShootInput()
