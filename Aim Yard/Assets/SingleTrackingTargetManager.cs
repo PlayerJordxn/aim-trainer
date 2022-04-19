@@ -249,12 +249,9 @@ public class SingleTrackingTargetManager : MonoBehaviour
         {
             if (hit.collider.CompareTag("TrackingTarget"))
             {
-                //Reduce scale   on hit
-                float scaleAmount = -0.1f;
-                Vector3 scaleChange = new Vector3(scaleAmount, scaleAmount, scaleAmount);
-                hit.collider.gameObject.transform.localScale += scaleChange;
-
-                //Audui + Score
+                SingleTargetBehaviour targetScript = hit.collider.GetComponent<SingleTargetBehaviour>();
+                float healthReduction = 10f;
+                targetScript.currentHealth -= healthReduction;
                 targetHitAudioSource.PlayOneShot(targetHitAudioClip);
                 AddScore();
             }
