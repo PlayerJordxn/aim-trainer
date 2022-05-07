@@ -100,6 +100,7 @@ public class GridshotManager : MonoBehaviour
         //PlayerPrefs.GetInt("Character")
         int rand = UnityEngine.Random.Range(0,2);
         //LoadCharacter(rand);
+        // Player controller has to be moved into awake in order for loadCharacterV2 to work
         playerController = FindObjectOfType<PlayerController>();
         LoadCharacterV2();
     }
@@ -344,15 +345,34 @@ public class GridshotManager : MonoBehaviour
 
     private void LoadCharacterV2()
     {
+        // Edgecase where gun doesn't exist?
         /*var currentGun = SaveSystem.LoadGunData();
         if (currentGun == null)
         {
             return; //default to a base gun and values
         }*/
-        //DEMO - displays how weapons will be loaded
+
+        /*
+         * *NOTE: For this system to work, it needs the armatures to be placed in a resource folder.
+         * Typically the folder structure would be Assets -> Resources -> ...
+         * For now, the weapons are found in the Test_armatures folder in Resources
+         * 
+         * For production, remove demo code below and load the specific armature found in curweapon.bin
+         * 
+         * All armatures that are found in Test_Armatures have to have the weapon tagged as "Weapon",
+         * and the root of the armature needs to have an empty gameobject containing the audio source
+         * 
+         * If a weapon has a muzzle flash, the muzzle flash has to be titled "Muzzle Flash" for this code
+         * to find it correctly.
+         */
+
+        // Demos represent how weapons will be loaded.
+        // DEMO - display random weapon
+        // Load available armatures from the "Test_Armatures" folder through a resource load
         var selections = Resources.LoadAll("Test_Armatures", typeof(GameObject));
         var prefab = selections[UnityEngine.Random.Range(0, selections.Length)] as GameObject;
-        //DEMO/ 
+        
+        // DEMO 2 - display specific weapon
         //var armatureName = "GLOCK_Armature";
         //var prefab = Resources.Load("Test_Armatures/" + armatureName) as GameObject;
         var armatureObject = GameObject.Find("Player/Armature").transform;
@@ -360,23 +380,30 @@ public class GridshotManager : MonoBehaviour
         if (prefab != null)
         {
             activeArmature = Instantiate(prefab, armatureObject);
+            // Change the name of the loaded armature to be MUCH easier to target/deal with
             activeArmature.name = "Loaded_Armature";
         }
         
+        // Find ground, spine, camera, audio source and weapon in loaded armature
         var groundCheck = armatureObject.Find("GroundCheck");
         var armatureSpine = activeArmature.transform.Find("metarig/spine/spine.001");
         var armatureCam = armatureSpine.Find("Camera").gameObject;
         var prefabAudioSource = activeArmature.transform.Find("Audio").GetComponent<AudioSource>();
+
+        // Find the weapon in the armature so we can figure out if a muzzle flash exists
         var activeWeapon = FindDeepChildByTag(activeArmature.transform, "Weapon", true);
         var muzzleFlash = activeWeapon.Find("MuzzleFlashTransform/Muzzle Flash");
 
+        // Access PlayerController and set spine and groundCheck
         playerController.spine001 = armatureSpine;
         playerController.groundCheck = groundCheck;
 
         mainCamera = armatureCam.GetComponent("Camera") as Camera;
 
+        // Set audio source and clip using the same Audio gameobject in the armature
         currentGunAudioSource = prefabAudioSource;
         currentGunAudioClip = prefabAudioSource.clip;
+        // If we have a muzzle flash, set it, else ignore
         if (muzzleFlash)
         {
             currentMuzzleFlash = muzzleFlash.GetComponent<VisualEffect>();
@@ -384,7 +411,15 @@ public class GridshotManager : MonoBehaviour
 
     }
 
-    //to be put into static class later since it's useful for more than just this problem
+    // This is a generic search algorithm to find a single child within a nested tree
+    // To summize, it checks all child objects, then checks their children and so on until theres none
+    // left or the tag is found.
+
+    // There are 2 modes, breathfirst vs depthfirst (represented by the breadthFirst bool)
+    // If breadthfirst, the algorithm will check each LAYER first before going the the next layer of children
+    // If depthfirst, the alogirthm will check each CHILD of an object before moving on.
+
+    // Generally speaking, imagine breadthfirst as a bush, and a depthfirst as a vine.
     public Transform FindDeepChildByTag(Transform parent, string tag, bool mustBeActive, bool breadthFirst = false)
     {
         for (int i = 0; i < parent.childCount; i++)
