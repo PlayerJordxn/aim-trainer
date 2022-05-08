@@ -59,6 +59,9 @@ public class ColourCordinationTrackingPool : MonoBehaviour
                 //Spawn Gameobject
                 GameObject targetTemp = Instantiate(targetPrefab, spawnLocations[random]);
 
+                //Random material
+                targetTemp.GetComponent<MeshRenderer>().material = materials[random];
+
                 //Add to storage
                 storage.Add(random);
 
@@ -87,8 +90,6 @@ public class ColourCordinationTrackingPool : MonoBehaviour
 
             if (!storage.Contains(randomTransform))
                 target.transform.position = spawnLocations[randomTransform].transform.position;
-            //Random material
-            target.GetComponent<MeshRenderer>().material = materials[randomMaterial];
 
             //Set gameobject active
             target.SetActive(true);
