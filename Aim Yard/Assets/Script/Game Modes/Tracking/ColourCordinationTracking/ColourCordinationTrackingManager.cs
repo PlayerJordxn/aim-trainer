@@ -10,8 +10,6 @@ using Random = UnityEngine.Random;
 
 public class ColourCordinationTrackingManager : MonoBehaviour
 {
-    public static ColourCordinationTrackingManager instance;
-
     [Header("Components")]
     [SerializeField] private Camera[] cams;//0 = M4A1; 1 = M16; 2 = Glock;
     [SerializeField] private Camera mainCamera;
@@ -21,7 +19,7 @@ public class ColourCordinationTrackingManager : MonoBehaviour
     public PlayerController playerController;
 
     [Header("Game Settings")]
-    public int activeTargetCount;
+    private int targetCount;
     private int currentScore = 0;
     private int timer = 0;
     private bool isPlaying = false;
@@ -32,7 +30,7 @@ public class ColourCordinationTrackingManager : MonoBehaviour
     private int scoreBonus = 0;
     private int targetScoreValue = 10;
     private bool decrementing = false;
-    public int targetsDestroyed = 0;
+    private int currentTargetCount = 0;
 
     [Header("Unity Action")]
     private Action onCountdownBegin;
@@ -78,15 +76,6 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         //PlayerPrefs.GetInt("Character")
         LoadCharacter(2);
 
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if (instance != null)
-        {
-            Destroy(this);
-        }
     }
 
     // Start is called before the first frame update
@@ -123,10 +112,10 @@ public class ColourCordinationTrackingManager : MonoBehaviour
                 StartCoroutine(GameTimer(1));//Game timer
             }
 
-            if (activeTargetCount < 1)
+            if (targetCount < 1)
             {
-                ColourCordinationTrackingPool.instance.GetTarget();    //Get target
-                activeTargetCount++;                      //Increment target count
+                ScalePool.instance.GetTarget();    //Get target
+                targetCount++;                      //Increment target count
             }
         }
         else
@@ -169,7 +158,7 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         onRoundEnd -= RoundEnd;
         roundResultsParent.SetActive(false);
         currentScore = 0;
-        targetsDestroyed = 0;
+        currentTargetCount = 0;
         shootToStartText.gameObject.SetActive(true);    //Enable text
     }
 
@@ -250,13 +239,29 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         {
             if (hit.collider.CompareTag("TrackingTarget"))
             {
-                //Reduce target scale
-                float scaleAmount = -0.1f;
-                Vector3 scaleChange = new Vector3(scaleAmount, scaleAmount, scaleAmount);
-                hit.collider.gameObject.transform.localScale += scaleChange;
-                AddScore();
-                //Aduio
+
+
                 targetHitAudioSource.PlayOneShot(targetHitAudioClip);
+
+                TargetHealth targetScript = hit.collider.GetComponent<TargetHealth>();
+
+                AddScore();
+
+                if (targetScript.currentHealth > 0)
+                {
+                    //Reduce health
+                    float healthReduction = 10f;
+                    targetScript.currentHealth -= healthReduction;
+                    
+                }
+                else
+                {
+                    //Return to pool
+                    ScalePool.instance.ReturnTarget(hit.collider.gameObject);
+                    targetCount--;
+                    //Target destroyed 
+                    currentTargetCount++;
+                }
 
             }
             else
@@ -281,7 +286,7 @@ public class ColourCordinationTrackingManager : MonoBehaviour
     public void RoundEnd()
     {
         roundResultsParent.SetActive(true);
-        finalTargetCount.text = "Final Target Count: " + targetsDestroyed.ToString();
+        finalTargetCount.text = "Final Target Count: " + currentTargetCount.ToString();
         finalScore.text = "Final Score: " + currentScore.ToString();
 
         GameObject[] activeTargets;
@@ -290,8 +295,8 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         for (int i = 0; i < activeTargets.Length; i++)
         {
             activeTargets[i].SetActive(false);
-            ColourCordinationTrackingPool.instance.ReturnTarget(activeTargets[i]);
-            activeTargetCount--;
+            ScalePool.instance.ReturnTarget(activeTargets[i]);
+            targetCount--;
         }
         Cursor.lockState = CursorLockMode.Confined;
     }
@@ -339,7 +344,7 @@ public class ColourCordinationTrackingManager : MonoBehaviour
         //Set Score Text
         scoreText.text = _score > 0 ? scoreText.text = _score.ToString() : scoreText.text = "0";
 
-        totalTargetCountText.text = _score > 0 ? totalTargetCountText.text = targetsDestroyed.ToString() : totalTargetCountText.text = "0";
+        totalTargetCountText.text = _score > 0 ? totalTargetCountText.text = currentTargetCount.ToString() : totalTargetCountText.text = "0";
     }
 
     private IEnumerator GameTimer(int _wait)

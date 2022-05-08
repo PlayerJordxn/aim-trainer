@@ -26212,8 +26212,6 @@ MonoBehaviour:
   - {fileID: 1078237}
   - {fileID: 1790068068}
   playerController: {fileID: 0}
-  activeTargetCount: 0
-  targetsDestroyed: 0
   BeepSoundSource: {fileID: 1775048576}
   windAudioSource: {fileID: 1953290460}
   targetHitAudioSource: {fileID: 1846611657}
@@ -35487,28 +35485,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d1c2e8dd135d141b0927da552ef2a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPrefab: {fileID: 1632263526105783494, guid: e4615e12365d7184a9a0457e25d8a9ae, type: 3}
-  materials:
-  - {fileID: 2100000, guid: fba7f8b51a43bc54db2ae6ffe4782a6e, type: 2}
-  - {fileID: 2100000, guid: 2c9ae4aa5aac768478ade31663cff9be, type: 2}
-  - {fileID: 2100000, guid: a842ce9ff016c854c920f24011be11af, type: 2}
-  - {fileID: 2100000, guid: d29850f68aa4edf4095c8d0ea5abd919, type: 2}
-  - {fileID: 2100000, guid: 038fb302017c57d4eb653bb2731d74cd, type: 2}
-  - {fileID: 2100000, guid: 5866d8c236866074d82ef2719bb5a547, type: 2}
-  - {fileID: 2100000, guid: a540a5c742b090f40a95a5b464df51be, type: 2}
-  - {fileID: 2100000, guid: e465569db2b4d7248b27452d92358e1f, type: 2}
-  - {fileID: 2100000, guid: fba7f8b51a43bc54db2ae6ffe4782a6e, type: 2}
-  - {fileID: 2100000, guid: 2c9ae4aa5aac768478ade31663cff9be, type: 2}
-  - {fileID: 2100000, guid: a842ce9ff016c854c920f24011be11af, type: 2}
-  - {fileID: 2100000, guid: d29850f68aa4edf4095c8d0ea5abd919, type: 2}
-  - {fileID: 2100000, guid: 038fb302017c57d4eb653bb2731d74cd, type: 2}
-  - {fileID: 2100000, guid: 5866d8c236866074d82ef2719bb5a547, type: 2}
-  - {fileID: 2100000, guid: a540a5c742b090f40a95a5b464df51be, type: 2}
-  - {fileID: 2100000, guid: e465569db2b4d7248b27452d92358e1f, type: 2}
-  - {fileID: 2100000, guid: 038fb302017c57d4eb653bb2731d74cd, type: 2}
-  - {fileID: 2100000, guid: 2c9ae4aa5aac768478ade31663cff9be, type: 2}
-  - {fileID: 2100000, guid: e465569db2b4d7248b27452d92358e1f, type: 2}
-  - {fileID: 2100000, guid: a842ce9ff016c854c920f24011be11af, type: 2}
+  targetPrefab:
+  - {fileID: 4030920927562971987, guid: 9fb4e1f220ac1b84ea48535a06b44258, type: 3}
+  - {fileID: 3287605141938410250, guid: 981b40de24c6a1449b2d0bd76028868e, type: 3}
+  - {fileID: 1634967970618010580, guid: 461824b3ebe50e04982c0d2e34d1f8ca, type: 3}
+  - {fileID: 2984258720869506768, guid: 6ad74df1b054ab44aa990d32fb864927, type: 3}
+  - {fileID: 4543953058830880378, guid: b4d3cffc3e075844b824c6e1ecb3ca77, type: 3}
+  - {fileID: 4133531368884165402, guid: 1b1c47bc6c1b03c46ba247a616b9303a, type: 3}
+  - {fileID: 1632263526105783494, guid: e4615e12365d7184a9a0457e25d8a9ae, type: 3}
+  - {fileID: 4627663366094898201, guid: da75003b1b5ccb74fa0b5f7c917fabad, type: 3}
   spawnLocations: []
 --- !u!1001 &905848815
 PrefabInstance:
