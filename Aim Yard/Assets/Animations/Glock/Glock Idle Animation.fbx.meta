@@ -1,22 +1,12 @@
 fileFormatVersion: 2
-guid: d18498a84a18ef6449096f43b4677862
+guid: 0102bd587a6a50e4db7e43abcbe976e1
 ModelImporter:
   serializedVersion: 21100
   internalIDToNameTable:
   - first:
-      74: 5330777937666412646
-    second: metarig.002|GlockIdle
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: 8c82b7d756b65a141bf4bc87b8b8c104, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: 86b5d0586c3ddfb468b518b1c0d50a27, type: 2}
+      74: 8936695560770078632
+    second: metarig.002|GlockIdleAnim
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -43,7 +33,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: metarig.002|GlockIdleAnim
+      takeName: metarig.002|GlockIdleAnim
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
