@@ -3,27 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TitleScreenManager : MonoBehaviour
-{
-    
-    [SerializeField] private Button playButton;
-    [SerializeField] private Button homeButton;
-    [SerializeField] private Button settingsButton;
 
-    [SerializeField] private Canvas mainCanvas;
-    [SerializeField] private GameObject playUI;
-    [SerializeField] private GameObject homeUI;
-    [SerializeField] private GameObject settingsUI;
-    [SerializeField] private GameObject headerUI;
+public class TitlescreenManager : MonoBehaviour
+{
+    [SerializeField] private CanvasGroup titlescreenGroup;
+    [SerializeField] private CanvasGroup modesGroup;
+
+    [SerializeField] private Button playButton;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
-        homeButton.onClick.AddListener(delegate { SwitchUIElements();});
-        playButton.onClick.AddListener(delegate { SwitchUIElements(playUI);});
-        settingsButton.onClick.AddListener(delegate { SwitchUIElements(settingsUI);});
-
+        if (playButton)
+        {
+            playButton.onClick.AddListener(delegate { SwitchCanvas(titlescreenGroup, modesGroup); });
+        }
     }
 
     // Update is called once per frame
@@ -32,21 +27,17 @@ public class TitleScreenManager : MonoBehaviour
         
     }
 
-    private void SwitchUIElements(GameObject exceptionElement=null)
+    public IEnumerator SwitchCanvas(CanvasGroup currentCanvas, CanvasGroup newCanvas)
     {
-        var childrenCount = mainCanvas.transform.childCount;
-        for (var idx = 0; idx < childrenCount; idx++)
-        {
-            var child = mainCanvas.transform.GetChild(idx);
-            if (exceptionElement && child.name == exceptionElement.name)
-            {
-                exceptionElement.SetActive(true);
-            }
-            else if (child.name != headerUI.name)
-            {
-                child.gameObject.SetActive(false);
-            }
+        float speed = 0.3f;
+        float maxAplha = 1f;
+        float minAlpha = 0f;
+        currentCanvas.alpha = Mathf.Lerp(currentCanvas.alpha, minAlpha, speed);
+        newCanvas.alpha = Mathf.Lerp(newCanvas.alpha, maxAplha, speed);
 
+        while (newCanvas.alpha > minAlpha && currentCanvas.alpha < maxAplha)
+        {
+            yield return null;
         }
     }
 }
