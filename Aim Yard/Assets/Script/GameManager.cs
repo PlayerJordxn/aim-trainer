@@ -41,10 +41,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        if (playButton)
-        {
-            playButton.onClick.AddListener(delegate { SwitchCanvas(titlescreenGroup, modesGroup); });
-        }
+       
 
         //if (optionsButton)
         //{
@@ -62,19 +59,7 @@ public class GameManager : MonoBehaviour
         //}
     }
 
-    public IEnumerator SwitchCanvas(CanvasGroup currentCanvas, CanvasGroup newCanvas)
-    {
-        float speed = 0.3f;
-        float maxAplha = 1f;
-        float minAlpha = 0f;
-        currentCanvas.alpha = Mathf.Lerp(currentCanvas.alpha, minAlpha, speed);
-        newCanvas.alpha = Mathf.Lerp(newCanvas.alpha, maxAplha, speed);
-
-        while(newCanvas.alpha > minAlpha && currentCanvas.alpha < maxAplha)
-        {
-            yield return null;
-        }
-    }
+    
 
     public void QuitGame()
     {
