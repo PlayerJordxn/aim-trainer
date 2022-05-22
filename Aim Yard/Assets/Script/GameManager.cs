@@ -41,22 +41,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-       
-
-        //if (optionsButton)
-        //{
-        //    optionsButton.onClick.AddListener(delegate { SwitchCanvas(); });
-        //}
-
-        //if (customizationButton)
-        //{
-        //    optionsButton.onClick.AddListener(delegate { SwitchCanvas(); });
-        //}
-
-        //if(exitGame)
-        //{
-        //    exitGame.onClick.AddListener(delegate { SwitchCanvas(); });
-        //}
+      
     }
 
     

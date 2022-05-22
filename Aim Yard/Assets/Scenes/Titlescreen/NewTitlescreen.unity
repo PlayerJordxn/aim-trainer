@@ -227,15 +227,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bb5ce2a930805429f69b6e3ebd7020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 0}
-  loadingSlider: {fileID: 0}
   titlescreenGroup: {fileID: 1260382251}
-  modesGroup: {fileID: 1021432277}
-  optionsGroup: {fileID: 0}
-  customizationGroup: {fileID: 0}
   playButton: {fileID: 831141777}
   optionsButton: {fileID: 0}
   customizationButton: {fileID: 0}
+  modesGroup: {fileID: 1021432277}
   gridshotButton: {fileID: 0}
   colourCordinationButton: {fileID: 0}
   headshotModeButton: {fileID: 0}
@@ -243,6 +239,8 @@ MonoBehaviour:
   scaleModeButton: {fileID: 0}
   colourCordinationTrackingButton: {fileID: 0}
   scaleTrackingButton: {fileID: 0}
+  optionsGroup: {fileID: 0}
+  customizationGroup: {fileID: 0}
 --- !u!4 &186090472
 Transform:
   m_ObjectHideFlags: 0
@@ -854,7 +852,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1021432276}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -897,7 +895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1260382250
 RectTransform:
   m_ObjectHideFlags: 0
