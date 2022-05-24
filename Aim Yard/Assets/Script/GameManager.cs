@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,24 @@ public class GameManager : MonoBehaviour
     [Header("Controller")]
     public PlayerControls playerController;
 
+    [Header("Pause Menu")]
+    private GameObject pauseMenuCanvas;
+
     [Header("Input Actions")]
     private InputAction pauseInput;
 
+    public static event Action<GameState> onGameStateChanged;
+
     public enum GameState
     {
-        TITLESCREEN,
-        PLAYING,
+        GAMESTART,  //This state is when the game is first launched
+        MAINMENU,//Titlescreen state
+        LEVELSELECTION,
+        OPTIONS,
+        CUSTOMIZATION,
+        ROUNDSTART,
+        PLAYING,    //in active game scene
+        ROUNDEND,
         PAUSED,
     }
     public GameState CurrentGameState;
@@ -42,37 +54,35 @@ public class GameManager : MonoBehaviour
         } 
     }
 
-    void Update()
+    void Start()
     {
-        switch(CurrentGameState)
+        UpdateGameSate(GameState.GAMESTART);
+    }
+
+    public void UpdateGameSate(GameState _newState)
+    {
+        print(CurrentGameState);
+        CurrentGameState = _newState;
+        switch (CurrentGameState)
         {
-            case GameState.TITLESCREEN:
-
+            case GameState.GAMESTART:
                 break;
-
+            case GameState.MAINMENU:
+                break;
+            case GameState.ROUNDSTART:
+                break;
             case GameState.PLAYING:
-
-                PauseGameInput(CurrentGameState);
-
                 break;
-
+            case GameState.ROUNDEND:
+                break;
             case GameState.PAUSED:
-
-                
-                PauseGameInput(CurrentGameState);
-                EnablePauseMenu(); 
-
                 break;
-
             default:
                 Debug.LogError("Game state is set to default case");
                 break;
         }
-    }
 
-    private void EnablePauseMenu()
-    {
-        throw new NotImplementedException();
+        onGameStateChanged?.Invoke(_newState);
     }
 
     public void PauseGameInput(GameState _currentState)
@@ -80,8 +90,7 @@ public class GameManager : MonoBehaviour
         bool pauseInput = playerController.UI.PauseInput.triggered;
         if (pauseInput)
         {
-            //Switches between pause and unpaused
-            CurrentGameState = _currentState == GameState.PAUSED ? GameState.PLAYING : GameState.PAUSED;
+            
         }
         
     }
@@ -104,6 +113,6 @@ public class GameManager : MonoBehaviour
         //Load scene
         SceneManager.LoadScene(_sceneIndex);
     }
-        
+
 }
 
