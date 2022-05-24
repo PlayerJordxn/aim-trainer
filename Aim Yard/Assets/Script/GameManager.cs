@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
         LEVELSELECTION,
         OPTIONS,
         CUSTOMIZATION,
+        SHOOTINGMODES,
+        TRACKINGMODES,
+        SPECIALMODES,
+        LOADING,
         ROUNDSTART,
         PLAYING,    //in active game scene
         ROUNDEND,
@@ -56,7 +60,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateGameSate(GameState.GAMESTART);
+        UpdateGameSate(GameState.MAINMENU);
     }
 
     public void UpdateGameSate(GameState _newState)
@@ -76,6 +80,14 @@ public class GameManager : MonoBehaviour
             case GameState.ROUNDEND:
                 break;
             case GameState.PAUSED:
+                break;
+            case GameState.LEVELSELECTION:
+                break;
+            case GameState.OPTIONS:
+                break;
+            case GameState.CUSTOMIZATION:
+                break;
+            case GameState.LOADING:
                 break;
             default:
                 Debug.LogError("Game state is set to default case");
