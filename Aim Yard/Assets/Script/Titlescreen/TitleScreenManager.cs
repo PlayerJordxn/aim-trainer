@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class TitlescreenManager : MonoBehaviour
 {
+    //Menu Parents
     public GameObject mainMenuParent;
     public GameObject levelSelectionParent;
     public GameObject optionsParent;
@@ -41,6 +42,9 @@ public class TitlescreenManager : MonoBehaviour
         if(playButton) playButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
         if(optionsButton) optionsButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.OPTIONS); });
         if(customizationButton) customizationButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.CUSTOMIZATION); });
+
+        //Modes Buttons
+
 
     }
     void OnDestroy()
