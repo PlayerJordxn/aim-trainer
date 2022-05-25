@@ -25,10 +25,10 @@ public class IntroManager : MonoBehaviour
     {
         if(!videoPlayer.isPlaying && _state == GameManager.GameState.GAMESTART)
         {
-            GameManager.instance.LoadLevel(1);
+            print("LOAD SCENE");
+            int titlescrenSceneIndex = 1;
+            GameManager.instance.LoadLevel(titlescrenSceneIndex);
             GameManager.instance.UpdateGameSate(GameManager.GameState.MAINMENU);
         }
-
-        
     }
 }

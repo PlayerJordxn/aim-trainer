@@ -60,12 +60,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateGameSate(GameState.MAINMENU);
+        UpdateGameSate(GameState.GAMESTART);
     }
 
+    //Changes the game state
     public void UpdateGameSate(GameState _newState)
     {
-        print(CurrentGameState);
         CurrentGameState = _newState;
         switch (CurrentGameState)
         {
@@ -110,20 +110,9 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-
-    public void LoadLevel(int _sceneIndex)
+    public void LoadLevel(int sceneIndex)
     {
-        StartCoroutine(LoadingScene(loadingScreenTime, _sceneIndex));
-    }
-
-    public IEnumerator LoadingScene(float _waitTime, int _sceneIndex)
-    {
-        //Wait 5 seconds
-        WaitForSecondsRealtime realTimeSeconds = new WaitForSecondsRealtime(_waitTime);
-        yield return realTimeSeconds;
-
-        //Load scene
-        SceneManager.LoadScene(_sceneIndex);
+        SceneManager.LoadScene(sceneIndex);
     }
 
 }

@@ -13,10 +13,6 @@ public class TitlescreenManager : MonoBehaviour
     public GameObject mainMenuParent;
     public GameObject levelSelectionParent;
     public GameObject optionsParent;
-    public GameObject customizationParent;
-    public GameObject trackingModesParent;
-    public GameObject shootingModesParent;
-    public GameObject specialModesParent;
 
     [Header("Main Menu")]
     public Button playButton;
@@ -27,6 +23,9 @@ public class TitlescreenManager : MonoBehaviour
     public Button shootingModesButton;
     public Button trackingModesButton;
     public Button specialModesButton;
+    public Button shootingModesReturnButton;
+    public Button trackingModesReturnButton;
+    public Button specialModesReturnButton;
 
     [Header("Options")]
     public Button template;
@@ -36,7 +35,11 @@ public class TitlescreenManager : MonoBehaviour
     public Button weaponLeftButton;
     public Button weaponRightButton;
 
-
+    [Header("Shooting Modes")]
+    public GameObject customizationParent;
+    public GameObject trackingModesParent;
+    public GameObject shootingModesParent;
+    public GameObject specialModesParent;
     private void Awake()
     {
         GameManager.onGameStateChanged += MainMenu;
@@ -72,7 +75,9 @@ public class TitlescreenManager : MonoBehaviour
         if (trackingModesButton) trackingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.TRACKINGMODES); });
         if (specialModesButton) specialModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SPECIALMODES); });
 
-
+        if (shootingModesButton) shootingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
+        if (trackingModesButton) trackingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
+        if (specialModesButton) specialModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
     }
 
     private void MainMenu(GameManager.GameState state)
