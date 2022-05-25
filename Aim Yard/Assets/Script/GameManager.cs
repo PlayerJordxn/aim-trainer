@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
 
     public enum GameState
     {
-        GAMESTART,  //This state is when the game is first launched
         MAINMENU,//Titlescreen state
         LEVELSELECTION,
         OPTIONS,
@@ -60,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateGameSate(GameState.GAMESTART);
+        UpdateGameSate(GameState.MAINMENU);
     }
 
     //Changes the game state
@@ -69,8 +68,6 @@ public class GameManager : MonoBehaviour
         CurrentGameState = _newState;
         switch (CurrentGameState)
         {
-            case GameState.GAMESTART:
-                break;
             case GameState.MAINMENU:
                 break;
             case GameState.ROUNDSTART:

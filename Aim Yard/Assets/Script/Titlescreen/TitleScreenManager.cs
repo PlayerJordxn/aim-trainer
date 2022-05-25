@@ -20,13 +20,28 @@ public class TitlescreenManager : MonoBehaviour
     public Button customizationButton;
 
     [Header("Play Menu")]
-    public Button shootingModesButton;
+    public Button modesReturnButton;
     public Button trackingModesButton;
+    public Button shootingModesButton;
     public Button specialModesButton;
-    public Button shootingModesReturnButton;
-    public Button trackingModesReturnButton;
-    public Button specialModesReturnButton;
 
+    [Header("Tracking Modes Levels")]
+    public Button singleTargetTrack;
+    public Button precisionTrackingButton;
+    public Button colourTrackingButton;
+    public Button scaleTrackingButton;
+    public Button offsetTrackingMode;
+
+    [Header("Shooting Modes Buttons")]
+    public Button gridshotModeButton;
+    public Button precisionModeButton;
+    public Button flickshotModeButton;
+    public Button movingTargetsModeButton;
+    public Button colourCordinationModeButton;
+
+    [Header("Special Modes Buttons")]
+    public Button killhouseButton;
+    public Button newLevelButton;
     [Header("Options")]
     public Button template;
 
@@ -70,14 +85,22 @@ public class TitlescreenManager : MonoBehaviour
         if(optionsButton) optionsButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.OPTIONS); });
         if(customizationButton) customizationButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.CUSTOMIZATION); });
 
-        //Modes Buttons
-        if (shootingModesButton) shootingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SHOOTINGMODES); });
+        //Play Menu
         if (trackingModesButton) trackingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.TRACKINGMODES); });
+        if (shootingModesButton) shootingModesButton.onC lick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SHOOTINGMODES); });
         if (specialModesButton) specialModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SPECIALMODES); });
 
-        if (shootingModesButton) shootingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
-        if (trackingModesButton) trackingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
-        if (specialModesButton) specialModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
+        //Tracking Modes Buttons
+        if (precisionTrackingButton) precisionTrackingButton.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
+        if (singleTargetTrack) singleTargetTrack.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
+        if (colourTrackingButton) colourTrackingButton.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
+        if (offsetTrackingMode) offsetTrackingMode.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
+        if (scaleTrackingButton) scaleTrackingButton.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
+
+        //Shooting Modes Buttons
+
+        //Special Modes Buttons
+
     }
 
     private void MainMenu(GameManager.GameState state)
