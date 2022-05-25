@@ -87,7 +87,7 @@ public class TitlescreenManager : MonoBehaviour
 
         //Play Menu
         if (trackingModesButton) trackingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.TRACKINGMODES); });
-        if (shootingModesButton) shootingModesButton.onC lick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SHOOTINGMODES); });
+        if (shootingModesButton) shootingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SHOOTINGMODES); });
         if (specialModesButton) specialModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SPECIALMODES); });
 
         //Tracking Modes Buttons
