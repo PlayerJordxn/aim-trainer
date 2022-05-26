@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
     }
     
 
-    public async void LoadScene(string _sceneName)
+    public IEnumerator LoadScene(string _sceneName)
     {
         var scene = SceneManager.LoadSceneAsync(_sceneName);
         scene.allowSceneActivation = false;
@@ -34,7 +34,13 @@ public class LevelManager : MonoBehaviour
 
         do
         {
-            await Task.Delay(100);
+            //Wait
+            progressBar.fillAmount = scene.progress;
+            yield return null;
         } while (scene.progress < 0.9f);
+
+        scene.allowSceneActivation = true;
+        loadingCanvas.SetActive(false);
+        
     }
 }
