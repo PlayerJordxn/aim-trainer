@@ -1,69 +1,54 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 
 public class TitlescreenManager : MonoBehaviour
 {
-    //Menu Parents
     [Header("Menu Parents")]
-    public GameObject mainMenuParent;
-    public GameObject levelSelectionParent;
-    public GameObject optionsParent;
+    //Main Menu
+    [SerializeField] private GameObject mainMenuParent;
+    //Level Selection
+    [SerializeField] private GameObject levelSelectionParent;
+    //Options
+    [SerializeField] private GameObject optionsParent;
+    //Customization
+    [SerializeField] private GameObject customizationParent;
 
     [Header("Main Menu")]
-    public Button playButton;
-    public Button optionsButton;
-    public Button customizationButton;
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button optionsButton;
+    [SerializeField] private Button customizationButton;
 
-    [Header("Play Menu")]
-    public Button modesReturnButton;
-    public Button trackingModesButton;
-    public Button shootingModesButton;
-    public Button specialModesButton;
+    [Header("Mode Selection Menu")]
+    [SerializeField] private Button levelsReturnButton;
 
-    [Header("Tracking Modes Levels")]
-    public Button singleTargetTrack;
-    public Button precisionTrackingButton;
-    public Button colourTrackingButton;
-    public Button scaleTrackingButton;
-    public Button offsetTrackingMode;
+    [Header("Cusomization Menu")]
+    [SerializeField] private Button weaponLeftButton;
+    [SerializeField] private Button weaponRightButton;
 
-    [Header("Shooting Modes Buttons")]
-    public Button gridshotModeButton;
-    public Button precisionModeButton;
-    public Button flickshotModeButton;
-    public Button movingTargetsModeButton;
-    public Button colourCordinationModeButton;
 
-    [Header("Special Modes Buttons")]
-    public Button killhouseButton;
-    public Button newLevelButton;
-    [Header("Options")]
-    public Button template;
+    [Header("Level Load Buttons")]
+    //Tracking    
+    [SerializeField] private Button singleTargetTracking;
+    [SerializeField] private Button precisionTrackingButton;
+    [SerializeField] private Button colourCourdinationTrackingButton;
+    [SerializeField] private Button scaleTrackingButton;
+    [SerializeField] private Button offsetTrackingMode;
 
-    //Customization
-    [Header("Cusomization")]
-    public Button weaponLeftButton;
-    public Button weaponRightButton;
+    [SerializeField] private Button gridshotModeButton;
+    [SerializeField] private Button precisionModeButton;
+    [SerializeField] private Button flickshotModeButton;
+    [SerializeField] private Button movingTargetsModeButton;
+    [SerializeField] private Button colourCordinationModeButton;
 
-    [Header("Shooting Modes")]
-    public GameObject customizationParent;
-    public GameObject trackingModesParent;
-    public GameObject shootingModesParent;
-    public GameObject specialModesParent;
+    [SerializeField] private Button killhouseButton;
+    [SerializeField] private Button newLevelButton;
     private void Awake()
     {
         GameManager.onGameStateChanged += MainMenu;
         GameManager.onGameStateChanged += LevelSelection;
         GameManager.onGameStateChanged += Options;
         GameManager.onGameStateChanged += Customization;
-        GameManager.onGameStateChanged += ShootingModes;
-        GameManager.onGameStateChanged += TrackingModes;
-        GameManager.onGameStateChanged += SpecialModes;
     }
 
     void OnDestroy()
@@ -72,9 +57,6 @@ public class TitlescreenManager : MonoBehaviour
         GameManager.onGameStateChanged -= LevelSelection;
         GameManager.onGameStateChanged -= Options;
         GameManager.onGameStateChanged -= Customization;
-        GameManager.onGameStateChanged -= ShootingModes;
-        GameManager.onGameStateChanged -= TrackingModes;
-        GameManager.onGameStateChanged -= SpecialModes;
     }
 
 
@@ -85,21 +67,8 @@ public class TitlescreenManager : MonoBehaviour
         if(optionsButton) optionsButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.OPTIONS); });
         if(customizationButton) customizationButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.CUSTOMIZATION); });
 
-        //Play Menu
-        if (trackingModesButton) trackingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.TRACKINGMODES); });
-        if (shootingModesButton) shootingModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SHOOTINGMODES); });
-        if (specialModesButton) specialModesButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.SPECIALMODES); });
-
-        //Tracking Modes Buttons
-        if (precisionTrackingButton) precisionTrackingButton.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
-        if (singleTargetTrack) singleTargetTrack.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
-        if (colourTrackingButton) colourTrackingButton.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
-        if (offsetTrackingMode) offsetTrackingMode.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
-        if (scaleTrackingButton) scaleTrackingButton.onClick.AddListener(delegate { GameManager.instance.LoadLevel(0); });
-
-        //Shooting Modes Buttons
-
-        //Special Modes Buttons
+        //Levels
+        if(levelsReturnButton) levelsReturnButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.MAINMENU); } );
 
     }
 
@@ -119,17 +88,8 @@ public class TitlescreenManager : MonoBehaviour
     {
         customizationParent.SetActive(state == GameManager.GameState.CUSTOMIZATION);
     }
-    private void ShootingModes(GameManager.GameState state)
+    public int ReturnLevelIndex(int _index)
     {
-        shootingModesParent.SetActive(state == GameManager.GameState.SHOOTINGMODES);
+        return _index;
     }
-    private void TrackingModes(GameManager.GameState state)
-    {
-        trackingModesParent.SetActive(state == GameManager.GameState.TRACKINGMODES);
-    }
-    private void SpecialModes(GameManager.GameState state)
-    {
-        specialModesParent.SetActive(state == GameManager.GameState.SPECIALMODES);
-    }
-
 }

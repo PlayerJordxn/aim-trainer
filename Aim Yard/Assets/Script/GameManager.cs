@@ -11,9 +11,6 @@ public class GameManager : MonoBehaviour
     //Instance
     public static GameManager instance { get; private set; }
 
-    [Header("Loading Variables")]
-    private float loadingScreenTime = 5f;
-
     [Header("Controller")]
     public PlayerControls playerController;
 
@@ -31,9 +28,6 @@ public class GameManager : MonoBehaviour
         LEVELSELECTION,
         OPTIONS,
         CUSTOMIZATION,
-        SHOOTINGMODES,
-        TRACKINGMODES,
-        SPECIALMODES,
         LOADING,
         ROUNDSTART,
         PLAYING,    //in active game scene
@@ -65,6 +59,7 @@ public class GameManager : MonoBehaviour
     //Changes the game state
     public void UpdateGameSate(GameState _newState)
     {
+        print(_newState);
         CurrentGameState = _newState;
         switch (CurrentGameState)
         {
@@ -107,9 +102,12 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void LoadLevel(int sceneIndex)
+    public void LoadLevel(int _sceneIndex)
     {
-        SceneManager.LoadScene(sceneIndex);
+        print("Loading Scene...");
+        print(_sceneIndex);
+        SceneManager.LoadScene(_sceneIndex);
+        //UpdateGameSate(GameState.LOADING);
     }
 
 }
