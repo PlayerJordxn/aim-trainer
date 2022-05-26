@@ -62,6 +62,11 @@ public class TitlescreenManager : MonoBehaviour
 
     void Start()
     {
+        if(gridshotModeButton)
+        {
+            gridshotModeButton.onClick.AddListener(delegate { GameManager.instance.LoadLevel(1); });
+        }
+
         //Main Menu Button Listeners
         if(playButton) playButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
         if(optionsButton) optionsButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.OPTIONS); });

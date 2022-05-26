@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         }
         else if(instance != null)
         {
-            Destroy(this);
+            Destroy(gameObject);
         } 
     }
 
@@ -102,11 +102,12 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
-    public void LoadLevel(int _sceneIndex)
+    public void LoadLevel(int _loadIndex)
     {
         print("Loading Scene...");
-        print(_sceneIndex);
-        SceneManager.LoadScene(_sceneIndex);
+        print(_loadIndex);
+
+        SceneManager.LoadScene(_loadIndex, LoadSceneMode.Single);
         //UpdateGameSate(GameState.LOADING);
     }
 
