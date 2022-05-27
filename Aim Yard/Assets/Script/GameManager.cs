@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
     //Changes the game state
     public void UpdateGameSate(GameState _newState)
     {
-        print(_newState);
         CurrentGameState = _newState;
         switch (CurrentGameState)
         {
@@ -104,11 +103,8 @@ public class GameManager : MonoBehaviour
     }
     public void LoadLevel(int _loadIndex)
     {
-        print("Loading Scene...");
-        print(_loadIndex);
-
         SceneManager.LoadScene(_loadIndex, LoadSceneMode.Single);
-        //UpdateGameSate(GameState.LOADING);
+        UpdateGameSate(GameState.LOADING);
     }
 
 }

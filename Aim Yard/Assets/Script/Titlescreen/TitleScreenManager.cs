@@ -1,6 +1,7 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 public class TitlescreenManager : MonoBehaviour
 {
@@ -46,52 +47,38 @@ public class TitlescreenManager : MonoBehaviour
     private void Awake()
     {
         GameManager.onGameStateChanged += MainMenu;
-        GameManager.onGameStateChanged += LevelSelection;
-        GameManager.onGameStateChanged += Options;
-        GameManager.onGameStateChanged += Customization;
     }
 
     void OnDestroy()
     {
         GameManager.onGameStateChanged -= MainMenu;
-        GameManager.onGameStateChanged -= LevelSelection;
-        GameManager.onGameStateChanged -= Options;
-        GameManager.onGameStateChanged -= Customization;
     }
 
 
     void Start()
     {
-        if(gridshotModeButton)
+        if (gridshotModeButton)
         {
             gridshotModeButton.onClick.AddListener(delegate { GameManager.instance.LoadLevel(1); });
         }
 
         //Main Menu Button Listeners
-        if(playButton) playButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
-        if(optionsButton) optionsButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.OPTIONS); });
-        if(customizationButton) customizationButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.CUSTOMIZATION); });
+        if (playButton) playButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.LEVELSELECTION); });
+        if (optionsButton) optionsButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.OPTIONS); });
+        if (customizationButton) customizationButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.CUSTOMIZATION); });
 
         //Levels
-        if(levelsReturnButton) levelsReturnButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.MAINMENU); } );
+        if (levelsReturnButton) levelsReturnButton.onClick.AddListener(delegate { GameManager.instance.UpdateGameSate(GameManager.GameState.MAINMENU); });
 
     }
 
     private void MainMenu(GameManager.GameState state)
     {
         mainMenuParent.SetActive(state == GameManager.GameState.MAINMENU);
-    }
-    private void LevelSelection(GameManager.GameState state)
-    {
         levelSelectionParent.SetActive(state == GameManager.GameState.LEVELSELECTION);
-    }
-    private void Options(GameManager.GameState state)
-    {
         optionsParent.SetActive(state == GameManager.GameState.OPTIONS);
-    }
-    private void Customization(GameManager.GameState state)
-    {
         customizationParent.SetActive(state == GameManager.GameState.CUSTOMIZATION);
+
     }
     public int ReturnLevelIndex(int _index)
     {
