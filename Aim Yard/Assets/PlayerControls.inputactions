@@ -264,6 +264,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ShootToStartInput",
+                    "type": "Button",
+                    "id": "141098db-3b99-446d-ac64-75812691cf40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -275,6 +283,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PauseInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c4c1e282-6d35-43e1-9d3a-597f4feb3a05",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShootToStartInput",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

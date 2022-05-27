@@ -277,6 +277,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ShootToStartInput"",
+                    ""type"": ""Button"",
+                    ""id"": ""141098db-3b99-446d-ac64-75812691cf40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -288,6 +296,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""PauseInput"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c4c1e282-6d35-43e1-9d3a-597f4feb3a05"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootToStartInput"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -365,6 +384,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_PauseInput = m_UI.FindAction("PauseInput", throwIfNotFound: true);
+        m_UI_ShootToStartInput = m_UI.FindAction("ShootToStartInput", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -464,11 +484,13 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_PauseInput;
+    private readonly InputAction m_UI_ShootToStartInput;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
         public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @PauseInput => m_Wrapper.m_UI_PauseInput;
+        public InputAction @ShootToStartInput => m_Wrapper.m_UI_ShootToStartInput;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -481,6 +503,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @PauseInput.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseInput;
                 @PauseInput.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseInput;
                 @PauseInput.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseInput;
+                @ShootToStartInput.started -= m_Wrapper.m_UIActionsCallbackInterface.OnShootToStartInput;
+                @ShootToStartInput.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnShootToStartInput;
+                @ShootToStartInput.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnShootToStartInput;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -488,6 +513,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @PauseInput.started += instance.OnPauseInput;
                 @PauseInput.performed += instance.OnPauseInput;
                 @PauseInput.canceled += instance.OnPauseInput;
+                @ShootToStartInput.started += instance.OnShootToStartInput;
+                @ShootToStartInput.performed += instance.OnShootToStartInput;
+                @ShootToStartInput.canceled += instance.OnShootToStartInput;
             }
         }
     }
@@ -546,5 +574,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     public interface IUIActions
     {
         void OnPauseInput(InputAction.CallbackContext context);
+        void OnShootToStartInput(InputAction.CallbackContext context);
     }
 }
