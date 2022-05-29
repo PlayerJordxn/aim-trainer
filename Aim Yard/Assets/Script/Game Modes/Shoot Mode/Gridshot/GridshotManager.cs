@@ -7,7 +7,6 @@ public class GridshotManager : MonoBehaviour
 {
     public PlayerControls playerController;
 
-
     [Header("Round start variables")]
     float roundStartCountdown = 5f;
 
