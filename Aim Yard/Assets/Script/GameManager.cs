@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem;
 using System;
 
 public class GameManager : MonoBehaviour
@@ -12,13 +11,10 @@ public class GameManager : MonoBehaviour
     public static GameManager instance { get; private set; }
 
     [Header("Controller")]
-    public PlayerControls playerController;
 
     [Header("Pause Menu")]
     private GameObject pauseMenuCanvas;
 
-    [Header("Input Actions")]
-    private InputAction pauseInput;
 
     public static event Action<GameState> onGameStateChanged;
 
@@ -38,8 +34,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        playerController = new PlayerControls();
-
         if (instance == null)
         {
             instance = this;
@@ -90,12 +84,7 @@ public class GameManager : MonoBehaviour
 
     public void PauseGameInput(GameState _currentState)
     {
-        bool pauseInput = playerController.UI.PauseInput.triggered;
-        if (pauseInput)
-        {
-            
-        }
-        
+
     }
     public void QuitGame()
     {

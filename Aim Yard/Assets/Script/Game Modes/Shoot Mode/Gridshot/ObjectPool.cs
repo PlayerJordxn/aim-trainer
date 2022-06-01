@@ -23,15 +23,7 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if (instance != null)
-        {
-            Destroy(this);
-        }
+        instance = this;
     }
 
     // Start is called before the first frame update

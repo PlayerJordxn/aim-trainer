@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController cc;
+    private Camera cam;
     [SerializeField] public Transform spine001;
     [SerializeField] public Transform groundCheck;
-
 
     //Movement
     [Header("Movement Settings")]
@@ -29,24 +29,55 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        if (!cc)
-            cc = GetComponent<CharacterController>();
-
-        if (!groundCheck)
-            groundCheck = GetComponentInChildren<Transform>().Find("GroundCheck");
-
- 
+        if (!cam) cam = GetComponentInChildren<Camera>();
+        if (!cc) cc = GetComponent<CharacterController>();
+        if (!spine001) spine001 = GameObject.FindGameObjectWithTag("Spine").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        //>> CAMERA MOVEMENT <<//
-        //Input
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        float lookUp = mouseDelta.y * cameraRotationSpeed * Time.deltaTime;
-        float lookLeft = mouseDelta.x * cameraRotationSpeed * Time.deltaTime;
+        Gravity();
+        Look();
+        Movement();
+        Jump();
+        Shoot();
+    }
+
+    public void Shoot()
+    {
+        RaycastHit hit;
+
+        bool shootInput = Input.GetKeyDown(KeyCode.Mouse0);
+        bool castHit = Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, 50f);
+
+        if (shootInput & castHit)
+        {
+            print("SHOT");
+
+            if (hit.collider.CompareTag("Target"))
+            {
+                print("TARGET HIT");
+                GameObject gridshotTarget = hit.collider.gameObject;
+                ObjectPool.instance.ReturnTarget(gridshotTarget);
+                GridshotManager.instance.currentTargetCount--;
+            }
+        }
+    }
+
+    public void Gravity()
+    {
+        verticalMovement -= gravity * Time.deltaTime;
+    }
+    public void Look()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
+
+        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
+        float lookUp = mouseInput.y * cameraRotationSpeed * Time.deltaTime;
+        float lookLeft = mouseInput.x * cameraRotationSpeed * Time.deltaTime;
 
         //Rotation
         rotationX -= lookUp;
@@ -56,16 +87,14 @@ public class PlayerController : MonoBehaviour
         //New Rotation
         Vector3 mouseMovement = new Vector3(rotationX, transform.eulerAngles.y, transform.eulerAngles.z);
         spine001.transform.eulerAngles = mouseMovement;
-        mouseMovement = Vector2.SmoothDamp(mouseMovement, mouseDelta, ref mouseDirectionVelocity, cameraSmoothValue);
+        mouseMovement = Vector2.SmoothDamp(mouseMovement, mouseInput, ref mouseDirectionVelocity, cameraSmoothValue);
+    }
 
-        //>> PLAYER MOVEMENT <<//
-        //Gravity
-        verticalMovement -= gravity * Time.deltaTime;
-
+    public void Movement()
+    {
         //Input
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalInput = Input.GetAxis("Horizontal");
-        
 
         //Move
         Vector3 moveForward = transform.forward * verticalInput;
@@ -76,12 +105,11 @@ public class PlayerController : MonoBehaviour
         direction.y = verticalMovement;
         Vector3 distance = direction * Time.deltaTime;
         cc.Move(distance);
+    }
 
-        //Jump
+    public void Jump()
+    {
         if (cc.isGrounded && Input.GetKeyDown(KeyCode.Space))
             verticalMovement = jumpForce;
-
-  
-
     }
 }
