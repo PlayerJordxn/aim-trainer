@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     private CharacterController cc;
     private Camera cam;
     [SerializeField] public Transform spine001;
-    [SerializeField] public Transform groundCheck;
 
     //Movement
     [Header("Movement Settings")]
@@ -53,14 +52,17 @@ public class PlayerController : MonoBehaviour
 
         if (shootInput & castHit)
         {
-            print("SHOT");
+            if (GridshotManager.instance.gameState == GridshotManager.GameState.PLAYING)
+            {
+                CanvasManager.instance.totalShots++;
+            }
 
             if (hit.collider.CompareTag("Target"))
             {
-                print("TARGET HIT");
                 GameObject gridshotTarget = hit.collider.gameObject;
                 ObjectPool.instance.ReturnTarget(gridshotTarget);
                 GridshotManager.instance.currentTargetCount--;
+                CanvasManager.instance.score++;
             }
         }
     }

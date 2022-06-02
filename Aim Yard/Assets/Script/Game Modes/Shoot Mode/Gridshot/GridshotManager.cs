@@ -2,22 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GridshotManager : MonoBehaviour
 {
+    [Header("Game Settings")]
     public static GridshotManager instance;
     PlayerController playerControllerScript;
 
     [SerializeField] private GameObject characterM4;
     [SerializeField] private GameObject characterGlock;
 
-    private Vector3 spawnLocation;
-    Quaternion spawnRotation;
-
     private float countdown = 5f;
+    public float countdownRotationSpeed = 10f;
     public int currentTargetCount = 0;
+    private bool isDecrementing = false;
     [SerializeField] private int maxTargetCount = 5;
-
     public GameState gameState;
 
     public enum GameState
@@ -28,6 +28,18 @@ public class GridshotManager : MonoBehaviour
         ROUNDEND,
     }
 
+    [Header("UI")]
+    [SerializeField] private GameObject shootToStartText;
+    [SerializeField] private GameObject resultsScreen;
+    [SerializeField] private GameObject crosshair;
+
+    [Header("Countdown UI")]
+    [SerializeField] private GameObject countdownParent;
+    [SerializeField] private RectTransform circleOne;
+    [SerializeField] private RectTransform circleTwo;
+    [SerializeField] private TextMeshProUGUI countdownText;
+
+
     private void Awake()
     {
         instance = this;
@@ -35,62 +47,95 @@ public class GridshotManager : MonoBehaviour
 
     private void Start()
     {
-        spawnRotation = Quaternion.Euler(0, 180, 0);
-        spawnLocation = GameObject.FindGameObjectWithTag("SpawnLocation").transform.position;
-
         LoadCharacter(PlayerPrefs.GetString("WeaponSelection"));
-
         gameState = GameState.ROUNDSTART;
     }
 
     private void Update()
     {
+        //UI enables during specific game state
+        shootToStartText.SetActive(gameState == GameState.ROUNDSTART);
+        resultsScreen.SetActive(gameState == GameState.ROUNDEND);
+        crosshair.SetActive(gameState == GameState.PLAYING);
+        countdownParent.SetActive(gameState == GameState.COUNTDOWN);
+
+        //Game state
         switch (gameState)
         {
             case GameState.ROUNDSTART:
-                ShootToStart();
+
+                ShootToContinue(GameState.COUNTDOWN);
+                CanvasManager.instance.ResetScoreboard();
+
                 break;
 
             case GameState.COUNTDOWN:
-                Countdown();
+
+                StartCountdown();
+                CountdownRotation();
+               
                 break;
 
             case GameState.PLAYING:
+
                 GameActive();
+                if (!isDecrementing) StartCoroutine(GameTimer(1f));
+
                 break;
 
             case GameState.ROUNDEND:
 
+                ShootToContinue(GameState.ROUNDSTART);
+
                 break;
         }
     }
 
-    private void LoadCharacter(string selectedWeapon)
+    private void CountdownRotation()
     {
-        if (selectedWeapon == "M4")
-        {
-            characterM4.SetActive(true);
-            characterM4.transform.position = spawnLocation;
-            characterM4.transform.rotation = spawnRotation; 
-        }
-        else//Glock
-        {
-            characterGlock.SetActive(true);
-            characterGlock.transform.position = spawnLocation;
-            characterGlock.transform.rotation = spawnRotation;
-        }
+        //rotate countdown ui
+        Vector3 newRoation = Vector3.forward * Time.deltaTime * countdownRotationSpeed;
+        circleOne.Rotate(newRoation / 2);
+        circleTwo.Rotate(newRoation);
+        countdownText.text = countdown.ToString();
     }
 
-    private void ShootToStart()
+    private IEnumerator GameTimer(float wait)
+    {
+
+        isDecrementing = true;
+        WaitForSecondsRealtime waitTime = new WaitForSecondsRealtime(wait);
+        yield return waitTime;
+        CanvasManager.instance.time--;
+        isDecrementing = false;
+    }
+
+    public void ReturnTargets()
+    {
+
+    }
+
+    private void LoadCharacter(string selectedWeapon)
+    {
+        if (selectedWeapon == "M4") characterM4.SetActive(true);
+        else characterGlock.SetActive(true);
+    }
+
+    private void ShootToContinue(GameState newState)
     {
         bool shootToStartInput = Input.GetKeyDown(KeyCode.Mouse0);
         if(shootToStartInput)
         {
-            gameState = GameState.COUNTDOWN;
+            if(newState == GameState.ROUNDEND)
+            {
+                ReturnTargets();
+            }
+
+            gameState = newState;
         }
     }
 
-    public void Countdown()
+    public void StartCountdown()
     {
         float minTime = 0f;
         float resetValue = 5f;
@@ -102,17 +147,31 @@ public class GridshotManager : MonoBehaviour
         }
         else
         {
-            countdown -= Time.deltaTime;
+            if(!isDecrementing) StartCoroutine(Countdown(1f));
         }
+    }
+
+    private IEnumerator Countdown(float wait)
+    {
+        print(countdown);
+        isDecrementing = true;
+        yield return new WaitForSecondsRealtime(wait);
+        countdown--;
+        isDecrementing = false;
     }
 
     public void GameActive()
     {
         if(currentTargetCount < maxTargetCount)
         {
-            print("TARGET SPAWNED");
             currentTargetCount++;
             ObjectPool.instance.GetTarget();
         }
+
+        if(CanvasManager.instance.time <= 1)
+        {
+            gameState = GameState.ROUNDEND;
+        }
+
     }
 }
