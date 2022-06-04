@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -27,11 +28,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource shootAudioSource;
     [SerializeField] private AudioClip shootAudioClip;
 
+    [Header("Audio")]
+    [SerializeField] private VisualEffect muzzleFlash;
+    [SerializeField] private VisualEffect bulletImpact;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
+        if (!bulletImpact) bulletImpact = GameObject.FindGameObjectWithTag("BulletImpact").GetComponent<VisualEffect>();
+        if (!muzzleFlash) muzzleFlash = GetComponentInChildren<VisualEffect>();
         if (!cam) cam = GetComponentInChildren<Camera>();
         if (!cc) cc = GetComponent<CharacterController>();
         if (!spine001) spine001 = GameObject.FindGameObjectWithTag("Spine").transform;
@@ -56,7 +62,8 @@ public class PlayerController : MonoBehaviour
 
         if(shootInput)
         {
-            shootAudioSource.Play();
+            shootAudioSource.PlayOneShot(shootAudioClip);
+            muzzleFlash.Play();
 
             if (castHit)
             {
@@ -86,7 +93,7 @@ public class PlayerController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
 
-        Vector2 mouseInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        Vector2 mouseInput = new Vector2(mouseX, mouseY);
 
         float lookUp = mouseInput.y * cameraRotationSpeed * Time.deltaTime;
         float lookLeft = mouseInput.x * cameraRotationSpeed * Time.deltaTime;
