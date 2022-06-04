@@ -47,7 +47,7 @@ public class GridshotManager : MonoBehaviour
 
     private void Start()
     {
-        LoadCharacter(PlayerPrefs.GetString("WeaponSelection"));
+        //LoadCharacter(PlayerPrefs.GetString("WeaponSelection"));
         gameState = GameState.ROUNDSTART;
     }
 

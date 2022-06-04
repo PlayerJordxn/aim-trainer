@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDirectionVelocity = Vector2.zero;
     private float rotationX = 0f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource shootAudioSource;
+    [SerializeField] private AudioClip shootAudioClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -50,21 +54,27 @@ public class PlayerController : MonoBehaviour
         bool shootInput = Input.GetKeyDown(KeyCode.Mouse0);
         bool castHit = Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, 50f);
 
-        if (shootInput & castHit)
+        if(shootInput)
         {
-            if (GridshotManager.instance.gameState == GridshotManager.GameState.PLAYING)
-            {
-                CanvasManager.instance.totalShots++;
-            }
+            shootAudioSource.Play();
 
-            if (hit.collider.CompareTag("Target"))
+            if (castHit)
             {
-                GameObject gridshotTarget = hit.collider.gameObject;
-                ObjectPool.instance.ReturnTarget(gridshotTarget);
-                GridshotManager.instance.currentTargetCount--;
-                CanvasManager.instance.score++;
+                if (GridshotManager.instance.gameState == GridshotManager.GameState.PLAYING)
+                {
+                    CanvasManager.instance.totalShots++;
+                }
+
+                if (hit.collider.CompareTag("Target"))
+                {
+                    GameObject gridshotTarget = hit.collider.gameObject;
+                    ObjectPool.instance.ReturnTarget(gridshotTarget);
+                    GridshotManager.instance.currentTargetCount--;
+                    CanvasManager.instance.score++;
+                }
             }
         }
+       
     }
 
     public void Gravity()
